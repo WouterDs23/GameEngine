@@ -10,6 +10,8 @@
 #include "TextObject.h"
 #include "GameObject.h"
 #include "Scene.h"
+#include "Time.h"
+#include "FPSComponent.h"
 
 
 void dae::Minigin::Initialize()
@@ -45,13 +47,14 @@ void dae::Minigin::LoadGame() const
 	auto go = std::make_shared<GameObject>();
 	go->SetTexture("background.jpg");
 	scene.Add(go);
-
+	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
+	FPSComponent* FPS = new FPSComponent(font);
 	go = std::make_shared<GameObject>();
 	go->SetTexture("logo.png");
 	go->SetPosition(216, 180);
+	go->AddComponent(FPS);
 	scene.Add(go);
 
-	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
 	to->SetPosition(80, 20);
 	scene.Add(to);
@@ -71,25 +74,36 @@ void dae::Minigin::Run()
 
 	// tell the resource manager where he can find the game data
 	ResourceManager::GetInstance().Init("../Data/");
+	
 
 	LoadGame();
 
 	{
+		
+		
 		auto t = std::chrono::high_resolution_clock::now();
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
 
+		auto lastTime = std::chrono::high_resolution_clock::now();
 		bool doContinue = true;
+		float lag{ 0 };
 		while (doContinue)
 		{
+			const auto currentTime = std::chrono::high_resolution_clock::now();
+			float delta = std::chrono::duration<float>(currentTime - lastTime).count();
+			Time::GetInstance().SetDeltaTime(delta);
+			lastTime = currentTime;
+			lag += delta;
 			doContinue = input.ProcessInput();
 
-			sceneManager.Update();
+			/*while (lag >= msPerFrame)
+			{*/
+				sceneManager.Update();
+				lag -= msPerFrame;
+			/*}*/
 			renderer.Render();
-
-			t += std::chrono::milliseconds(msPerFrame);
-			std::this_thread::sleep_until(t);
 		}
 	}
 
