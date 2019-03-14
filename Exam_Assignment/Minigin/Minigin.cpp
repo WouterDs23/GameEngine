@@ -7,10 +7,10 @@
 #include "Renderer.h"
 #include "ResourceManager.h"
 #include <SDL.h>
-#include "TextObject.h"
-#include "GameObject.h"
 #include "Scene.h"
 #include "Time.h"
+#include "TextObject.h"
+#include "GameObject.h"
 #include "FPSComponent.h"
 
 
@@ -48,11 +48,11 @@ void dae::Minigin::LoadGame() const
 	go->SetTexture("background.jpg");
 	scene.Add(go);
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	FPSComponent* FPS = new FPSComponent(font);
+
 	go = std::make_shared<GameObject>();
 	go->SetTexture("logo.png");
 	go->SetPosition(216, 180);
-	go->AddComponent(FPS);
+	go->AddComponent(std::make_shared<FPSComponent>(font));
 	scene.Add(go);
 
 	auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
@@ -78,9 +78,7 @@ void dae::Minigin::Run()
 
 	LoadGame();
 
-	{
-		
-		
+	{		
 		auto t = std::chrono::high_resolution_clock::now();
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();

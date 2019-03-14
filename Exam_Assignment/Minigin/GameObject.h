@@ -17,9 +17,9 @@ namespace dae
 		void SetTexture(const std::string& filename);
 		void SetPosition(float x, float y);
 
-		void AddComponent(BaseComponent* comp)
+		void AddComponent(std::shared_ptr<BaseComponent> comp)
 		{
-			for (BaseComponent* comps : m_Components)
+			for (auto comps : m_Components)
 			{
 				if (comps == comp)
 				{
@@ -42,6 +42,6 @@ namespace dae
 	private:
 		Transform mTransform;
 		std::shared_ptr<Texture2D> mTexture;
-		std::vector<BaseComponent*> m_Components;
+		std::vector<std::shared_ptr<BaseComponent>> m_Components;
 	};
 }

@@ -12,7 +12,7 @@ void dae::GameObject::RootUpdate()
 
 void dae::GameObject::Update()
 {
-	for (BaseComponent* comp : m_Components)
+	for (auto comp : m_Components)
 	{
 		comp->Update();
 	}
@@ -21,7 +21,7 @@ void dae::GameObject::Render() const
 {
 	const auto pos = mTransform.GetPosition();
 	Renderer::GetInstance().RenderTexture(*mTexture, pos.x, pos.y);
-	for (BaseComponent* comp : m_Components)
+	for (auto comp : m_Components)
 	{
 		comp->Render();
 	}

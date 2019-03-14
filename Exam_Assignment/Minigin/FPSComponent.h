@@ -1,8 +1,9 @@
 #pragma once
 #include "BaseComponent.h"
-#include "Transform.h"
 #include "Font.h"
-#include "Texture2D.h"
+
+class TextComponent;
+
 
 class FPSComponent : public BaseComponent
 {
@@ -20,9 +21,6 @@ private:
 	int m_FPS;
 	float m_FpsTimer;
 	int m_FpsCount;
-	std::string mText;
-	dae::Transform mTransform;
-	std::shared_ptr<dae::Font> mFont;
-	std::shared_ptr<dae::Texture2D> mTexture;
+	std::shared_ptr <TextComponent>  m_TextComponent;
 };
 
