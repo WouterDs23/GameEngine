@@ -90,12 +90,10 @@ void dae::Minigin::Run()
 		while (doContinue)
 		{
 			const auto currentTime = std::chrono::high_resolution_clock::now();
-			float delta = std::chrono::duration<float>(currentTime - lastTime).count();
-			Time::GetInstance().SetDeltaTime(delta);
+			Time::deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
 			lastTime = currentTime;
-			lag += delta;
+			lag += Time::deltaTime;
 			doContinue = input.ProcessInput();
-
 			/*while (lag >= msPerFrame)
 			{*/
 				sceneManager.Update();

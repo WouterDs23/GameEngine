@@ -26,7 +26,7 @@ FPSComponent::~FPSComponent()
 
 void FPSComponent::Update()
 {
-	m_FpsTimer += Time::GetInstance().GetDeltaTime();
+	m_FpsTimer += Time::deltaTime;
 	m_FpsCount++;
 	if (m_FpsTimer > 1.f)
 	{
