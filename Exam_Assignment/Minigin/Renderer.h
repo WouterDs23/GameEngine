@@ -9,7 +9,7 @@ namespace dae
 	class Texture2D;
 	class Renderer final : public Singleton<Renderer>
 	{
-		SDL_Renderer* mRenderer = nullptr;
+		SDL_Renderer* m_Renderer = nullptr;
 
 	public:
 		void Init(SDL_Window* window);
@@ -19,7 +19,13 @@ namespace dae
 		void RenderTexture(const Texture2D& texture, float x, float y) const;
 		void RenderTexture(const Texture2D& texture, float x, float y, float width, float height) const;
 
-		SDL_Renderer* GetSDLRenderer() const { return mRenderer; }
+		int GetWidth() const { return m_Width; }
+		int GetHeight() const { return m_Height; }
+
+		SDL_Renderer* GetSDLRenderer() const { return m_Renderer; }
+	private:
+		int m_Width;
+		int m_Height;
 	};
 }
 

@@ -1,9 +1,25 @@
-﻿  CharacterComponent.cpp
+﻿  MiniginPCH.cpp
+  BaseComponent.cpp
+  CharacterComponent.cpp
   Commands.cpp
+  Font.cpp
+  FPSComponent.cpp
+  GameObject.cpp
   InputManager.cpp
+  Log.cpp
+  Main.cpp
   Minigin.cpp
+  Renderer.cpp
+  ResourceManager.cpp
+  Scene.cpp
+  SceneManager.cpp
   TestScene.cpp
+  TextComponent.cpp
+  TextObject.cpp
+  Texture2D.cpp
+  Transform.cpp
   Generating Code...
+     Creating library E:\DAEGameEngine\GameEngine\Exam_Assignment\Win32\Debug\Minigin.lib and object E:\DAEGameEngine\GameEngine\Exam_Assignment\Win32\Debug\Minigin.exp
   Minigin.vcxproj -> E:\DAEGameEngine\GameEngine\Exam_Assignment\Win32\Debug\Minigin.exe
   E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2\lib\x86\SDL2.dll
   1 File(s) copied
