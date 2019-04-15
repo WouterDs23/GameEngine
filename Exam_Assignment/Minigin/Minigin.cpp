@@ -42,22 +42,8 @@ void dae::Minigin::Initialize()
  */
 void dae::Minigin::LoadGame() const
 {
-	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
+	SceneManager::GetInstance().CreateScene("Demo", SceneManager::TestScene);
 
-	auto go = std::make_shared<GameObject>();
-	go->SetTexture("background.jpg");
-	scene.Add(go);
-	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-
-	go = std::make_shared<GameObject>();
-	go->SetTexture("logo.png");
-	go->SetPosition(216, 180);
-	go->AddComponent(std::make_shared<FPSComponent>(font));
-	scene.Add(go);
-
-	auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
-	to->SetPosition(80, 20);
-	scene.Add(to);
 }
 
 void dae::Minigin::Cleanup()
@@ -83,6 +69,10 @@ void dae::Minigin::Run()
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
+		input.ConfigButtons(ControllerButton::ButtonA, std::move(std::make_unique<FireCommand>()));
+		input.ConfigButtons(ControllerButton::ButtonB, std::move(std::make_unique<DuckCommand>()));
+		input.ConfigButtons(ControllerButton::ButtonX, std::move(std::make_unique<JumpCommand>()));
+		input.ConfigButtons(ControllerButton::ButtonY, std::move(std::make_unique<ExitCommand>()));
 
 		auto lastTime = std::chrono::high_resolution_clock::now();
 		bool doContinue = true;
@@ -94,11 +84,11 @@ void dae::Minigin::Run()
 			lastTime = currentTime;
 			lag += Time::deltaTime;
 			doContinue = input.ProcessInput();
-			/*while (lag >= msPerFrame)
-			{*/
+			while (lag >= float(msPerFrame/1000.f))
+			{
 				sceneManager.Update();
-				lag -= msPerFrame;
-			/*}*/
+				lag -= float(1.f/msPerFrame);
+			}
 			renderer.Render();
 		}
 	}

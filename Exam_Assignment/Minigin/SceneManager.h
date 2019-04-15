@@ -7,7 +7,11 @@ namespace dae
 	class SceneManager final : public Singleton<SceneManager>
 	{
 	public:
-		Scene & CreateScene(const std::string& name);
+		enum TypeOfScene
+		{
+			TestScene
+		};
+		void CreateScene(const std::string& name, TypeOfScene type);
 
 		void Update();
 		void Render();

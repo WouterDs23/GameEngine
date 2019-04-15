@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "SceneManager.h"
 #include "Scene.h"
+#include "TestScene.h"
 
 
 void dae::SceneManager::Update()
@@ -19,9 +20,17 @@ void dae::SceneManager::Render()
 	}
 }
 
-dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
+void dae::SceneManager::CreateScene(const std::string& name, TypeOfScene type)
 {
-	const auto scene = std::shared_ptr<Scene>(new Scene(name));
-	mScenes.push_back(scene);
-	return *scene;
+	switch (type)
+	{
+	case TestScene:
+		mScenes.push_back(std::make_shared<dae::TestScene>(name));
+		mScenes.back()->Initialize();
+		break;
+	default:
+		mScenes.push_back(std::make_shared<Scene>(name));
+		mScenes.back()->Initialize();
+		break;
+	}	
 }

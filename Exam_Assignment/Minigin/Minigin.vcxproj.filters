@@ -99,6 +99,15 @@
     <ClInclude Include="TextComponent.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Engine\SceneHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterComponent.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -150,6 +159,15 @@
       <Filter>Engine\SceneHelpers</Filter>
     </ClCompile>
     <ClCompile Include="TextComponent.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>Engine\SceneHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterComponent.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
   </ItemGroup>

@@ -26,14 +26,7 @@ FPSComponent::~FPSComponent()
 
 void FPSComponent::Update()
 {
-	m_FpsTimer += Time::deltaTime;
-	m_FpsCount++;
-	if (m_FpsTimer > 1.f)
-	{
-		m_FPS = m_FpsCount;
-		m_FpsCount = 0;
-		m_FpsTimer -= 1.f;
-	}
+	m_FPS = int(1 / Time::deltaTime);
 	m_TextComponent->SetText(std::to_string(m_FPS));
 	m_TextComponent->Update();
 }
