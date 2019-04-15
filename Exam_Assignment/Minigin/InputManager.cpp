@@ -7,11 +7,11 @@ bool dae::InputManager::ProcessInput()
 {
 	ZeroMemory(&m_State, sizeof(XINPUT_STATE));
 	XInputGetState(0, &m_State);
-	m_EndIt = HandleInput().execute();
+	m_EndIt = HandleInput().execute(m_Actor);
 	return !m_EndIt;
 }
 
-void dae::InputManager::ConfigButtons(ControllerButton button, std::unique_ptr<Command> sortCommand)
+void dae::InputManager::ConfigButtons(ControllerButton button, std::unique_ptr<Commands> sortCommand)
 {
 	switch (button)
 	{
@@ -50,7 +50,7 @@ void dae::InputManager::ConfigButtons(ControllerButton button, std::unique_ptr<C
 	}
 }
 
-Command& dae::InputManager::HandleInput() const
+Commands& dae::InputManager::HandleInput() const
 {
 	if (IsPressed(dae::ControllerButton::ButtonA))
 	{
@@ -92,5 +92,10 @@ bool dae::InputManager::IsPressed(ControllerButton button) const
 		}
 	}
 	return false;
+}
+
+void dae::InputManager::SetActor(std::shared_ptr<GameObject> actor)
+{
+	m_Actor = actor;
 }
 

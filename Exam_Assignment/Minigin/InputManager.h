@@ -1,7 +1,8 @@
 #pragma once
 #include <XInput.h>
 #include "Singleton.h"
-#include "Command.h"
+#include "Commands.h"
+#include "GameObject.h"
 
 namespace dae
 {
@@ -17,18 +18,20 @@ namespace dae
 	{
 	public:
 		bool ProcessInput();
-		void ConfigButtons(ControllerButton button, std::unique_ptr<Command> sortCommand);
-		Command& HandleInput() const;
+		void ConfigButtons(ControllerButton button, std::unique_ptr<Commands> sortCommand);
+		Commands& HandleInput() const;
 		bool IsPressed(ControllerButton button) const;
+		void SetActor(std::shared_ptr<GameObject> actor);
 	private:
 		XINPUT_STATE m_State;
 		bool m_EndIt{false};
 
-		std::unique_ptr<Command> m_ButtonX{};
-		std::unique_ptr<Command> m_ButtonY{};
-		std::unique_ptr<Command> m_ButtonA{};
-		std::unique_ptr<Command> m_ButtonB{};
-		std::unique_ptr<Command> m_Default = std::make_unique<Command>();
+		std::unique_ptr<Commands> m_ButtonX{};
+		std::unique_ptr<Commands> m_ButtonY{};
+		std::unique_ptr<Commands> m_ButtonA{};
+		std::unique_ptr<Commands> m_ButtonB{};
+		std::unique_ptr<Commands> m_Default = std::make_unique<Commands>();
+		std::weak_ptr<GameObject> m_Actor;
 	};
 
 }

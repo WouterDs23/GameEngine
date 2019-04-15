@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseComponent.h"
 #include <memory>
+#include "InputManager.h"
 
 class CharacterComponent : public BaseComponent
 {
@@ -12,8 +13,7 @@ public:
 	CharacterComponent& operator=(const CharacterComponent& other) = delete;
 	CharacterComponent& operator=(CharacterComponent&& other) noexcept = delete;
 
-	void Update() override;
-	void Render() override;
+	void Execute();
 private:
 };
 

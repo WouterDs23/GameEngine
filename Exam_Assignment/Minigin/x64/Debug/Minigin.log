@@ -1,16 +1,48 @@
-﻿  InputManager.cpp
-  Minigin.cpp
+﻿  Command.cpp
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(21): error C2065: 'Command': undeclared identifier
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(21): error C2923: 'std::unique_ptr': 'Command' is not a valid template type argument for parameter '_Ty'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(21): error C2903: 'default_delete': symbol is neither a class template nor a function template
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(21): error C3203: 'default_delete': unspecialized class template can't be used as a template argument for template parameter '_Dx', expected a real type
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(21): error C2955: 'std::unique_ptr': use of class template requires template argument list
+  e:\visual stuido\vc\tools\msvc\14.16.27023\include\memory(2178): note: see declaration of 'std::unique_ptr'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(22): error C2143: syntax error: missing ';' before '&'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(22): error C2238: unexpected token(s) preceding ';'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(28): error C2065: 'Command': undeclared identifier
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(28): error C2923: 'std::unique_ptr': 'Command' is not a valid template type argument for parameter '_Ty'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(28): error C2903: 'default_delete': symbol is neither a class template nor a function template
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(28): error C3203: 'default_delete': unspecialized class template can't be used as a template argument for template parameter '_Dx', expected a real type
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(28): error C2955: 'std::unique_ptr': use of class template requires template argument list
+  e:\visual stuido\vc\tools\msvc\14.16.27023\include\memory(2178): note: see declaration of 'std::unique_ptr'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(29): error C2065: 'Command': undeclared identifier
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(29): error C2923: 'std::unique_ptr': 'Command' is not a valid template type argument for parameter '_Ty'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(29): error C2903: 'default_delete': symbol is neither a class template nor a function template
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(29): error C3203: 'default_delete': unspecialized class template can't be used as a template argument for template parameter '_Dx', expected a real type
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(29): error C2955: 'std::unique_ptr': use of class template requires template argument list
+  e:\visual stuido\vc\tools\msvc\14.16.27023\include\memory(2178): note: see declaration of 'std::unique_ptr'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(30): error C2065: 'Command': undeclared identifier
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(30): error C2923: 'std::unique_ptr': 'Command' is not a valid template type argument for parameter '_Ty'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(30): error C2903: 'default_delete': symbol is neither a class template nor a function template
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(30): error C3203: 'default_delete': unspecialized class template can't be used as a template argument for template parameter '_Dx', expected a real type
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(30): error C2955: 'std::unique_ptr': use of class template requires template argument list
+  e:\visual stuido\vc\tools\msvc\14.16.27023\include\memory(2178): note: see declaration of 'std::unique_ptr'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(31): error C2065: 'Command': undeclared identifier
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(31): error C2923: 'std::unique_ptr': 'Command' is not a valid template type argument for parameter '_Ty'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(31): error C2903: 'default_delete': symbol is neither a class template nor a function template
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(31): error C3203: 'default_delete': unspecialized class template can't be used as a template argument for template parameter '_Dx', expected a real type
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(31): error C2955: 'std::unique_ptr': use of class template requires template argument list
+  e:\visual stuido\vc\tools\msvc\14.16.27023\include\memory(2178): note: see declaration of 'std::unique_ptr'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(32): error C2065: 'Command': undeclared identifier
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(32): error C2923: 'std::unique_ptr': 'Command' is not a valid template type argument for parameter '_Ty'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(32): error C2903: 'default_delete': symbol is neither a class template nor a function template
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(32): error C3203: 'default_delete': unspecialized class template can't be used as a template argument for template parameter '_Dx', expected a real type
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(32): error C2955: 'std::unique_ptr': use of class template requires template argument list
+  e:\visual stuido\vc\tools\msvc\14.16.27023\include\memory(2178): note: see declaration of 'std::unique_ptr'
+  InputManager.cpp
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.cpp(10): error C2065: 'm_Actor': undeclared identifier
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.cpp(10): error C2660: 'Command::execute': function does not take 1 arguments
+  e:\daegameengine\gameengine\exam_assignment\minigin\command.h(12): note: see declaration of 'Command::execute'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.cpp(97): error C2039: 'SetActor': is not a member of 'dae::InputManager'
+  e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.h(17): note: see declaration of 'dae::InputManager'
+e:\daegameengine\gameengine\exam_assignment\minigin\inputmanager.cpp(99): error C2065: 'm_Actor': undeclared identifier
   Generating Code...
-  Minigin.vcxproj -> E:\DAEGameEngine\GameEngine\Exam_Assignment\x64\Debug\Minigin.exe
-  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2\lib\x64\SDL2.dll
-  1 File(s) copied
-  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll
-  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libpng16-16.dll
-  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libtiff-5.dll
-  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libwebp-7.dll
-  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\SDL2_image.dll
-  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\zlib1.dll
-  6 File(s) copied
-  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_ttf\lib\x64\libfreetype-6.dll
-  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_ttf\lib\x64\SDL2_ttf.dll
-  2 File(s) copied

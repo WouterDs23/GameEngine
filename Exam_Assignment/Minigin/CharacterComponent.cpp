@@ -11,12 +11,7 @@ CharacterComponent::~CharacterComponent()
 
 }
 
-void CharacterComponent::Update()
-{
-
-}
-
-void CharacterComponent::Render()
+void CharacterComponent::Execute()
 {
 
 }

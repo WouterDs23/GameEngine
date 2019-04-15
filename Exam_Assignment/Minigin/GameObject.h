@@ -17,17 +17,34 @@ namespace dae
 		void SetTexture(const std::string& filename);
 		void SetPosition(float x, float y);
 
-		void AddComponent(std::shared_ptr<BaseComponent> comp)
+		template <class T>
+		std::weak_ptr<T> AddComponent(std::shared_ptr<T> comp)
 		{
-			for (auto comps : m_Components)
+			for (auto comps : m_pComponents)
 			{
 				if (comps == comp)
 				{
 					std::cout << "Component is already in this object";
-					return;
+					return comp;
 				}
 			}
-			m_Components.push_back(comp);
+			m_pComponents.push_back(comp);
+			return comp;
+		}
+
+		template <class T>
+		std::weak_ptr<T> GetComponent()
+		{
+			const type_info& ti = typeid(T);
+			std::weak_ptr<T> temp{};
+			for (auto component : m_pComponents)
+			{
+				if (component && typeid(*component) == ti)
+				{
+					return std::dynamic_pointer_cast<T>(component);
+				}					
+			}
+			return temp;
 		}
 
 		GameObject() = default;
@@ -40,8 +57,8 @@ namespace dae
 		void RootUpdate();
 
 	private:
-		Transform mTransform;
-		std::shared_ptr<Texture2D> mTexture;
-		std::vector<std::shared_ptr<BaseComponent>> m_Components;
+		Transform m_Transform;
+		std::shared_ptr<Texture2D> m_Texture;
+		std::vector<std::shared_ptr<BaseComponent>> m_pComponents;
 	};
 }

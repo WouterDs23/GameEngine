@@ -12,16 +12,20 @@ void dae::GameObject::RootUpdate()
 
 void dae::GameObject::Update()
 {
-	for (auto comp : m_Components)
+	for (auto comp : m_pComponents)
 	{
 		comp->Update();
 	}
 }
 void dae::GameObject::Render() const
 {
-	const auto pos = mTransform.GetPosition();
-	Renderer::GetInstance().RenderTexture(*mTexture, pos.x, pos.y);
-	for (auto comp : m_Components)
+	const auto pos = m_Transform.GetPosition();
+	if (m_Texture)
+	{
+		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
+	}
+	
+	for (auto comp : m_pComponents)
 	{
 		comp->Render();
 	}
@@ -29,10 +33,10 @@ void dae::GameObject::Render() const
 
 void dae::GameObject::SetTexture(const std::string& filename)
 {
-	mTexture = ResourceManager::GetInstance().LoadTexture(filename);
+	m_Texture = ResourceManager::GetInstance().LoadTexture(filename);
 }
 
 void dae::GameObject::SetPosition(float x, float y)
 {
-	mTransform.SetPosition(x, y, 0.0f);
+	m_Transform.SetPosition(x, y, 0.0f);
 }

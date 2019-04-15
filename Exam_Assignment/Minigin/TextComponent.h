@@ -1,3 +1,4 @@
+#pragma once
 #include "BaseComponent.h"
 #include "Transform.h"
 #include "Font.h"
