@@ -3,17 +3,21 @@
 #include "Renderer.h"
 
 
-TextComponent::TextComponent(std::shared_ptr<dae::Font> font) :
+dae::TextComponent::TextComponent(std::shared_ptr<dae::Font> font) :
 	m_Font{ font }
 {
 }
 
 
-TextComponent::~TextComponent()
+dae::TextComponent::~TextComponent()
 {
 }
 
-void TextComponent::Update()
+void dae::TextComponent::Initialize()
+{
+}
+
+void dae::TextComponent::Update()
 {
 	const SDL_Color color = { 255,255,255 }; // only white text is supported now
 	const auto surf = TTF_RenderText_Blended(m_Font->GetFont(), m_Text.c_str(), color);
@@ -30,7 +34,7 @@ void TextComponent::Update()
 	m_Texture = std::make_shared<dae::Texture2D>(texture);
 }
 
-void TextComponent::Render()
+void dae::TextComponent::Render()
 {
 	if (m_Texture != nullptr)
 	{
@@ -39,7 +43,7 @@ void TextComponent::Render()
 	}
 }
 
-void TextComponent::SetText(std::string text)
+void dae::TextComponent::SetText(std::string text)
 {
 	m_Text = text;
 }

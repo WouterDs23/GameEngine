@@ -37,6 +37,12 @@
     <Filter Include="Source Files\Scenes">
       <UniqueIdentifier>{b9e66b20-0e08-435c-999e-1c91ffd7b252}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DigDug">
+      <UniqueIdentifier>{68633763-6a6c-42f3-9bcc-ec35987b41a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components\GameElements">
+      <UniqueIdentifier>{78429c3f-b95a-437c-b645-3d0abd329d46}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseComponent.h">
@@ -102,11 +108,35 @@
     <ClInclude Include="TestScene.h">
       <Filter>Source Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="CharacterComponent.h">
-      <Filter>Engine\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Commands.h">
       <Filter>Engine\SceneHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterComponent.h">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClInclude>
+    <ClInclude Include="FireComponent.h">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClInclude>
+    <ClInclude Include="FleeComponent.h">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClInclude>
+    <ClInclude Include="GhostComponent.h">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClInclude>
+    <ClInclude Include="SeekComponent.h">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClInclude>
+    <ClInclude Include="SolidComponent.h">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClInclude>
+    <ClInclude Include="WanderComponent.h">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveComponent.h">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
+      <Filter>Engine\Components\GameElements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -164,11 +194,35 @@
     <ClCompile Include="TestScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="CharacterComponent.cpp">
-      <Filter>Engine\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Commands.cpp">
       <Filter>Engine\SceneHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterComponent.cpp">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClCompile>
+    <ClCompile Include="FireComponent.cpp">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClCompile>
+    <ClCompile Include="FleeComponent.cpp">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostComponent.cpp">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClCompile>
+    <ClCompile Include="SeekComponent.cpp">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClCompile>
+    <ClCompile Include="SolidComponent.cpp">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClCompile>
+    <ClCompile Include="WanderComponent.cpp">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveComponent.cpp">
+      <Filter>Engine\Components\GameElements</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionComponent.cpp">
+      <Filter>Engine\Components\GameElements</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

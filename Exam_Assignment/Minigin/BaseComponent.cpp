@@ -1,12 +1,12 @@
 #include "MiniginPCH.h"
 #include "BaseComponent.h"
+#include "GameObject.h"
 
-
-BaseComponent::BaseComponent()
+dae::BaseComponent::BaseComponent()
 {
 }
 
 
-BaseComponent::~BaseComponent()
+dae::BaseComponent::~BaseComponent()
 {
 }

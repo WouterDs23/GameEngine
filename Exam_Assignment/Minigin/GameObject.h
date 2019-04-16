@@ -6,9 +6,10 @@
 #include "SceneObject.h"
 #include "BaseComponent.h"
 
+
 namespace dae
 {
-	class GameObject : public SceneObject
+	class GameObject : public SceneObject , public std::enable_shared_from_this<GameObject>
 	{
 	public:
 		void Update() override;
@@ -16,20 +17,28 @@ namespace dae
 
 		void SetTexture(const std::string& filename);
 		void SetPosition(float x, float y);
+		void SetSize(float x, float y);
 
-		template <class T>
-		std::weak_ptr<T> AddComponent(std::shared_ptr<T> comp)
+		bool CheckCollision(std::weak_ptr<dae::GameObject> other);
+
+		void SetObstacle(bool isObstacle = true) { m_IsObstacle = isObstacle; }
+		bool GetIsObstacle() { return m_IsObstacle; }
+
+		Transform GetTransform() const { return m_Transform; }
+
+		void AddComponent(std::shared_ptr<dae::BaseComponent> comp)
 		{
 			for (auto comps : m_pComponents)
 			{
 				if (comps == comp)
 				{
 					std::cout << "Component is already in this object";
-					return comp;
+					return;
 				}
 			}
 			m_pComponents.push_back(comp);
-			return comp;
+			comp->SetGameObject(shared_from_this());
+			comp->Initialize();
 		}
 
 		template <class T>
@@ -37,7 +46,7 @@ namespace dae
 		{
 			const type_info& ti = typeid(T);
 			std::weak_ptr<T> temp{};
-			for (auto component : m_pComponents)
+			for (auto const component : m_pComponents)
 			{
 				if (component && typeid(*component) == ti)
 				{
@@ -59,6 +68,7 @@ namespace dae
 	private:
 		Transform m_Transform;
 		std::shared_ptr<Texture2D> m_Texture;
-		std::vector<std::shared_ptr<BaseComponent>> m_pComponents;
+		std::vector<std::shared_ptr<dae::BaseComponent>> m_pComponents;
+		bool m_IsObstacle{};
 	};
 }

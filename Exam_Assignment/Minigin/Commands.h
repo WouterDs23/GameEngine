@@ -16,7 +16,7 @@ public:
 	{
 		if (actor.lock())
 		{
-			auto comp = actor.lock()->GetComponent<TextComponent>().lock();
+			auto comp = actor.lock()->GetComponent<dae::TextComponent>().lock();
 			if (comp)
 			{
 				comp->SetText("Wouter");

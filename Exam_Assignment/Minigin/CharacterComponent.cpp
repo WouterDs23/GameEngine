@@ -1,17 +1,31 @@
 #include "MiniginPCH.h"
 #include "CharacterComponent.h"
 
-CharacterComponent::CharacterComponent()
+dae::CharacterComponent::CharacterComponent()
 {
 
 }
 
-CharacterComponent::~CharacterComponent()
+dae::CharacterComponent::~CharacterComponent()
 {
 
 }
 
-void CharacterComponent::Execute()
+void dae::CharacterComponent::Execute()
+{
+
+}
+
+void dae::CharacterComponent::Initialize()
+{
+}
+
+void dae::CharacterComponent::Update()
+{
+
+}
+
+void dae::CharacterComponent::Render()
 {
 
 }

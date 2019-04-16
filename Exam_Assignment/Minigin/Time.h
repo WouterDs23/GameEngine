@@ -4,5 +4,5 @@
 
 struct Time
 {
-	inline static float deltaTime;
+	inline static float deltaTime{};
 };

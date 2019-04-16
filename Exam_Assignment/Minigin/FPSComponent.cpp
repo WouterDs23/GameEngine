@@ -1,16 +1,11 @@
 #include "MiniginPCH.h"
-#include <SDL.h>
-#include <SDL_ttf.h>
-
 #include "FPSComponent.h"
 #include "Time.h"
-#include "Renderer.h"
-#include "TextObject.h"
 #include "Font.h"
-#include "Texture2D.h"
 #include "TextComponent.h"
+#include "GameObject.h"
 
-FPSComponent::FPSComponent(std::shared_ptr<dae::Font> font) :
+dae::FPSComponent::FPSComponent(std::shared_ptr<dae::Font> font) :
 	m_FpsCount(0),
 	m_FpsTimer(0),
 	m_FPS(1)
@@ -20,17 +15,20 @@ FPSComponent::FPSComponent(std::shared_ptr<dae::Font> font) :
 }
 
 
-FPSComponent::~FPSComponent()
+dae::FPSComponent::~FPSComponent()
 {
 }
 
-void FPSComponent::Update()
+void dae::FPSComponent::Initialize()
+{
+	m_pGameObject.lock()->AddComponent(m_TextComponent);
+}
+
+void dae::FPSComponent::Update()
 {
 	m_FPS = int(1 / Time::deltaTime);
 	m_TextComponent->SetText(std::to_string(m_FPS));
-	m_TextComponent->Update();
 }
-void FPSComponent::Render()
+void dae::FPSComponent::Render()
 {
-	m_TextComponent->Render();
 }
