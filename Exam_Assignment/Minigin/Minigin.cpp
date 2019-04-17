@@ -69,10 +69,11 @@ void dae::Minigin::Run()
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
-		input.ConfigButtons(ControllerButton::ButtonA, std::move(std::make_unique<FireCommand>()));
-		input.ConfigButtons(ControllerButton::ButtonB, std::move(std::make_unique<DuckCommand>()));
-		input.ConfigButtons(ControllerButton::ButtonX, std::move(std::make_unique<JumpCommand>()));
-		input.ConfigButtons(ControllerButton::ButtonY, std::move(std::make_unique<ExitCommand>()));
+		input.ConfigButtons(ControllerButton::ButtonA, std::move(std::make_unique<ExitGame>()));
+		input.ConfigButtons(ControllerButton::DPad_Up, std::move(std::make_unique<MoveUp>()));
+		input.ConfigButtons(ControllerButton::DPad_Down, std::move(std::make_unique<MoveDown>()));
+		input.ConfigButtons(ControllerButton::DPad_Left, std::move(std::make_unique<MoveLeft>()));
+		input.ConfigButtons(ControllerButton::DPad_Right, std::move(std::make_unique<MoveRight>()));
 
 		auto lastTime = std::chrono::high_resolution_clock::now();
 		bool doContinue = true;
@@ -84,8 +85,10 @@ void dae::Minigin::Run()
 			lastTime = currentTime;
 			lag += Time::deltaTime;
 			doContinue = input.ProcessInput();
-			while (lag >= float(msPerFrame/1000.f))
+			int loops{};
+			while (lag >= float(msPerFrame/1000.f) || loops == maxLoops)
 			{
+				loops++;
 				sceneManager.Update();
 				lag -= float(1.f/msPerFrame);
 			}

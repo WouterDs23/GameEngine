@@ -4,10 +4,9 @@
 #include "GameObject.h"
 #include "FPSComponent.h"
 #include "TextObject.h"
-#include "WanderComponent.h"
-#include "MoveComponent.h"
 #include "Renderer.h"
 #include "CollisionComponent.h"
+#include "CharacterComponent.h"
 
 
 dae::TestScene::TestScene(const std::string& name) :Scene(name)
@@ -32,9 +31,7 @@ void dae::TestScene::Initialize()
 	m_Test->SetSize(m_GridWidth, m_GridHeight);
 	m_Test->SetPosition(320.0000076f, 227.3684292f);
 	m_Test->AddComponent(std::make_shared<FPSComponent>(font));
-	m_Test->AddComponent(std::make_shared<WanderComponent>(true));
-	m_Test->AddComponent(std::make_shared<MoveComponent>(2.f, 0.f));
-	m_Test->AddComponent(std::make_shared<CollisionComponent>());
+	m_Test->AddComponent(std::make_shared<CharacterComponent>());
 	Add(m_Test);
 	
 	float currwidth{};
@@ -74,7 +71,7 @@ void dae::TestScene::Initialize()
 		currheight += m_GridHeight;
 		currwidth = 0;
 	}
-	
+	m_Test->GetComponent<CharacterComponent>().lock()->SetObstacles(m_GridTest);
 	
 	auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
 	to->SetPosition(80, 20);
@@ -85,7 +82,7 @@ void dae::TestScene::Update()
 {
 	auto comp = m_Test->GetComponent<CollisionComponent>().lock();
 	Scene::Update();
-	for (int i = 0; i < m_GridSizeHeight; i++)
+	/*for (int i = 0; i < m_GridSizeHeight; i++)
 	{
 		for (int k = 0; k < m_GridSizeWidth; k++)
 		{
@@ -107,7 +104,7 @@ void dae::TestScene::Update()
 	{
 		auto move = m_Test->GetComponent<MoveComponent>().lock();
 		move->SetSpeed(0.f, 0.f);
-	}
+	}*/
 }
 
 void dae::TestScene::Render() const

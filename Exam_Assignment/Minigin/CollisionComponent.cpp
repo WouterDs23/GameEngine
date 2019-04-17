@@ -25,7 +25,7 @@ void dae::CollisionComponent::Render()
 
 }
 
-const bool dae::CollisionComponent::CheckCollisionTopBottem(std::weak_ptr<dae::GameObject> other)
+const bool dae::CollisionComponent::CheckCollisionTopBottem(std::weak_ptr<dae::GameObject> other, float offset)
 {
 	if (other.lock())
 	{
@@ -39,12 +39,20 @@ const bool dae::CollisionComponent::CheckCollisionTopBottem(std::weak_ptr<dae::G
 			auto sizeS = GetGameObject().lock()->GetTransform().GetSize();
 			auto middleS = GetGameObject().lock()->GetTransform().GetMiddlePosition();
 
-			if (transO.y + sizeO.y < tranS.y || tranS.y + sizeS.y < transO.y)
+			if (transO.y + sizeO.y < tranS.y + offset ||(tranS.y + sizeS.y)+ offset < transO.y)
 			{
 				return false;
 			}
 
 			if (transO.x + sizeO.x > middleS.x && middleS.x > transO.x)
+			{
+				return true;
+			}
+			if (transO.x + sizeO.x > middleS.x + ((sizeS.x/2.f)- (sizeS.x / 10)) && middleS.x + ((sizeS.x / 2.f) - (sizeS.x / 10)) > transO.x)
+			{
+				return true;
+			}
+			if (transO.x + sizeO.x > middleS.x - ((sizeS.x / 2.f) - (sizeS.x/10)) && middleS.x -((sizeS.x / 2.f) - (sizeS.x / 10)) > transO.x)
 			{
 				return true;
 			}
@@ -55,7 +63,7 @@ const bool dae::CollisionComponent::CheckCollisionTopBottem(std::weak_ptr<dae::G
 	return false;
 }
 
-const bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::GameObject> other)
+const bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::GameObject> other, float offset)
 {
 	if (other.lock())
 	{
@@ -69,12 +77,20 @@ const bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::G
 			auto sizeS = GetGameObject().lock()->GetTransform().GetSize();
 			auto middleS = GetGameObject().lock()->GetTransform().GetMiddlePosition();
 
-			if (tranS.x + sizeS.x < transO.x || transO.x + sizeO.x < tranS.x)
+			if (offset+(tranS.x + sizeS.x) < transO.x || transO.x + sizeO.x < tranS.x + offset)
 			{
 				return false;
 			}
 
 			if (transO.y + sizeO.y > middleS.y && middleS.y > transO.y)
+			{
+				return true;
+			}
+			if (transO.y + sizeO.y > middleS.y + ((sizeS.y / 2.f) - (sizeS.y / 10)) && middleS.y + ((sizeS.y / 2.f) - (sizeS.y / 10)) > transO.y)
+			{
+				return true;
+			}
+			if (transO.y + sizeO.y > middleS.y - ((sizeS.y / 2.f) - (sizeS.y / 10)) && middleS.y - ((sizeS.y / 2.f) - (sizeS.y / 10)) > transO.y)
 			{
 				return true;
 			}

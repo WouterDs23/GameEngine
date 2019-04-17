@@ -10,7 +10,7 @@ namespace dae
 	class MoveComponent : public BaseComponent
 	{
 	public:
-		MoveComponent(float xSpeed, float ySpeed, float zSpeed = 0);
+		MoveComponent(float xSpeed = 0, float ySpeed = 0, float zSpeed = 0);
 		~MoveComponent() override;
 
 		void Initialize() override;
@@ -19,6 +19,7 @@ namespace dae
 
 		void SetSpeed(float xSpeed, float ySpeed, float zSpeed = 0);
 		glm::vec3 GetSpeed() { return m_Speed; }
+		void MoveObject(float xSpeed, float ySpeed, float zSpeed = 0);
 
 		MoveComponent(const MoveComponent& other) = delete;
 		MoveComponent(MoveComponent&& other) noexcept = delete;

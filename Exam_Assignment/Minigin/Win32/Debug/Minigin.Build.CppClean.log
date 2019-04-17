@@ -2,7 +2,6 @@ e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\minigin.pch
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\vc141.pdb
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\vc141.idb
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\miniginpch.obj
-e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\solidcomponent.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\seekcomponent.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\scenemanager.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\scene.obj
@@ -20,6 +19,7 @@ e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\font.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\fleecomponent.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\firecomponent.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\commands.obj
+e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\collisioncomponent.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\charactercomponent.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\basecomponent.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\wandercomponent.obj
@@ -28,8 +28,9 @@ e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\texture2d.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\textobject.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\textcomponent.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\testscene.obj
-e:\daegameengine\gameengine\exam_assignment\win32\debug\minigin.exe
+e:\daegameengine\gameengine\exam_assignment\minigin\win32\debug\solidcomponent.obj
 e:\daegameengine\gameengine\exam_assignment\win32\debug\minigin.ilk
+e:\daegameengine\gameengine\exam_assignment\win32\debug\minigin.exe
 e:\daegameengine\gameengine\exam_assignment\win32\debug\minigin.pdb
 e:\daegameengine\gameengine\exam_assignment\win32\debug\minigin.lib
 e:\daegameengine\gameengine\exam_assignment\win32\debug\minigin.exp

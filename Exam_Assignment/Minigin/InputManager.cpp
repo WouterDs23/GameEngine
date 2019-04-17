@@ -16,82 +16,73 @@ void dae::InputManager::ConfigButtons(ControllerButton button, std::unique_ptr<C
 	switch (button)
 	{
 	case ControllerButton::ButtonA:
-		/*if (m_ButtonA)
-		{
-			delete m_ButtonA;
-			m_ButtonA = nullptr;
-		}*/
 		m_ButtonA.swap(sortCommand);
 		break;
 	case ControllerButton::ButtonB:
-		/*if (m_ButtonB)
-		{
-			delete m_ButtonB;
-			m_ButtonB = nullptr;
-		}*/
 		m_ButtonB.swap(sortCommand);
 		break;
 	case ControllerButton::ButtonX:
-		/*if (m_ButtonX)
-		{
-			delete m_ButtonX;
-			m_ButtonX = nullptr;
-		}*/
 		m_ButtonX.swap(sortCommand);
 		break;
 	case ControllerButton::ButtonY:
-		/*if (m_ButtonY)
-		{
-			delete m_ButtonY;
-			m_ButtonY = nullptr;
-		}*/
 		m_ButtonY.swap(sortCommand);
+	case ControllerButton::DPad_Up:
+		m_ButtonDU.swap(sortCommand);
+		break;
+	case ControllerButton::DPad_Down:
+		m_ButtonDD.swap(sortCommand);
+		break;
+	case ControllerButton::DPad_Left:
+		m_ButtonDL.swap(sortCommand);
+		break;
+	case ControllerButton::DPad_Right:
+		m_ButtonDR.swap(sortCommand);
 		break;
 	}
 }
 
-Commands& dae::InputManager::HandleInput() const
+dae::Commands& dae::InputManager::HandleInput() const
 {
 	if (IsPressed(dae::ControllerButton::ButtonA))
 	{
 		return *m_ButtonA;
 	}
-	else if (IsPressed(dae::ControllerButton::ButtonB))
+	if (IsPressed(dae::ControllerButton::ButtonB))
 	{
 		return *m_ButtonB;
 	}
-	else if (IsPressed(dae::ControllerButton::ButtonX))
+	if (IsPressed(dae::ControllerButton::ButtonX))
 	{
 		return *m_ButtonX;
 	}
-	else if (IsPressed(dae::ControllerButton::ButtonY))
+	if (IsPressed(dae::ControllerButton::ButtonY))
 	{
 		return *m_ButtonY;
+	}
+	if (IsPressed(dae::ControllerButton::DPad_Up))
+	{
+		return *m_ButtonDU;
+	}
+	if (IsPressed(dae::ControllerButton::DPad_Down))
+	{
+		return *m_ButtonDD;
+	}
+	if (IsPressed(dae::ControllerButton::DPad_Left))
+	{
+		return *m_ButtonDL;
+	}
+	if (IsPressed(dae::ControllerButton::DPad_Right))
+	{
+		return *m_ButtonDR;
 	}
 	return *m_Default;
 }
 
 bool dae::InputManager::IsPressed(ControllerButton button) const
 {
-	if ((m_State.Gamepad.wButtons & int(button)) != 0)
-	{	//http://gameprogrammingpatterns.com/command.html
-		switch (button)
-		{
-		case ControllerButton::ButtonA:
-			return true;
-			break;
-		case ControllerButton::ButtonB:
-			return true;
-			break;
-		case ControllerButton::ButtonX:
-			return true;
-			break;
-		case ControllerButton::ButtonY:
-			return true;
-			break;
-		}
-	}
-	return false;
+	//http://gameprogrammingpatterns.com/command.html
+		
+	return (m_State.Gamepad.wButtons & int(button)) != 0;
 }
 
 void dae::InputManager::SetActor(std::shared_ptr<GameObject> actor)

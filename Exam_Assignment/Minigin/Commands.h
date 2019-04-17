@@ -1,45 +1,42 @@
 #pragma once
-#include "GameObject.h"
-#include "TextComponent.h"
-
-class Commands
+namespace dae
 {
-public:
-	Commands();
-	virtual ~Commands();
-	virtual bool execute(std::weak_ptr<dae::GameObject> actor);
-};
-class JumpCommand : public Commands
-{
-public:
-	virtual bool execute(std::weak_ptr<dae::GameObject> actor) override
+	class GameObject;
+	class CharacterComponent;
+	class Commands
 	{
-		if (actor.lock())
-		{
-			auto comp = actor.lock()->GetComponent<dae::TextComponent>().lock();
-			if (comp)
-			{
-				comp->SetText("Wouter");
-			}
-		}		
-		std::cout << "Jump" << std::endl; return false;
-	}
-};
+	public:
+		Commands();
+		virtual ~Commands();
+		virtual bool execute(std::weak_ptr<dae::GameObject> actor);
+	};
+	class MoveLeft : public Commands
+	{
+	public:
+		virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
+	};
 
-class FireCommand : public Commands
-{
-public:
-	virtual bool execute(std::weak_ptr<dae::GameObject>) override { std::cout << "Fire" << std::endl; return false; }
-};
+	class MoveRight : public Commands
+	{
+	public:
+		virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
+	};
 
-class DuckCommand : public Commands
-{
-public:
-	virtual bool execute(std::weak_ptr<dae::GameObject>) override { std::cout << "Duck" << std::endl; return false; }
-};
+	class MoveUp : public Commands
+	{
+	public:
+		virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
+	};
 
-class ExitCommand : public Commands
-{
-public:
-	virtual bool execute(std::weak_ptr<dae::GameObject>) override { std::cout << "Exit" << std::endl; return true; }
-};
+	class MoveDown : public Commands
+	{
+	public:
+		virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
+	};
+
+	class ExitGame : public Commands
+	{
+	public:
+		virtual bool execute(std::weak_ptr<dae::GameObject>) override { return true; }
+	};
+}
