@@ -33,7 +33,7 @@ void dae::TestScene::Initialize()
 	m_Test->SetPosition(320.0000076f, 227.3684292f);
 	m_Test->AddComponent(std::make_shared<FPSComponent>(font));
 	m_Test->AddComponent(std::make_shared<WanderComponent>(true));
-	m_Test->AddComponent(std::make_shared<MoveComponent>(0.f, 3.f));
+	m_Test->AddComponent(std::make_shared<MoveComponent>(2.f, 0.f));
 	m_Test->AddComponent(std::make_shared<CollisionComponent>());
 	Add(m_Test);
 	
@@ -48,23 +48,25 @@ void dae::TestScene::Initialize()
 			m_GridTest[num] = std::make_shared<GameObject>();
 			m_GridTest[num]->SetPosition(currwidth, currheight);
 			m_GridTest[num]->SetSize(m_GridWidth, m_GridHeight);
+			m_GridTest[num]->AddComponent(std::make_shared<CollisionComponent>());
 			if (k != 7 && i != 9)
 			{
 				m_GridTest[num]->SetTexture("logo2.png");
 				m_GridTest[num]->SetObstacle();
-				m_GridTest[num]->AddComponent(std::make_shared<CollisionComponent>());
+				m_GridTest[num]->GetComponent<CollisionComponent>().lock()->SetIsObstacle();
+				
 			}
 			if (i == 9 && (k == 0 || k == 13))
 			{
 				m_GridTest[num]->SetTexture("logo2.png");
 				m_GridTest[num]->SetObstacle();
-				m_GridTest[num]->AddComponent(std::make_shared<CollisionComponent>());
+				m_GridTest[num]->GetComponent<CollisionComponent>().lock()->SetIsObstacle();
 			}
 			if (k == 7 && (i == 0 || i == 18))
 			{
 				m_GridTest[num]->SetTexture("logo2.png");
 				m_GridTest[num]->SetObstacle();
-				m_GridTest[num]->AddComponent(std::make_shared<CollisionComponent>());
+				m_GridTest[num]->GetComponent<CollisionComponent>().lock()->SetIsObstacle();
 			}
 			Add(m_GridTest[num]);
 			currwidth += m_GridWidth;
@@ -72,6 +74,7 @@ void dae::TestScene::Initialize()
 		currheight += m_GridHeight;
 		currwidth = 0;
 	}
+	
 	
 	auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
 	to->SetPosition(80, 20);
@@ -90,15 +93,20 @@ void dae::TestScene::Update()
 			if (comp->CheckCollisionTopBottem(m_GridTest[num]))
 			{
 				auto move = m_Test->GetComponent<MoveComponent>().lock();
-				move->SetSpeed(move->GetSpeed().x, -move->GetSpeed().y, move->GetSpeed().z);
+				move->SetSpeed(move->GetSpeed().x, -move->GetSpeed().y);
 			}
 			if (comp->CheckCollisionLeftRight(m_GridTest[num]))
 			{
 				auto move = m_Test->GetComponent<MoveComponent>().lock();
-				move->SetSpeed(-move->GetSpeed().x, move->GetSpeed().y, move->GetSpeed().z);
+				move->SetSpeed(-move->GetSpeed().x, move->GetSpeed().y);
 			}
 		}
 
+	}
+	if (comp->CheckIfInObject(m_GridTest[130]))
+	{
+		auto move = m_Test->GetComponent<MoveComponent>().lock();
+		move->SetSpeed(0.f, 0.f);
 	}
 }
 
