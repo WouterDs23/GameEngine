@@ -46,12 +46,3 @@ void dae::GameObject::SetSize(float x, float y)
 {
 	m_Transform.SetSize(x, y, 0.f);
 }
-
-bool dae::GameObject::CheckCollision(std::weak_ptr<dae::GameObject> other)
-{
-	if (other.lock()->GetIsObstacle())
-	{
-		
-	}
-	return false;
-}

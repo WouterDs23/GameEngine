@@ -19,10 +19,8 @@ namespace dae
 		void SetPosition(float x, float y);
 		void SetSize(float x, float y);
 
-		bool CheckCollision(std::weak_ptr<dae::GameObject> other);
-
 		void SetObstacle(bool isObstacle = true) { m_IsObstacle = isObstacle; }
-		bool GetIsObstacle() { return m_IsObstacle; }
+		bool GetIsObstacle() const { return m_IsObstacle; }
 
 		Transform GetTransform() const { return m_Transform; }
 
