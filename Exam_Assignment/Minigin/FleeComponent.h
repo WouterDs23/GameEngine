@@ -2,7 +2,7 @@
 #include "BaseComponent.h"
 namespace dae
 {
-	class FleeComponent : public BaseComponent
+	class FleeComponent final : public BaseComponent
 	{
 	public:
 		FleeComponent();

@@ -1,6 +1,5 @@
 #include "MiniginPCH.h"
 #include "FPSComponent.h"
-#include "Time.h"
 #include "Font.h"
 #include "TextComponent.h"
 #include "GameObject.h"
@@ -26,7 +25,7 @@ void dae::FPSComponent::Initialize()
 
 void dae::FPSComponent::Update()
 {
-	m_FPS = int(1 / Time::deltaTime);
+	m_FPS = int(1 / GameLifeSpan::deltaTime);
 	m_TextComponent->SetText(std::to_string(m_FPS));
 }
 void dae::FPSComponent::Render()

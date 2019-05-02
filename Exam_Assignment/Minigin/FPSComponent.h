@@ -4,7 +4,7 @@
 namespace dae
 {
 	class Font;
-	class FPSComponent : public BaseComponent
+	class FPSComponent final : public BaseComponent
 	{
 	public:
 		FPSComponent(std::shared_ptr<dae::Font> font);

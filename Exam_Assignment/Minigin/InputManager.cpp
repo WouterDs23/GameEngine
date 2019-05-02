@@ -7,75 +7,27 @@ bool dae::InputManager::ProcessInput()
 {
 	ZeroMemory(&m_State, sizeof(XINPUT_STATE));
 	XInputGetState(0, &m_State);
-	m_EndIt = HandleInput().execute(m_Actor);
+	for (std::map<ControllerButton , std::unique_ptr<Commands>>::iterator it = m_Controllers.begin(); it != m_Controllers.end(); it++)
+	{
+		if (IsPressed(ControllerButton(it->first)))
+		{
+			m_EndIt = it->second->execute(m_Actor);
+		}
+	}
 	return !m_EndIt;
 }
 
 void dae::InputManager::ConfigButtons(ControllerButton button, std::unique_ptr<Commands> sortCommand)
 {
-	switch (button)
+	for (std::map<ControllerButton, std::unique_ptr<Commands>>::iterator it = m_Controllers.begin(); it != m_Controllers.end(); it++)
 	{
-	case ControllerButton::ButtonA:
-		m_ButtonA.swap(sortCommand);
-		break;
-	case ControllerButton::ButtonB:
-		m_ButtonB.swap(sortCommand);
-		break;
-	case ControllerButton::ButtonX:
-		m_ButtonX.swap(sortCommand);
-		break;
-	case ControllerButton::ButtonY:
-		m_ButtonY.swap(sortCommand);
-	case ControllerButton::DPad_Up:
-		m_ButtonDU.swap(sortCommand);
-		break;
-	case ControllerButton::DPad_Down:
-		m_ButtonDD.swap(sortCommand);
-		break;
-	case ControllerButton::DPad_Left:
-		m_ButtonDL.swap(sortCommand);
-		break;
-	case ControllerButton::DPad_Right:
-		m_ButtonDR.swap(sortCommand);
-		break;
+		if (it->first == button)
+		{
+			it->second.swap(sortCommand);
+			return;
+		}
 	}
-}
-
-dae::Commands& dae::InputManager::HandleInput() const
-{
-	if (IsPressed(dae::ControllerButton::ButtonA))
-	{
-		return *m_ButtonA;
-	}
-	if (IsPressed(dae::ControllerButton::ButtonB))
-	{
-		return *m_ButtonB;
-	}
-	if (IsPressed(dae::ControllerButton::ButtonX))
-	{
-		return *m_ButtonX;
-	}
-	if (IsPressed(dae::ControllerButton::ButtonY))
-	{
-		return *m_ButtonY;
-	}
-	if (IsPressed(dae::ControllerButton::DPad_Up))
-	{
-		return *m_ButtonDU;
-	}
-	if (IsPressed(dae::ControllerButton::DPad_Down))
-	{
-		return *m_ButtonDD;
-	}
-	if (IsPressed(dae::ControllerButton::DPad_Left))
-	{
-		return *m_ButtonDL;
-	}
-	if (IsPressed(dae::ControllerButton::DPad_Right))
-	{
-		return *m_ButtonDR;
-	}
-	return *m_Default;
+	m_Controllers[button].swap(sortCommand);
 }
 
 bool dae::InputManager::IsPressed(ControllerButton button) const

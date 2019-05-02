@@ -2,6 +2,7 @@
 #include <XInput.h>
 #include "Singleton.h"
 #include "Commands.h"
+#include <map>
 
 namespace dae
 {
@@ -22,22 +23,12 @@ namespace dae
 	public:
 		bool ProcessInput();
 		void ConfigButtons(ControllerButton button, std::unique_ptr<Commands> sortCommand);
-		Commands& HandleInput() const;
 		bool IsPressed(ControllerButton button) const;
 		void SetActor(std::shared_ptr<GameObject> actor);
 	private:
-		XINPUT_STATE m_State;
+		XINPUT_STATE m_State{};
 		bool m_EndIt{false};
-
-		std::unique_ptr<Commands> m_ButtonX{};
-		std::unique_ptr<Commands> m_ButtonY{};
-		std::unique_ptr<Commands> m_ButtonA{};
-		std::unique_ptr<Commands> m_ButtonB{};
-		std::unique_ptr<Commands> m_ButtonDU{};
-		std::unique_ptr<Commands> m_ButtonDD{};
-		std::unique_ptr<Commands> m_ButtonDL{};
-		std::unique_ptr<Commands> m_ButtonDR{};
-		std::unique_ptr<Commands> m_Default = std::make_unique<Commands>();
+		std::map<ControllerButton, std::unique_ptr<Commands>> m_Controllers;
 		std::weak_ptr<GameObject> m_Actor;
 	};
 

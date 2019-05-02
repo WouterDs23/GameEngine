@@ -2,7 +2,7 @@
 #include "BaseComponent.h"
 
 namespace dae {
-	class CollisionComponent : public BaseComponent
+	class CollisionComponent final : public BaseComponent
 	{
 	public:
 		CollisionComponent();
@@ -19,7 +19,7 @@ namespace dae {
 		{
 			m_IsObstacle = isObstacle;
 		}
-		const bool GetIsObstacle() const { return  m_IsObstacle; }
+		bool GetIsObstacle() const { return  m_IsObstacle; }
 
 		CollisionComponent(const CollisionComponent& other) = delete;
 		CollisionComponent(CollisionComponent&& other) noexcept = delete;

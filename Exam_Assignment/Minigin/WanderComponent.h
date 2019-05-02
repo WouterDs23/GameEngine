@@ -1,8 +1,10 @@
 #pragma once
 #include "BaseComponent.h"
+#include "Commands.h"
+
 namespace dae
 {
-	class WanderComponent : public BaseComponent
+	class WanderComponent final : public BaseComponent
 	{
 	public:
 		WanderComponent(bool StartWander);
@@ -14,12 +16,29 @@ namespace dae
 		void DoWander();
 		void StopWander();
 
-
 		WanderComponent(const WanderComponent& other) = delete;
 		WanderComponent(WanderComponent&& other) noexcept = delete;
 		WanderComponent& operator=(const WanderComponent& other) = delete;
 		WanderComponent& operator=(WanderComponent&& other) noexcept = delete;
 	private:
+		enum Direction
+		{
+			Left,
+			Right,
+			Down,
+			Up,
+			Default
+		};
+		void RandomDirCalc(Direction DontGo = Default);
+
 		bool m_DoWander;
+		bool m_WanderLeft;
+		bool m_WanderRight;
+		bool m_WanderTop;
+		bool m_WanderBottem;
+		std::unique_ptr<Commands> m_GoLeft;
+		std::unique_ptr<Commands> m_GoRight;
+		std::unique_ptr<Commands> m_GoUp;
+		std::unique_ptr<Commands> m_GoDown;
 	};
 }

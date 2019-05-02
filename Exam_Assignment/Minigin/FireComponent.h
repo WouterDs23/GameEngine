@@ -2,7 +2,7 @@
 #include "BaseComponent.h"
 namespace dae
 {
-	class FireComponent : public dae::BaseComponent
+	class FireComponent final : public dae::BaseComponent
 	{
 	public:
 		FireComponent();

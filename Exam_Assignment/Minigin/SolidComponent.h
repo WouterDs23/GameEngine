@@ -2,7 +2,7 @@
 #include "BaseComponent.h"
 namespace dae
 {
-	class SolidComponent : public BaseComponent
+	class SolidComponent final : public BaseComponent
 	{
 	public:
 		SolidComponent();

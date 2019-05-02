@@ -8,7 +8,7 @@ namespace dae
 	class Texture2D;
 	class Font;
 	class Transform;
-	class TextComponent : public BaseComponent
+	class TextComponent final : public BaseComponent
 	{
 	public:
 		TextComponent(std::shared_ptr<dae::Font> font);

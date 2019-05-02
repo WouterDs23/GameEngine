@@ -17,7 +17,6 @@ dae::CharacterComponent::~CharacterComponent()
 
 void dae::CharacterComponent::Initialize()
 {
-	InputManager::GetInstance().SetActor(GetGameObject().lock());
 	GetGameObject().lock()->AddComponent(std::make_shared<MoveComponent>());
 	GetGameObject().lock()->AddComponent(std::make_shared<CollisionComponent>());
 }

@@ -1,5 +1,35 @@
-﻿  CharacterComponent.cpp
-  Minigin.vcxproj -> E:\DAEGameEngine\GameEngine\Exam_Assignment\Win32\Debug\Minigin.exe
+﻿  MiniginPCH.cpp
+  BaseComponent.cpp
+  CharacterComponent.cpp
+  CollisionComponent.cpp
+  Commands.cpp
+  FireComponent.cpp
+  FleeComponent.cpp
+  Font.cpp
+  FPSComponent.cpp
+  GameObject.cpp
+  GhostComponent.cpp
+  InputManager.cpp
+  Log.cpp
+  Main.cpp
+  Minigin.cpp
+  MoveComponent.cpp
+  Renderer.cpp
+  ResourceManager.cpp
+  Scene.cpp
+  SceneManager.cpp
+  SeekComponent.cpp
+  Generating Code...
+  Compiling...
+  SolidComponent.cpp
+  TestScene.cpp
+  TextComponent.cpp
+  TextObject.cpp
+  Texture2D.cpp
+  Transform.cpp
+  WanderComponent.cpp
+  Generating Code...
+  Minigin.vcxproj -> E:\DAEGameEngine\GameEngine\Exam_Assignment\Win32\Debug\Minigin.lib
   E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2\lib\x86\SDL2.dll
   1 File(s) copied
   E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x86\libjpeg-9.dll

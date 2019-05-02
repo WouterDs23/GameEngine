@@ -2,7 +2,7 @@
 #include "BaseComponent.h"
 namespace dae
 {
-	class GhostComponent : public BaseComponent
+	class GhostComponent final : public BaseComponent
 	{
 	public:
 		GhostComponent();

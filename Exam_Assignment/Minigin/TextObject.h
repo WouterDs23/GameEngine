@@ -7,7 +7,7 @@ namespace dae
 	class Font;
 	class Texture2D;
 
-	class TextObject : public SceneObject
+	class TextObject final : public SceneObject
 	{
 	public:
 		void Update() override;

@@ -1,11 +1,10 @@
 #pragma once
 #include <memory>
-
 #include "Transform.h"
 #include "Texture2D.h"
 #include "SceneObject.h"
 #include "BaseComponent.h"
-
+#include "iostream"
 
 namespace dae
 {
@@ -18,9 +17,6 @@ namespace dae
 		void SetTexture(const std::string& filename);
 		void SetPosition(float x, float y);
 		void SetSize(float x, float y);
-
-		void SetObstacle(bool isObstacle = true) { m_IsObstacle = isObstacle; }
-		bool GetIsObstacle() const { return m_IsObstacle; }
 
 		Transform GetTransform() const { return m_Transform; }
 
@@ -67,6 +63,5 @@ namespace dae
 		Transform m_Transform;
 		std::shared_ptr<Texture2D> m_Texture;
 		std::vector<std::shared_ptr<dae::BaseComponent>> m_pComponents;
-		bool m_IsObstacle{};
 	};
 }
