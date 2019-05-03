@@ -18,8 +18,8 @@ namespace dae
 		void Render() override;
 
 		void SetSpeed(float xSpeed, float ySpeed, float zSpeed = 0);
-		glm::vec3 GetSpeed() { return m_Speed; }
-		void MoveObject(float xSpeed, float ySpeed, float zSpeed = 0);
+		glm::vec3 GetSpeed() const { return m_Speed; }
+		void MoveObject(const float xSpeed, const float ySpeed, const float zSpeed = 0) const;
 
 		MoveComponent(const MoveComponent& other) = delete;
 		MoveComponent(MoveComponent&& other) noexcept = delete;

@@ -4,6 +4,7 @@
 #include "CollisionComponent.h"
 #include "Renderer.h"
 #include <fstream>
+#include "ConnectionComponent.h"
 
 dae::MapGenerator::MapGenerator()
 {
@@ -52,19 +53,17 @@ std::vector<std::shared_ptr<dae::GameObject>> dae::MapGenerator::CreateMap(std::
 void dae::MapGenerator::addTile(Type type, float x, float y, float xSize, float ySize)
 {
 	std::shared_ptr<dae::GameObject> obj = std::make_shared<GameObject>();
+	obj->SetPosition(x, y);
+	obj->SetSize(xSize, ySize);
+	obj->AddComponent(std::make_shared<CollisionComponent>());
+	obj->AddComponent(std::make_shared<ConnectionComponent>());
 	switch (type)
 	{
-	case Dirt:
-		obj->SetPosition(x, y);
-		obj->SetSize(xSize, ySize);
-		obj->AddComponent(std::make_shared<CollisionComponent>());
+	case Dirt:		
 		obj->SetTexture("dirt.png");
 		obj->GetComponent<CollisionComponent>().lock()->SetIsObstacle();
 		break;
-	case Path:
-		obj->SetPosition(x, y);
-		obj->SetSize(xSize, ySize);
-		obj->AddComponent(std::make_shared<CollisionComponent>());
+	case Path:		
 		obj->SetTexture("dirtway.png");
 		break;
 	default:

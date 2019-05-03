@@ -199,12 +199,14 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="CharacterComponent.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="Commands.h" />
+    <ClInclude Include="ConnectionComponent.h" />
     <ClInclude Include="FireComponent.h" />
     <ClInclude Include="FleeComponent.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GhostComponent.h" />
+    <ClInclude Include="HelperFunctions.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="MapGenerator.h" />
@@ -231,6 +233,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="CharacterComponent.cpp" />
     <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="Commands.cpp" />
+    <ClCompile Include="ConnectionComponent.cpp" />
     <ClCompile Include="FireComponent.cpp" />
     <ClCompile Include="FleeComponent.cpp" />
     <ClCompile Include="Font.cpp" />

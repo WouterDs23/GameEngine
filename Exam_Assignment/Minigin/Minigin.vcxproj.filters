@@ -132,6 +132,12 @@
     <ClInclude Include="MapGenerator.h">
       <Filter>Engine\SceneHelpers</Filter>
     </ClInclude>
+    <ClInclude Include="HelperFunctions.h">
+      <Filter>Engine\SceneHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionComponent.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FPSComponent.cpp">
@@ -211,6 +217,9 @@
     </ClCompile>
     <ClCompile Include="MapGenerator.cpp">
       <Filter>Engine\SceneHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectionComponent.cpp">
+      <Filter>Engine\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
