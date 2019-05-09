@@ -2,6 +2,8 @@ e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\minigin.pch
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\minigin.pdb
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\minigin.idb
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\miniginpch.obj
+e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\textobject.obj
+e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\textcomponent.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\solidcomponent.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\seekcomponent.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\scenemanager.obj
@@ -12,12 +14,10 @@ e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\movecomponent.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\mapgenerator.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\log.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\inputmanager.obj
-e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\ghostcomponent.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\gameobject.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\fpscomponent.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\font.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\fleecomponent.obj
-e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\firecomponent.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\commands.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\collisioncomponent.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\charactercomponent.obj
@@ -25,8 +25,6 @@ e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\basecomponent.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\wandercomponent.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\transform.obj
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\texture2d.obj
-e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\textobject.obj
-e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\textcomponent.obj
 e:\gameengine\gameengine\exam_assignment\x64\debug\minigin.lib
 e:\gameengine\gameengine\exam_assignment\x64\debug\minigin.pdb
 e:\gameengine\gameengine\exam_assignment\minigin\x64\debug\minigin.tlog\cl.command.1.tlog

@@ -5,29 +5,35 @@
 
 bool dae::InputManager::ProcessInput()
 {
-	ZeroMemory(&m_State, sizeof(XINPUT_STATE));
-	XInputGetState(0, &m_State);
-	for (std::map<ControllerButton , std::unique_ptr<Commands>>::iterator it = m_Controllers.begin(); it != m_Controllers.end(); it++)
+	for (int i = 0; i < MAX_CONTROLLERS; i++)
 	{
-		if (IsPressed(ControllerButton(it->first)))
+		ZeroMemory(&m_State, sizeof(XINPUT_STATE));
+		XInputGetState(i, &m_State);
+		for (std::map<std::pair<ControllerButton, Controllers>, std::unique_ptr<Commands>>::iterator it = m_Controllers.begin(); it != m_Controllers.end(); it++)
 		{
-			m_EndIt = it->second->execute(m_Actor);
+			if (IsPressed(ControllerButton(it->first.first)))
+			{
+				if (Controllers(i) == it->first.second)
+				{
+					m_EndIt = it->second->execute(m_Actors[Controllers(i)]);
+				}
+			}
 		}
 	}
 	return !m_EndIt;
 }
 
-void dae::InputManager::ConfigButtons(ControllerButton button, std::unique_ptr<Commands> sortCommand)
+void dae::InputManager::ConfigButtons(ControllerButton button, std::unique_ptr<Commands> sortCommand, Controllers controller)
 {
-	for (std::map<ControllerButton, std::unique_ptr<Commands>>::iterator it = m_Controllers.begin(); it != m_Controllers.end(); it++)
+	for (std::map<std::pair<ControllerButton, Controllers>, std::unique_ptr<Commands>>::iterator it = m_Controllers.begin(); it != m_Controllers.end(); it++)
 	{
-		if (it->first == button)
+		if (it->first.first == button && it->first.second == controller)
 		{
 			it->second.swap(sortCommand);
 			return;
 		}
 	}
-	m_Controllers[button].swap(sortCommand);
+	m_Controllers[std::make_pair(button, controller)].swap(sortCommand);
 }
 
 bool dae::InputManager::IsPressed(ControllerButton button) const
@@ -37,8 +43,8 @@ bool dae::InputManager::IsPressed(ControllerButton button) const
 	return (m_State.Gamepad.wButtons & int(button)) != 0;
 }
 
-void dae::InputManager::SetActor(std::shared_ptr<GameObject> actor)
+void dae::InputManager::SetActor(std::shared_ptr<GameObject> actor , Controllers controller)
 {
-	m_Actor = actor;
+	m_Actors[controller] = actor;
 }
 

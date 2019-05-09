@@ -39,6 +39,9 @@
     <ClInclude Include="Minigin.h">
       <Filter>Source Files\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="MainCharComponent.h">
+      <Filter>Source Files\Behaviour</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FireComponent.cpp">
@@ -58,6 +61,9 @@
     </ClCompile>
     <ClCompile Include="MiniginPCH.cpp">
       <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="MainCharComponent.cpp">
+      <Filter>Source Files\Behaviour</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

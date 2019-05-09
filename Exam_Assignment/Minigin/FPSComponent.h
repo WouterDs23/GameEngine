@@ -9,6 +9,7 @@ namespace dae
 	public:
 		FPSComponent(std::shared_ptr<dae::Font> font);
 		~FPSComponent() override;
+
 		FPSComponent(const FPSComponent& other) = delete;
 		FPSComponent(FPSComponent&& other) noexcept = delete;
 		FPSComponent& operator=(const FPSComponent& other) = delete;

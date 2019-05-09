@@ -7,7 +7,7 @@
 
 namespace dae
 {
-	class MoveComponent : public BaseComponent
+	class MoveComponent final : public BaseComponent
 	{
 	public:
 		MoveComponent(float xSpeed = 0, float ySpeed = 0, float zSpeed = 0);

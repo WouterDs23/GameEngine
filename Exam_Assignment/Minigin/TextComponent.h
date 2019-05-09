@@ -13,6 +13,7 @@ namespace dae
 	public:
 		TextComponent(std::shared_ptr<dae::Font> font);
 		~TextComponent() override;
+
 		TextComponent(const TextComponent& other) = delete;
 		TextComponent(TextComponent&& other) noexcept = delete;
 		TextComponent& operator=(const TextComponent& other) = delete;

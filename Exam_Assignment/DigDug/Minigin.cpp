@@ -63,11 +63,6 @@ void dae::Minigin::Run()
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
-		input.ConfigButtons(ControllerButton::ButtonA, std::move(std::make_unique<ExitGame>()));
-		input.ConfigButtons(ControllerButton::DPad_Up, std::move(std::make_unique<MoveUp>()));
-		input.ConfigButtons(ControllerButton::DPad_Down, std::move(std::make_unique<MoveDown>()));
-		input.ConfigButtons(ControllerButton::DPad_Left, std::move(std::make_unique<MoveLeft>()));
-		input.ConfigButtons(ControllerButton::DPad_Right, std::move(std::make_unique<MoveRight>()));
 
 		auto lastTime = std::chrono::high_resolution_clock::now();
 		bool doContinue = true;
