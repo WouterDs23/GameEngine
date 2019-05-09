@@ -10,29 +10,6 @@ namespace dae
 		virtual ~Commands();
 		virtual bool execute(std::weak_ptr<dae::GameObject> actor);
 	};
-	class MoveLeft final : public Commands
-	{
-	public:
-		virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
-	};
-
-	class MoveRight final : public Commands
-	{
-	public:
-		virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
-	};
-
-	class MoveUp final : public Commands
-	{
-	public:
-		virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
-	};
-
-	class MoveDown final : public Commands
-	{
-	public:
-		virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
-	};
 
 	class ExitGame final : public Commands
 	{

@@ -1,8 +1,7 @@
 #include "MiniginPCH.h"
 #include "WanderComponent.h"
 #include "GameObject.h"
-#include "CollisionComponent.h"
-#include "CharacterComponent.h"
+#include "AIComponent.h"
 
 dae::WanderComponent::WanderComponent(bool doWander)
 :m_DoWander(doWander),
@@ -11,10 +10,10 @@ m_WanderRight(false),
 m_WanderTop(false),
 m_WanderBottem(false)
 {
-	m_GoLeft = std::make_unique<MoveLeft>();
+	/*m_GoLeft = std::make_unique<MoveLeft>();
 	m_GoRight = std::make_unique<MoveRight>();
 	m_GoUp = std::make_unique<MoveUp>();
-	m_GoDown = std::make_unique<MoveDown>();
+	m_GoDown = std::make_unique<MoveDown>();*/
 }
 
 dae::WanderComponent::~WanderComponent()
@@ -36,7 +35,7 @@ void dae::WanderComponent::Update()
 			m_GoLeft->execute(GetGameObject());
 			if (actor)
 			{
-				auto comp = actor->GetComponent<CharacterComponent>().lock();
+				auto comp = actor->GetComponent<AIComponent>().lock();
 				if (comp)
 				{
 					if (comp->GetCollidedLeft())
@@ -54,7 +53,7 @@ void dae::WanderComponent::Update()
 			m_GoRight->execute(GetGameObject());
 			if (actor)
 			{
-				auto comp = actor->GetComponent<CharacterComponent>().lock();
+				auto comp = actor->GetComponent<AIComponent>().lock();
 				if (comp)
 				{
 					if (comp->GetCollidedRight())
@@ -72,7 +71,7 @@ void dae::WanderComponent::Update()
 			m_GoUp->execute(GetGameObject());
 			if (actor)
 			{
-				auto comp = actor->GetComponent<CharacterComponent>().lock();
+				auto comp = actor->GetComponent<AIComponent>().lock();
 				if (comp)
 				{
 					if (comp->GetCollidedTop())
@@ -90,7 +89,7 @@ void dae::WanderComponent::Update()
 			m_GoDown->execute(GetGameObject());
 			if (actor)
 			{
-				auto comp = actor->GetComponent<CharacterComponent>().lock();
+				auto comp = actor->GetComponent<AIComponent>().lock();
 				if (comp)
 				{
 					if (comp->GetCollidedBottom())
@@ -124,7 +123,7 @@ void dae::WanderComponent::StopWander()
 void dae::WanderComponent::RandomDirCalc(Direction DontGo)
 {
 	auto actor = GetGameObject().lock();
-	auto comp = actor->GetComponent<CharacterComponent>().lock();
+	auto comp = actor->GetComponent<AIComponent>().lock();
 	if (comp)
 	{
 		bool canGo = false;

@@ -3,6 +3,7 @@
 #include "InputManager.h"
 class CharacterState
 {
+public:
 	CharacterState() = default;
 	virtual ~CharacterState() = default;
 
@@ -10,6 +11,33 @@ class CharacterState
 	CharacterState(CharacterState&& other) noexcept = delete;
 	CharacterState& operator=(const CharacterState& other) = delete;
 	CharacterState& operator=(CharacterState&& other) noexcept = delete;
+
+	virtual std::shared_ptr<CharacterState> Update() = 0;
+	virtual void Render() = 0;
+};
+
+class MoveLeft final : public dae::Commands
+{
+public:
+	virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
+};
+
+class MoveRight final : public dae::Commands
+{
+public:
+	virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
+};
+
+class MoveUp final : public dae::Commands
+{
+public:
+	virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
+};
+
+class MoveDown final : public dae::Commands
+{
+public:
+	virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
 };
 
 class MainCharComponent final : public dae::BaseComponent
@@ -22,6 +50,8 @@ public:
 	MainCharComponent(MainCharComponent&& other) noexcept = delete;
 	MainCharComponent& operator=(const MainCharComponent& other) = delete;
 	MainCharComponent& operator=(MainCharComponent&& other) noexcept = delete;
+
+	std::weak_ptr<CharacterState> GetState() const { return m_State; }
 
 	void Initialize() override;
 	void Update() override;

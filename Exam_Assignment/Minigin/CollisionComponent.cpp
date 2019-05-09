@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "CollisionComponent.h"
 #include "GameObject.h"
+#include "Renderer.h"
 
 dae::CollisionComponent::CollisionComponent():m_IsObstacle(false)
 {

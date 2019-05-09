@@ -1,6 +1,4 @@
-﻿  CharacterComponent.cpp
-  MoveComponent.cpp
-  Generating Code...
+﻿  MoveComponent.cpp
   Minigin.vcxproj -> E:\GameEngine\GameEngine\Exam_Assignment\x64\Debug\Minigin.lib
   E:\GameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied

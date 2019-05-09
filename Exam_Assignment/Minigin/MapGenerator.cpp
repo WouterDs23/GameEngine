@@ -52,19 +52,17 @@ std::vector<std::shared_ptr<dae::GameObject>> dae::MapGenerator::CreateMap(std::
 void dae::MapGenerator::addTile(Type type, float x, float y, float xSize, float ySize)
 {
 	std::shared_ptr<dae::GameObject> obj = std::make_shared<GameObject>();
+	obj->SetPosition(x, y);
+	obj->SetSize(xSize, ySize);
+	obj->AddComponent(std::make_shared<CollisionComponent>());
 	switch (type)
 	{
 	case Dirt:
-		obj->SetPosition(x, y);
-		obj->SetSize(xSize, ySize);
-		obj->AddComponent(std::make_shared<CollisionComponent>());
 		obj->SetTexture("dirt.png");
 		obj->GetComponent<CollisionComponent>().lock()->SetIsObstacle();
 		break;
 	case Path:
-		obj->SetPosition(x, y);
-		obj->SetSize(xSize, ySize);
-		obj->AddComponent(std::make_shared<CollisionComponent>());
+		
 		obj->SetTexture("dirtway.png");
 		break;
 	default:

@@ -171,6 +171,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CharacterComponent.h" />
     <ClInclude Include="FireComponent.h" />
     <ClInclude Include="GhostComponent.h" />
     <ClInclude Include="MainCharComponent.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CharacterComponent.cpp" />
     <ClCompile Include="FireComponent.cpp" />
     <ClCompile Include="GhostComponent.cpp" />
     <ClCompile Include="Main.cpp" />

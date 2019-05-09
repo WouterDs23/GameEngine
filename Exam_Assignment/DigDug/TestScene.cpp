@@ -34,7 +34,7 @@ void dae::TestScene::Initialize()
 	
 	m_Test = std::make_shared<GameObject>();
 	m_Test->SetTexture("dot.png");
-	m_Test->SetSize(30, 30);
+	m_Test->SetSize(25, 25);
 	m_Test->SetPosition(192.f, 228.f);
 	m_Test->AddComponent(std::make_shared<MainCharComponent>(m_GridTest,InputManager::Controllers::PLAYER01));
 	Add(m_Test);
