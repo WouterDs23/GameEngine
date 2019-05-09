@@ -1,2 +1,9 @@
-﻿  TestScene.cpp
-  DigDug.vcxproj -> E:\DAEGameEngine\GameEngine\Exam_Assignment\x64\Debug\DigDug.exe
+﻿  MiniginPCH.cpp
+  FireComponent.cpp
+  GhostComponent.cpp
+  Main.cpp
+  Minigin.cpp
+  TestScene.cpp
+  Generating Code...
+     Creating library E:\GameEngine\GameEngine\Exam_Assignment\x64\Debug\DigDug.lib and object E:\GameEngine\GameEngine\Exam_Assignment\x64\Debug\DigDug.exp
+  DigDug.vcxproj -> E:\GameEngine\GameEngine\Exam_Assignment\x64\Debug\DigDug.exe

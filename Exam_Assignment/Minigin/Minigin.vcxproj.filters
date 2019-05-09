@@ -102,13 +102,7 @@
     <ClInclude Include="CharacterComponent.h">
       <Filter>Engine\Components\GameElements</Filter>
     </ClInclude>
-    <ClInclude Include="FireComponent.h">
-      <Filter>Engine\Components\GameElements</Filter>
-    </ClInclude>
     <ClInclude Include="FleeComponent.h">
-      <Filter>Engine\Components\GameElements</Filter>
-    </ClInclude>
-    <ClInclude Include="GhostComponent.h">
       <Filter>Engine\Components\GameElements</Filter>
     </ClInclude>
     <ClInclude Include="SeekComponent.h">
@@ -185,13 +179,7 @@
     <ClCompile Include="CharacterComponent.cpp">
       <Filter>Engine\Components\GameElements</Filter>
     </ClCompile>
-    <ClCompile Include="FireComponent.cpp">
-      <Filter>Engine\Components\GameElements</Filter>
-    </ClCompile>
     <ClCompile Include="FleeComponent.cpp">
-      <Filter>Engine\Components\GameElements</Filter>
-    </ClCompile>
-    <ClCompile Include="GhostComponent.cpp">
       <Filter>Engine\Components\GameElements</Filter>
     </ClCompile>
     <ClCompile Include="SeekComponent.cpp">

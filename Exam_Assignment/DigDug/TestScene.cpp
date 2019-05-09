@@ -47,29 +47,6 @@ void dae::TestScene::Update()
 {
 	auto comp = m_Test->GetComponent<CollisionComponent>().lock();
 	Scene::Update();
-	/*for (int i = 0; i < m_GridSizeHeight; i++)
-	{
-		for (int k = 0; k < m_GridSizeWidth; k++)
-		{
-			int num = i * m_GridSizeWidth + k;			
-			if (comp->CheckCollisionTopBottem(m_GridTest[num]))
-			{
-				auto move = m_Test->GetComponent<MoveComponent>().lock();
-				move->SetSpeed(move->GetSpeed().x, -move->GetSpeed().y);
-			}
-			if (comp->CheckCollisionLeftRight(m_GridTest[num]))
-			{
-				auto move = m_Test->GetComponent<MoveComponent>().lock();
-				move->SetSpeed(-move->GetSpeed().x, move->GetSpeed().y);
-			}
-		}
-
-	}
-	if (comp->CheckIfInObject(m_GridTest[130]))
-	{
-		auto move = m_Test->GetComponent<MoveComponent>().lock();
-		move->SetSpeed(0.f, 0.f);
-	}*/
 }
 
 void dae::TestScene::Render() const

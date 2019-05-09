@@ -80,8 +80,12 @@ void dae::Minigin::Run()
 			lag += GameLifeSpan::deltaTime;
 			doContinue = input.ProcessInput();
 			int loops{};
-			while (lag >= float(msPerFrame/1000.f) || loops == maxLoops)
+			while (lag >= float(msPerFrame/1000.f))
 			{
+				if (loops >= maxLoops)
+				{
+					break;
+				}
 				loops++;
 				sceneManager.Update();
 				lag -= float(1.f/msPerFrame);

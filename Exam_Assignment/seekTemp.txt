@@ -1,0 +1,178 @@
+#include "MiniginPCH.h"
+#include "SeekComponent.h"
+#include "GameObject.h"
+#include "GhostComponent.h"
+#include "MoveComponent.h"
+#include "CharacterComponent.h"
+#include "CollisionComponent.h"
+#include <algorithm>
+#include <map>
+#include <limits>
+
+dae::SeekComponent::SeekComponent()
+{
+}
+
+
+dae::SeekComponent::~SeekComponent()
+{
+}
+
+void dae::SeekComponent::Initialize()
+{
+}
+
+void dae::SeekComponent::Update()
+{
+	auto actor = GetGameObject().lock();
+	auto target = m_Target.lock();
+	if (actor && target)
+	{
+		const auto ghostComp = actor->GetComponent<GhostComponent>().lock();
+		if (ghostComp)
+		{
+			if (ghostComp->GetInGhostForm())
+			{
+				auto move = actor->GetComponent<MoveComponent>().lock();
+				auto linearVel = target->GetTransform().GetPosition() - actor->GetTransform().GetPosition();
+				Normalize(linearVel);
+				move->MoveObject(linearVel.x, linearVel.y);
+				return;
+			}
+			
+		}
+
+		const auto path = FindPath();
+		const auto move = actor->GetComponent<MoveComponent>().lock();
+		auto linearVel = path->GetTransform().GetPosition() - actor->GetTransform().GetPosition();
+		Normalize(linearVel);
+		move->MoveObject(linearVel.x, linearVel.y);
+		return;
+	}
+}
+
+void dae::SeekComponent::Render()
+{
+}
+
+std::shared_ptr<dae::GameObject> dae::SeekComponent::FindPath()
+{
+	std::shared_ptr<GameObject> actionList;
+	std::weak_ptr<dae::GameObject> pObjective{};
+	std::weak_ptr<dae::GameObject> pStartObjective{};
+	auto actor = GetGameObject().lock();
+	const auto target = m_Target.lock();
+	if (actor && target)
+	{
+		auto obstacles = actor->GetComponent<CharacterComponent>().lock()->GetObstacles();
+		glm::vec3 distance{};
+		glm::vec3 distanceStart{};
+		for (auto obs : obstacles)
+		{
+			auto collisionComp = obs->GetComponent<CollisionComponent>().lock();
+			if (collisionComp)
+			{
+				if (!collisionComp->GetIsObstacle())
+				{
+					if (!pObjective.lock())
+					{
+						pObjective = obs;
+						distance = DistanceBetween2Objects(pObjective.lock()->GetTransform().GetMiddlePosition(), target->GetTransform().GetMiddlePosition());
+						continue;
+					}
+					if (!pStartObjective.lock())
+					{
+						pStartObjective = obs;
+						distanceStart = DistanceBetween2Objects(pStartObjective.lock()->GetTransform().GetMiddlePosition(), actor->GetTransform().GetMiddlePosition());
+						continue;
+					}
+
+					const auto tempDistance = DistanceBetween2Objects(obs->GetTransform().GetMiddlePosition(), target->GetTransform().GetMiddlePosition());
+					const auto tempDistanceStart = DistanceBetween2Objects(obs->GetTransform().GetMiddlePosition(), actor->GetTransform().GetMiddlePosition());
+					if (tempDistance.x <= distance.x && tempDistance.y <= distance.y)
+					{
+						pObjective = obs;
+						distance = tempDistance;
+					}
+					if (tempDistanceStart.x <= distanceStart.x && tempDistanceStart.y <= distanceStart.y)
+					{
+						pStartObjective = obs;
+						distanceStart = tempDistanceStart;
+					}
+					continue;
+				}
+			}
+		}
+		auto connectingObjects = ConnectingObjects(obstacles, pStartObjective.lock());
+		for (auto obj : connectingObjects)
+		{
+			if (obj)
+			{
+				auto comp =obj->GetComponent<CollisionComponent>();
+				if (comp.lock())
+				{
+					if (comp.lock()->GetIsObstacle())
+					{
+						connectingObjects.erase(remove(connectingObjects.begin(), connectingObjects.end(), obj));
+					}
+				}
+			}
+		}
+		int number = std::rand() % connectingObjects.size();
+		actionList = connectingObjects[number];
+	}
+	return actionList;
+}
+
+std::vector<std::shared_ptr<dae::GameObject>> dae::SeekComponent::ConnectingObjects(
+	const std::vector<std::shared_ptr<dae::GameObject>> objects, const std::shared_ptr<dae::GameObject> object)
+{
+	glm::vec3 coordinatesLeft{ object->GetTransform().GetMiddlePosition() };
+	coordinatesLeft.x -= object->GetTransform().GetSize().x;
+	glm::vec3 coordinatesRight{ object->GetTransform().GetMiddlePosition() };
+	coordinatesRight.x += object->GetTransform().GetSize().x;
+	glm::vec3 coordinatesUp{ object->GetTransform().GetMiddlePosition() };
+	coordinatesUp.y += object->GetTransform().GetSize().y;
+	glm::vec3 coordinatesDown{ object->GetTransform().GetMiddlePosition() };
+	coordinatesDown.y -= object->GetTransform().GetSize().y;
+
+	glm::vec3 distanceLeft{ 9000.f,900.f,9000.f };
+	glm::vec3 distanceRight{ 9000.f,900.f,9000.f };
+	glm::vec3 distanceUp{ 9000.f,900.f,9000.f };
+	glm::vec3 distanceDown{ 9000.f,900.f,9000.f };
+
+	std::weak_ptr<GameObject> pCurrentLeftNode{};
+	std::weak_ptr<GameObject> pCurrentRightNode{};
+	std::weak_ptr<GameObject> pCurrentUpNode{};
+	std::weak_ptr<GameObject> pCurrentDownNode{};
+	for (auto obj : objects)
+	{
+
+		const auto tempDistanceLeft = DistanceBetween2Objects(obj->GetTransform().GetMiddlePosition(), coordinatesLeft);
+		const auto tempDistanceRight = DistanceBetween2Objects(obj->GetTransform().GetMiddlePosition(), coordinatesRight);
+		const auto tempDistanceUp = DistanceBetween2Objects(obj->GetTransform().GetMiddlePosition(), coordinatesUp);
+		const auto tempDistanceDown = DistanceBetween2Objects(obj->GetTransform().GetMiddlePosition(), coordinatesDown);
+		if (tempDistanceLeft.x <= distanceLeft.x && tempDistanceLeft.y <= distanceLeft.y)
+		{
+			distanceLeft = tempDistanceLeft;
+			pCurrentLeftNode = obj;
+		}
+		if (tempDistanceRight.x <= distanceRight.x && tempDistanceRight.y <= distanceRight.y)
+		{
+			distanceRight = tempDistanceRight;
+			pCurrentRightNode = obj;
+		}
+		if (tempDistanceUp.x <= distanceUp.x && tempDistanceUp.y <= distanceUp.y)
+		{
+			distanceUp = tempDistanceUp;
+			pCurrentUpNode = obj;
+		}
+		if (tempDistanceDown.x <= distanceDown.x && tempDistanceDown.y <= distanceDown.y)
+		{
+			distanceDown = tempDistanceDown;
+			pCurrentDownNode = obj;
+		}
+	}
+	return { pCurrentLeftNode.lock(),pCurrentRightNode.lock(),pCurrentDownNode.lock(),pCurrentUpNode.lock() };
+}
+

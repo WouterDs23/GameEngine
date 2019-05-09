@@ -13,30 +13,51 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Behaviour">
+      <UniqueIdentifier>{efe50e21-cbb5-42df-a2c4-4e38335f403e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene">
+      <UniqueIdentifier>{0b74917a-cc9a-4652-81b0-79cc8d51467b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{ff63ddd1-dec7-49d4-b8c0-2df84bb81835}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Minigin.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="MiniginPCH.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FireComponent.h">
+      <Filter>Source Files\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="GhostComponent.h">
+      <Filter>Source Files\Behaviour</Filter>
+    </ClInclude>
     <ClInclude Include="TestScene.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Minigin.h">
+      <Filter>Source Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="FireComponent.cpp">
+      <Filter>Source Files\Behaviour</Filter>
     </ClCompile>
-    <ClCompile Include="Minigin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniginPCH.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GhostComponent.cpp">
+      <Filter>Source Files\Behaviour</Filter>
     </ClCompile>
     <ClCompile Include="TestScene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Minigin.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniginPCH.cpp">
+      <Filter>Source Files\Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
