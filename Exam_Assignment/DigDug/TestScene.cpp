@@ -10,8 +10,6 @@
 #include "InputManager.h"
 #include "WanderComponent.h"
 #include "MapGenerator.h"
-#include "GhostComponent.h"
-#include "SeekComponent.h"
 
 
 dae::TestScene::TestScene(const std::string& name) :Scene(name)
@@ -39,35 +37,15 @@ void dae::TestScene::Initialize()
 	m_Test->SetPosition(192.f, 228.f);
 	//InputManager::GetInstance().SetActor(m_Test);
 	m_Test->AddComponent(std::make_shared<FPSComponent>(font));
-	m_Test->AddComponent(std::make_shared<GhostComponent>());
-	m_Test->AddComponent(std::make_shared<SeekComponent>());
 	m_Test->AddComponent(std::make_shared<CharacterComponent>());
-	m_Test->AddComponent(std::make_shared<WanderComponent>(false));
+	m_Test->AddComponent(std::make_shared<WanderComponent>(true));
 	m_Test->GetComponent<CharacterComponent>().lock()->SetObstacles(m_GridTest);
 	Add(m_Test);
-
-	m_Test2 = std::make_shared<GameObject>();
-	m_Test2->SetTexture("dot.png");
-	m_Test2->SetSize(30, 30);
-	m_Test2->SetPosition(50.f, 10);
-	//InputManager::GetInstance().SetActor(m_Test);
-	m_Test2->AddComponent(std::make_shared<FPSComponent>(font));
-	m_Test2->AddComponent(std::make_shared<GhostComponent>());
-	//m_Test2->AddComponent(std::make_shared<SeekComponent>());
-	m_Test2->AddComponent(std::make_shared<CharacterComponent>());
-	m_Test2->AddComponent(std::make_shared<WanderComponent>(false));
-	m_Test2->GetComponent<CharacterComponent>().lock()->SetObstacles(m_GridTest);
-	Add(m_Test2);
 }
 
 void dae::TestScene::Update()
 {
 	auto comp = m_Test->GetComponent<CollisionComponent>().lock();
-	auto Ghostcomp = m_Test->GetComponent<GhostComponent>().lock();
-	auto Seekcomp = m_Test->GetComponent<SeekComponent>().lock();
-	//Ghostcomp->EnableGhostMode();
-	Seekcomp->SetTarget(m_Test2);
-	
 	Scene::Update();
 	/*for (int i = 0; i < m_GridSizeHeight; i++)
 	{

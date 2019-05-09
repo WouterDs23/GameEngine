@@ -1,11 +1,8 @@
 #include "MiniginPCH.h"
 #include "CollisionComponent.h"
 #include "GameObject.h"
-#include "GhostComponent.h"
 
-dae::CollisionComponent::CollisionComponent()
-:m_IsObstacle(false),
-m_InGhostForm(false)
+dae::CollisionComponent::CollisionComponent():m_IsObstacle(false)
 {
 }
 
@@ -30,7 +27,7 @@ void dae::CollisionComponent::Render()
 
 const bool dae::CollisionComponent::CheckCollisionTopBottem(std::weak_ptr<dae::GameObject> other, float offset)
 {
-	if (other.lock() && !m_InGhostForm)
+	if (other.lock())
 	{
 		auto compTest = other.lock()->GetComponent<CollisionComponent>().lock();
 		if (compTest && compTest->GetIsObstacle())
@@ -68,7 +65,7 @@ const bool dae::CollisionComponent::CheckCollisionTopBottem(std::weak_ptr<dae::G
 
 const bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::GameObject> other, float offset)
 {
-	if (other.lock() && !m_InGhostForm)
+	if (other.lock())
 	{
 		auto compTest = other.lock()->GetComponent<CollisionComponent>().lock();
 		if (compTest && compTest->GetIsObstacle())
@@ -134,25 +131,4 @@ const bool dae::CollisionComponent::CheckIfInObject(std::weak_ptr<dae::GameObjec
 		}
 	}
 	return false;
-}
-
-void dae::CollisionComponent::EnableGhost(bool enable)
-{
-	auto actor = GetGameObject().lock();
-	if (actor)
-	{
-		auto ghost = actor->GetComponent<GhostComponent>().lock();
-		if (ghost)
-		{
-			if (enable)
-			{
-				m_InGhostForm = true;
-			}
-			else
-			{
-				m_InGhostForm = false;
-			}
-			
-		}
-	}
 }

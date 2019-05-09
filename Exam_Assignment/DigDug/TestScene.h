@@ -19,7 +19,6 @@ namespace dae
 		TestScene& operator=(TestScene&& other) = delete;
 	private:
 		std::shared_ptr<dae::GameObject> m_Test;
-		std::shared_ptr<dae::GameObject> m_Test2;
 		std::vector< std::shared_ptr<dae::GameObject>> m_GridTest;
 		int m_GridSizeWidth{};
 		int m_GridSizeHeight{};

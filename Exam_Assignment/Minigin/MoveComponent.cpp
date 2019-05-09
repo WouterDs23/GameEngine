@@ -36,7 +36,7 @@ void dae::MoveComponent::SetSpeed(float xSpeed, float ySpeed, float zSpeed)
 	m_Speed.z = zSpeed;
 }
 
-void dae::MoveComponent::MoveObject(const float xSpeed, const float ySpeed, const float) const
+void dae::MoveComponent::MoveObject(float xSpeed, float ySpeed, float)
 {
 	auto gam = GetGameObject().lock();
 	if (gam)
