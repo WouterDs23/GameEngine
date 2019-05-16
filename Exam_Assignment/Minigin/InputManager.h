@@ -6,38 +6,63 @@
 
 namespace dae
 {
-	enum class ControllerButton
+	enum class Controllers
 	{
-		ButtonA = XINPUT_GAMEPAD_A,
-		ButtonB = XINPUT_GAMEPAD_B,
-		ButtonX = XINPUT_GAMEPAD_X,
-		ButtonY = XINPUT_GAMEPAD_Y,
-		DPad_Up = XINPUT_GAMEPAD_DPAD_UP,
-		DPad_Down = XINPUT_GAMEPAD_DPAD_DOWN,
-		DPad_Left = XINPUT_GAMEPAD_DPAD_LEFT,
-		DPad_Right = XINPUT_GAMEPAD_DPAD_RIGHT,
+		PLAYER01 = 0,
+		PLAYER02 = 1,
+		PLAYER03 = 2,
+		PLAYER04 = 3
 	};
+	enum InputTriggerState
+	{
+		Pressed,
+		Released,
+		Down
+	};
+	struct Input
+	{
+		Input() :
+			Id(-1),
+			Actor(),
+			sortCommand(),
+			TriggerState(Pressed),
+			KeyBoardCode(-1),
+			ControllerButton(0),
+			Player()
+		{}
+
+		Input(int id, std::shared_ptr<GameObject> actor, std::unique_ptr<Commands> command, InputTriggerState state = Pressed, int keyboardCode = -1, int gamepadButtonCode = 0, Controllers player = Controllers::PLAYER01)
+			:Id(id),
+			Actor(actor),
+			sortCommand(std::move(command)),
+			TriggerState(state),
+			KeyBoardCode(keyboardCode),
+			ControllerButton(gamepadButtonCode),
+			Player(player)
+		{
+
+		}
+		int Id{ 0 };
+		std::shared_ptr<GameObject> Actor;
+		std::unique_ptr<Commands> sortCommand;
+		InputTriggerState TriggerState;
+		int KeyBoardCode;
+		int ControllerButton;
+		Controllers Player;
+	};
+	class GameObject;
 
 	class InputManager final : public Singleton<InputManager>
 	{
 	public:
-		enum class Controllers
-		{
-			PLAYER01 = 0,
-			PLAYER02 = 1,
-			PLAYER03 = 2,
-			PLAYER04 = 3
-		};
 		bool ProcessInput();
-		void ConfigButtons(ControllerButton button, std::unique_ptr<Commands> sortCommand, Controllers controller);
-		bool IsPressed(ControllerButton button) const;
-		void SetActor(std::shared_ptr<GameObject> actor, Controllers controller);
+		void ConfigButtons(std::shared_ptr<dae::Input> input);
 	private:
+		bool IsPressed(const  std::weak_ptr<dae::Input>) const;
 		static const int MAX_CONTROLLERS{ 4 };
 		XINPUT_STATE m_State{};
-		bool m_EndIt{false};
-		std::map<std::pair<ControllerButton, Controllers>, std::unique_ptr<Commands>> m_Controllers;
-		std::map<Controllers,std::weak_ptr<GameObject>> m_Actors;
+		bool m_EndIt{ false };
+		std::map<int, std::shared_ptr<dae::Input>> m_Controllers;
 	};
 
 }

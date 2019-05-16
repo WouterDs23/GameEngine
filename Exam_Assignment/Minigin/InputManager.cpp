@@ -1,5 +1,6 @@
 #include "MiniginPCH.h"
 #include "InputManager.h"
+#include "GameObject.h"
 #include <SDL.h>
 
 
@@ -9,13 +10,13 @@ bool dae::InputManager::ProcessInput()
 	{
 		ZeroMemory(&m_State, sizeof(XINPUT_STATE));
 		XInputGetState(i, &m_State);
-		for (std::map<std::pair<ControllerButton, Controllers>, std::unique_ptr<Commands>>::iterator it = m_Controllers.begin(); it != m_Controllers.end(); it++)
+		for (std::map<int, std::shared_ptr<dae::Input>>::iterator it = m_Controllers.begin(); it != m_Controllers.end(); it++)
 		{
-			if (IsPressed(ControllerButton(it->first.first)))
+			if (IsPressed(it->second))
 			{
-				if (Controllers(i) == it->first.second)
+				if (Controllers(i) == it->second->Player)
 				{
-					m_EndIt = it->second->execute(m_Actors[Controllers(i)]);
+					m_EndIt = it->second->sortCommand->execute(it->second->Actor);
 				}
 			}
 		}
@@ -23,28 +24,27 @@ bool dae::InputManager::ProcessInput()
 	return !m_EndIt;
 }
 
-void dae::InputManager::ConfigButtons(ControllerButton button, std::unique_ptr<Commands> sortCommand, Controllers controller)
+void dae::InputManager::ConfigButtons(std::shared_ptr<dae::Input>  input)
 {
-	for (std::map<std::pair<ControllerButton, Controllers>, std::unique_ptr<Commands>>::iterator it = m_Controllers.begin(); it != m_Controllers.end(); it++)
+	for (std::map<int, std::shared_ptr<dae::Input>>::iterator it = m_Controllers.begin(); it != m_Controllers.end(); it++)
 	{
-		if (it->first.first == button && it->first.second == controller)
+		if (it->first == input->Id && it->second->Player == input->Player)
 		{
-			it->second.swap(sortCommand);
+			it->second = input;
 			return;
 		}
 	}
-	m_Controllers[std::make_pair(button, controller)].swap(sortCommand);
+	m_Controllers[input->Id] = input;
 }
 
-bool dae::InputManager::IsPressed(ControllerButton button) const
+bool dae::InputManager::IsPressed(const std::weak_ptr<dae::Input> input) const
 {
 	//http://gameprogrammingpatterns.com/command.html
-		
-	return (m_State.Gamepad.wButtons & int(button)) != 0;
-}
+	if (input.lock()->KeyBoardCode != -1)
+	{
+		return GetAsyncKeyState(input.lock()->KeyBoardCode) & 0x8000;
+	}
 
-void dae::InputManager::SetActor(std::shared_ptr<GameObject> actor , Controllers controller)
-{
-	m_Actors[controller] = actor;
+	return (m_State.Gamepad.wButtons & int(input.lock()->ControllerButton)) != 0;
 }
 

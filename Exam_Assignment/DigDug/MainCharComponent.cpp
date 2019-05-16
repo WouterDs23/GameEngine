@@ -4,7 +4,7 @@
 #include "CharacterComponent.h"
 #include "InputManager.h"
 
-MainCharComponent::MainCharComponent(std::vector<std::shared_ptr<dae::GameObject>> obstacles, dae::InputManager::Controllers controller) :
+MainCharComponent::MainCharComponent(std::vector<std::shared_ptr<dae::GameObject>> obstacles, dae::Controllers controller) :
 	m_Obstacles{ obstacles },
 	m_Controller{ controller }
 {
@@ -22,12 +22,17 @@ void MainCharComponent::Initialize()
 	{
 		gameObject.lock()->AddComponent(std::make_shared<CharacterComponent>());
 		auto& input = dae::InputManager::GetInstance();
-		input.SetActor(gameObject.lock(), m_Controller);
-		input.ConfigButtons(dae::ControllerButton::ButtonA, std::move(std::make_unique<dae::ExitGame>()), m_Controller);
-		input.ConfigButtons(dae::ControllerButton::DPad_Up, std::move(std::make_unique<MoveUp>()), m_Controller);
-		input.ConfigButtons(dae::ControllerButton::DPad_Down, std::move(std::make_unique<MoveDown>()), m_Controller);
-		input.ConfigButtons(dae::ControllerButton::DPad_Left, std::move(std::make_unique<MoveLeft>()), m_Controller);
-		input.ConfigButtons(dae::ControllerButton::DPad_Right, std::move(std::make_unique<MoveRight>()), m_Controller);
+		input.ConfigButtons(std::make_shared<dae::Input>(0, GetGameObject().lock(), std::move(std::make_unique<dae::ExitGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_A, m_Controller));
+		input.ConfigButtons(std::make_shared<dae::Input>(1, GetGameObject().lock(), std::move(std::make_unique<MoveUp>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_UP, m_Controller));
+		input.ConfigButtons(std::make_shared<dae::Input>(2, GetGameObject().lock(), std::move(std::make_unique<MoveDown>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_DOWN, m_Controller));
+		input.ConfigButtons(std::make_shared<dae::Input>(3, GetGameObject().lock(), std::move(std::make_unique<MoveLeft>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_LEFT, m_Controller));
+		input.ConfigButtons(std::make_shared<dae::Input>(4, GetGameObject().lock(), std::move(std::make_unique<MoveRight>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_RIGHT, m_Controller));
+
+		input.ConfigButtons(std::make_shared<dae::Input>(5, GetGameObject().lock(), std::move(std::make_unique<dae::ExitGame>()), dae::Pressed, 'Q', 0, m_Controller));
+		input.ConfigButtons(std::make_shared<dae::Input>(6, GetGameObject().lock(), std::move(std::make_unique<MoveUp>()), dae::Pressed, 'W', 0, m_Controller));
+		input.ConfigButtons(std::make_shared<dae::Input>(7, GetGameObject().lock(), std::move(std::make_unique<MoveDown>()), dae::Pressed, 'S', 0, m_Controller));
+		input.ConfigButtons(std::make_shared<dae::Input>(8, GetGameObject().lock(), std::move(std::make_unique<MoveLeft>()), dae::Pressed, 'A', 0, m_Controller));
+		input.ConfigButtons(std::make_shared<dae::Input>(9, GetGameObject().lock(), std::move(std::make_unique<MoveRight>()), dae::Pressed, 'D', 0, m_Controller));
 		gameObject.lock()->GetComponent<CharacterComponent>().lock()->SetObstacles(m_Obstacles);
 	}
 }
