@@ -16,7 +16,7 @@ bool dae::InputManager::ProcessInput()
 			{
 				if (Controllers(i) == it->second->Player)
 				{
-					m_EndIt = it->second->sortCommand->execute(it->second->Actor);
+					m_EndIt = it->second->Actor->HandleInput(it->second);
 				}
 			}
 		}

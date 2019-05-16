@@ -1,4 +1,6 @@
 #pragma once
+#include "InputManager.h"
+
 namespace dae
 {
 	class GameObject;
@@ -8,8 +10,8 @@ namespace dae
 	public:
 		virtual ~BaseState() = default;
 
-		virtual void HandleInput(std::weak_ptr<dae::GameObject>, std::weak_ptr<Command>) {};
-		virtual void Update(std::weak_ptr<dae::GameObject>) {};
+		virtual bool HandleInput(std::weak_ptr<dae::GameObject>, std::weak_ptr<Input>) { return false; }
+		virtual void Update(std::weak_ptr<dae::GameObject>) {}
 	};
 }
 

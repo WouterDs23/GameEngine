@@ -5,6 +5,7 @@
 #include "SceneObject.h"
 #include "BaseComponent.h"
 #include "iostream"
+#include "BaseState.h"
 
 namespace dae
 {
@@ -50,6 +51,12 @@ namespace dae
 			return temp;
 		}
 
+		std::weak_ptr<dae::BaseState> GetState() const { return m_State; }
+
+		void SetState(std::shared_ptr<dae::BaseState> state) { m_State = state; }
+
+		bool HandleInput(std::weak_ptr<dae::Input> command);
+
 		GameObject() = default;
 		virtual ~GameObject();
 		GameObject(const GameObject& other) = delete;
@@ -63,5 +70,6 @@ namespace dae
 		Transform m_Transform;
 		std::shared_ptr<Texture2D> m_Texture;
 		std::vector<std::shared_ptr<dae::BaseComponent>> m_pComponents;
+		std::shared_ptr<dae::BaseState> m_State{};
 	};
 }

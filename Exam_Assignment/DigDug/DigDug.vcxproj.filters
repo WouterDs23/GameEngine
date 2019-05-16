@@ -48,6 +48,9 @@
     <ClInclude Include="MainCharComponent.h">
       <Filter>Source Files\Behaviour\MainCharacter</Filter>
     </ClInclude>
+    <ClInclude Include="CharacterBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FireComponent.cpp">
@@ -73,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="MainCharComponent.cpp">
       <Filter>Source Files\Behaviour\MainCharacter</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterBehaviour.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

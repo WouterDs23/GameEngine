@@ -3,6 +3,16 @@
 #include "ResourceManager.h"
 #include "Renderer.h"
 #include "BaseComponent.h"
+
+bool dae::GameObject::HandleInput(std::weak_ptr<dae::Input> command)
+{
+	if (m_State)
+	{
+		return m_State->HandleInput(shared_from_this(), command);
+	}
+	return false;
+}
+
 dae::GameObject::~GameObject() = default;
 
 void dae::GameObject::RootUpdate()
@@ -15,6 +25,10 @@ void dae::GameObject::Update()
 	for (auto comp : m_pComponents)
 	{
 		comp->Update();
+	}
+	if (m_State)
+	{
+		m_State->Update(shared_from_this());
 	}
 }
 void dae::GameObject::Render() const

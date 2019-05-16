@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "CharacterComponent.h"
 #include "InputManager.h"
+#include "CharacterBehaviour.h"
 
 MainCharComponent::MainCharComponent(std::vector<std::shared_ptr<dae::GameObject>> obstacles, dae::Controllers controller) :
 	m_Obstacles{ obstacles },
@@ -34,18 +35,21 @@ void MainCharComponent::Initialize()
 		input.ConfigButtons(std::make_shared<dae::Input>(8, GetGameObject().lock(), std::move(std::make_unique<MoveLeft>()), dae::Pressed, 'A', 0, m_Controller));
 		input.ConfigButtons(std::make_shared<dae::Input>(9, GetGameObject().lock(), std::move(std::make_unique<MoveRight>()), dae::Pressed, 'D', 0, m_Controller));
 		gameObject.lock()->GetComponent<CharacterComponent>().lock()->SetObstacles(m_Obstacles);
+
+		gameObject.lock()->SetState(std::make_shared<WalkingState>());
 	}
 }
 
 void MainCharComponent::Update()
 {
-	//m_State = m_State->Update();
+
 }
 
 void MainCharComponent::Render()
 {
 	//m_State->Render();
 }
+
 
 
 bool MoveLeft::execute(std::weak_ptr<dae::GameObject> actor)
