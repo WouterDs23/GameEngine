@@ -1,14 +1,40 @@
-﻿  MoveComponent.cpp
-  Minigin.vcxproj -> E:\GameEngine\GameEngine\Exam_Assignment\x64\Debug\Minigin.lib
-  E:\GameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2\lib\x64\SDL2.dll
+﻿  MiniginPCH.cpp
+  AIComponent.cpp
+  BaseComponent.cpp
+  CollisionComponent.cpp
+  Commands.cpp
+  FleeComponent.cpp
+  Font.cpp
+  FPSComponent.cpp
+  GameObject.cpp
+  InputManager.cpp
+  Log.cpp
+  MapGenerator.cpp
+  MoveComponent.cpp
+  Renderer.cpp
+  ResourceManager.cpp
+  Scene.cpp
+  SceneManager.cpp
+  SeekComponent.cpp
+  SolidComponent.cpp
+  TextComponent.cpp
+  TextObject.cpp
+  Generating Code...
+  Compiling...
+  Texture2D.cpp
+  Transform.cpp
+  WanderComponent.cpp
+  Generating Code...
+  Minigin.vcxproj -> E:\DAEGameEngine\GameEngine\Exam_Assignment\x64\Debug\Minigin.lib
+  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied
-  E:\GameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll
-  E:\GameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libpng16-16.dll
-  E:\GameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libtiff-5.dll
-  E:\GameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libwebp-7.dll
-  E:\GameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\SDL2_image.dll
-  E:\GameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\zlib1.dll
+  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll
+  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libpng16-16.dll
+  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libtiff-5.dll
+  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\libwebp-7.dll
+  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\SDL2_image.dll
+  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_image\lib\x64\zlib1.dll
   6 File(s) copied
-  E:\GameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_ttf\lib\x64\libfreetype-6.dll
-  E:\GameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_ttf\lib\x64\SDL2_ttf.dll
+  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_ttf\lib\x64\libfreetype-6.dll
+  E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2_ttf\lib\x64\SDL2_ttf.dll
   2 File(s) copied

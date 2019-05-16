@@ -126,6 +126,9 @@
     <ClInclude Include="AIComponent.h">
       <Filter>Engine\Components\GameElements</Filter>
     </ClInclude>
+    <ClInclude Include="HelperFunctions.h">
+      <Filter>Engine\SceneHelpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FPSComponent.cpp">

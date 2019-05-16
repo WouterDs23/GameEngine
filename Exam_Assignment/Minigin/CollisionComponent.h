@@ -21,11 +21,14 @@ namespace dae {
 		}
 		bool GetIsObstacle() const { return  m_IsObstacle; }
 
+		void EnableGhost(bool enable);
+
 		CollisionComponent(const CollisionComponent& other) = delete;
 		CollisionComponent(CollisionComponent&& other) noexcept = delete;
 		CollisionComponent& operator=(const CollisionComponent& other) = delete;
 		CollisionComponent& operator=(CollisionComponent&& other) noexcept = delete;
 	private:
 		bool m_IsObstacle;
+		bool m_InGhostForm;
 	};
 }
