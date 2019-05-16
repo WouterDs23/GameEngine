@@ -197,6 +197,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
   <ItemGroup>
     <ClInclude Include="AIComponent.h" />
     <ClInclude Include="BaseComponent.h" />
+    <ClInclude Include="BaseState.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="Commands.h" />
     <ClInclude Include="FleeComponent.h" />

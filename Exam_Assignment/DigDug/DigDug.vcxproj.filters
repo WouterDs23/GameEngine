@@ -22,6 +22,9 @@
     <Filter Include="Source Files\Engine">
       <UniqueIdentifier>{ff63ddd1-dec7-49d4-b8c0-2df84bb81835}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Behaviour\MainCharacter">
+      <UniqueIdentifier>{72099e5a-1b52-4554-86e1-0ed764fecdd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniginPCH.h">
@@ -39,11 +42,11 @@
     <ClInclude Include="Minigin.h">
       <Filter>Source Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="MainCharComponent.h">
-      <Filter>Source Files\Behaviour</Filter>
-    </ClInclude>
     <ClInclude Include="CharacterComponent.h">
-      <Filter>Source Files\Behaviour</Filter>
+      <Filter>Source Files\Behaviour\MainCharacter</Filter>
+    </ClInclude>
+    <ClInclude Include="MainCharComponent.h">
+      <Filter>Source Files\Behaviour\MainCharacter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -65,11 +68,11 @@
     <ClCompile Include="MiniginPCH.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="MainCharComponent.cpp">
-      <Filter>Source Files\Behaviour</Filter>
-    </ClCompile>
     <ClCompile Include="CharacterComponent.cpp">
-      <Filter>Source Files\Behaviour</Filter>
+      <Filter>Source Files\Behaviour\MainCharacter</Filter>
+    </ClCompile>
+    <ClCompile Include="MainCharComponent.cpp">
+      <Filter>Source Files\Behaviour\MainCharacter</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
