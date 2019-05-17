@@ -132,6 +132,9 @@
     <ClInclude Include="BaseState.h">
       <Filter>Engine\SceneHelpers</Filter>
     </ClInclude>
+    <ClInclude Include="ConnectionComponent.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FPSComponent.cpp">
@@ -205,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="AIComponent.cpp">
       <Filter>Engine\Components\GameElements</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectionComponent.cpp">
+      <Filter>Engine\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

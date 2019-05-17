@@ -5,33 +5,33 @@
 #include "GameObject.h"
 #include "InputManager.h"
 
-CharacterComponent::CharacterComponent()
+dae::CharacterComponent::CharacterComponent()
 {
 	
 }
 
-CharacterComponent::~CharacterComponent()
+dae::CharacterComponent::~CharacterComponent()
 {
 
 }
 
-void CharacterComponent::Initialize()
+void dae::CharacterComponent::Initialize()
 {
 	GetGameObject().lock()->AddComponent(std::make_shared<dae::MoveComponent>());
 	GetGameObject().lock()->AddComponent(std::make_shared<dae::CollisionComponent>());
 }
 
-void CharacterComponent::Update()
+void dae::CharacterComponent::Update()
 {
 
 }
 
-void CharacterComponent::Render()
+void dae::CharacterComponent::Render()
 {
 
 }
 
-void CharacterComponent::MoveLeft()
+void dae::CharacterComponent::MoveLeft()
 {
 	auto obj = GetGameObject().lock();
 	if (obj)
@@ -74,7 +74,7 @@ void CharacterComponent::MoveLeft()
 	}
 }
 
-void CharacterComponent::MoveRight()
+void dae::CharacterComponent::MoveRight()
 {
 	auto obj = GetGameObject().lock();
 	if (obj)
@@ -117,7 +117,7 @@ void CharacterComponent::MoveRight()
 	}
 }
 
-void CharacterComponent::MoveUp()
+void dae::CharacterComponent::MoveUp()
 {
 	auto obj = GetGameObject().lock();
 	if (obj)
@@ -160,7 +160,7 @@ void CharacterComponent::MoveUp()
 	}
 }
 
-void CharacterComponent::MoveDown()
+void dae::CharacterComponent::MoveDown()
 {
 	auto obj = GetGameObject().lock();
 	if (obj)

@@ -15,6 +15,7 @@ namespace dae
 			Path
 		};
 		void addTile(Type type, float x, float y, float xSize, float ySize);
+		void createConnections();
 		std::vector < std::shared_ptr<dae::GameObject>> m_Tiles;
 	};
 }

@@ -1,2 +1,12 @@
-﻿  CharacterBehaviour.cpp
+﻿  MiniginPCH.cpp
+  CharacterBehaviour.cpp
+  CharacterComponent.cpp
+  FireComponent.cpp
+  GhostComponent.cpp
+  Main.cpp
+  MainCharComponent.cpp
+  Minigin.cpp
+  TestScene.cpp
+  Generating Code...
+     Creating library E:\DAEGameEngine\GameEngine\Exam_Assignment\x64\Debug\DigDug.lib and object E:\DAEGameEngine\GameEngine\Exam_Assignment\x64\Debug\DigDug.exp
   DigDug.vcxproj -> E:\DAEGameEngine\GameEngine\Exam_Assignment\x64\Debug\DigDug.exe

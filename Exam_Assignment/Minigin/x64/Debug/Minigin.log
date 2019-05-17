@@ -3,6 +3,7 @@
   BaseComponent.cpp
   CollisionComponent.cpp
   Commands.cpp
+  ConnectionComponent.cpp
   FleeComponent.cpp
   Font.cpp
   FPSComponent.cpp
@@ -18,9 +19,9 @@
   SeekComponent.cpp
   SolidComponent.cpp
   TextComponent.cpp
-  TextObject.cpp
   Generating Code...
   Compiling...
+  TextObject.cpp
   Texture2D.cpp
   Transform.cpp
   WanderComponent.cpp

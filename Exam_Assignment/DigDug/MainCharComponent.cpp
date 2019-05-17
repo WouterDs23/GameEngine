@@ -21,7 +21,7 @@ void MainCharComponent::Initialize()
 	auto gameObject = GetGameObject();
 	if (gameObject.lock())
 	{
-		gameObject.lock()->AddComponent(std::make_shared<CharacterComponent>());
+		gameObject.lock()->AddComponent(std::make_shared<dae::CharacterComponent>());
 		auto& input = dae::InputManager::GetInstance();
 		input.ConfigButtons(std::make_shared<dae::Input>(0, GetGameObject().lock(), std::move(std::make_unique<dae::ExitGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_A, m_Controller));
 		input.ConfigButtons(std::make_shared<dae::Input>(1, GetGameObject().lock(), std::move(std::make_unique<MoveUp>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_UP, m_Controller));
@@ -34,7 +34,7 @@ void MainCharComponent::Initialize()
 		input.ConfigButtons(std::make_shared<dae::Input>(7, GetGameObject().lock(), std::move(std::make_unique<MoveDown>()), dae::Pressed, 'S', 0, m_Controller));
 		input.ConfigButtons(std::make_shared<dae::Input>(8, GetGameObject().lock(), std::move(std::make_unique<MoveLeft>()), dae::Pressed, 'A', 0, m_Controller));
 		input.ConfigButtons(std::make_shared<dae::Input>(9, GetGameObject().lock(), std::move(std::make_unique<MoveRight>()), dae::Pressed, 'D', 0, m_Controller));
-		gameObject.lock()->GetComponent<CharacterComponent>().lock()->SetObstacles(m_Obstacles);
+		gameObject.lock()->GetComponent<dae::CharacterComponent>().lock()->SetObstacles(m_Obstacles);
 
 		gameObject.lock()->SetState(std::make_shared<WalkingState>());
 	}
@@ -56,7 +56,7 @@ bool MoveLeft::execute(std::weak_ptr<dae::GameObject> actor)
 {
 	if (actor.lock())
 	{
-		auto comp = actor.lock()->GetComponent<CharacterComponent>().lock();
+		auto comp = actor.lock()->GetComponent<dae::CharacterComponent>().lock();
 		if (comp)
 		{
 			comp->MoveLeft();
@@ -69,7 +69,7 @@ bool MoveRight::execute(std::weak_ptr<dae::GameObject> actor)
 {
 	if (actor.lock())
 	{
-		auto comp = actor.lock()->GetComponent<CharacterComponent>().lock();
+		auto comp = actor.lock()->GetComponent<dae::CharacterComponent>().lock();
 		if (comp)
 		{
 			comp->MoveRight();
@@ -83,7 +83,7 @@ bool MoveUp::execute(std::weak_ptr<dae::GameObject> actor)
 	{
 		if (actor.lock())
 		{
-			auto comp = actor.lock()->GetComponent<CharacterComponent>().lock();
+			auto comp = actor.lock()->GetComponent<dae::CharacterComponent>().lock();
 			if (comp)
 			{
 				comp->MoveUp();
@@ -97,7 +97,7 @@ bool MoveDown::execute(std::weak_ptr<dae::GameObject> actor)
 {
 	if (actor.lock())
 	{
-		auto comp = actor.lock()->GetComponent<CharacterComponent>().lock();
+		auto comp = actor.lock()->GetComponent<dae::CharacterComponent>().lock();
 		if (comp)
 		{
 			comp->MoveDown();
