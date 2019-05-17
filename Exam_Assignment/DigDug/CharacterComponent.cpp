@@ -38,19 +38,37 @@ void CharacterComponent::MoveLeft()
 	{
 		auto move = obj->GetComponent<dae::MoveComponent>().lock();
 		auto col = obj->GetComponent<dae::CollisionComponent>().lock();
-		if (move && col && !m_JustCollidedLeft)
+		if (move && col)
 		{
 			for (auto obs : m_Obstacles)
 			{
-				if (col->CheckCollisionLeftRight(obs) && !m_JustCollidedRight)
+				if (col->CheckCollisionLeftRight(obs))
 				{
-					obs->SetTexture("dirtway.png");
-					col->SetIsObstacle(false);
+					if (!m_JustCollidedLeft && !m_JustCollidedRight)
+					{
+						for (auto obstacle : m_Obstacles)
+						{
+							if (col->CheckIfInObject(obstacle))
+							{
+								obs->SetTexture("dirtway.png");
+								col->SetIsObstacle(false);
+								goto move;
+							}
+						}
+						return;
+					}
+					else
+					{
+						obs->SetTexture("dirtway.png");
+						col->SetIsObstacle(false);
+					}
 				}				
 			}
+			move:
 			m_JustCollidedRight = false;
 			m_JustCollidedDown = false;
 			m_JustCollidedUp = false;
+			m_JustCollidedLeft = true;
 			move->MoveObject(-1, 0);
 		}
 	}
@@ -63,21 +81,39 @@ void CharacterComponent::MoveRight()
 	{
 		auto move = obj->GetComponent<dae::MoveComponent>().lock();
 		auto col = obj->GetComponent<dae::CollisionComponent>().lock();
-		if (move && col && !m_JustCollidedRight)
+		if (move && col)
 		{
 			for (auto obs : m_Obstacles)
 			{
-				if (col->CheckCollisionLeftRight(obs) && !m_JustCollidedLeft)
+				if (col->CheckCollisionLeftRight(obs))
 				{
-					obs->SetTexture("dirtway.png");
-					col->SetIsObstacle(false);
+					if (!m_JustCollidedLeft && !m_JustCollidedRight)
+					{
+						for (auto obstacle : m_Obstacles)
+						{
+							if (col->CheckIfInObject(obstacle))
+							{
+								obs->SetTexture("dirtway.png");
+								col->SetIsObstacle(false);
+								goto move;
+							}
+						}
+						return;
+					}
+					else
+					{
+						obs->SetTexture("dirtway.png");
+						col->SetIsObstacle(false);
+					}
 				}
 			}
-			m_JustCollidedLeft = false;
-			m_JustCollidedDown = false;
-			m_JustCollidedUp = false;
-			move->MoveObject(1, 0);
 		}
+		move:
+		m_JustCollidedLeft = false;
+		m_JustCollidedDown = false;
+		m_JustCollidedUp = false;
+		m_JustCollidedRight = true;
+		move->MoveObject(1, 0);
 	}
 }
 
@@ -88,17 +124,34 @@ void CharacterComponent::MoveUp()
 	{
 		auto move = obj->GetComponent<dae::MoveComponent>().lock();
 		auto col = obj->GetComponent<dae::CollisionComponent>().lock();
-		if (move && col && !m_JustCollidedUp)
+		if (move && col)
 		{
 			for (auto obs : m_Obstacles)
 			{
-				if (col->CheckCollisionTopBottem(obs) && !m_JustCollidedDown)
+				if (col->CheckCollisionTopBottem(obs))
 				{
-
-					obs->SetTexture("dirtway.png");
-					col->SetIsObstacle(false);
+					if (!m_JustCollidedUp && !m_JustCollidedDown)
+					{
+						for (auto obstacle : m_Obstacles)
+						{
+							if (col->CheckIfInObject(obstacle))
+							{
+								obs->SetTexture("dirtway.png");
+								col->SetIsObstacle(false);
+								goto move;
+							}
+						}
+						return;
+					}
+					else
+					{
+						obs->SetTexture("dirtway.png");
+						col->SetIsObstacle(false);
+					}
 				}
 			}
+			move:
+			m_JustCollidedUp = true;
 			m_JustCollidedDown = false;
 			m_JustCollidedLeft = false;
 			m_JustCollidedRight = false;
@@ -114,20 +167,38 @@ void CharacterComponent::MoveDown()
 	{
 		auto move = obj->GetComponent<dae::MoveComponent>().lock();
 		auto col = obj->GetComponent<dae::CollisionComponent>().lock();
-		if (move && col && !m_JustCollidedDown)
+		if (move && col)
 		{
 			for (auto obs : m_Obstacles)
 			{
-				if (col->CheckCollisionTopBottem(obs) && !m_JustCollidedUp)
+				if (col->CheckCollisionTopBottem(obs))
 				{
-					obs->SetTexture("dirtway.png");
-					col->SetIsObstacle(false);
+					if (!m_JustCollidedUp && !m_JustCollidedDown)
+					{
+						for (auto obstacle : m_Obstacles)
+						{
+							if (col->CheckIfInObject(obstacle))
+							{
+								obs->SetTexture("dirtway.png");
+								col->SetIsObstacle(false);
+								goto move;
+							}
+						}
+						return;
+					}
+					else
+					{
+						obs->SetTexture("dirtway.png");
+						col->SetIsObstacle(false);
+					}
 				}
 			}
-			m_JustCollidedUp = false;
-			m_JustCollidedLeft = false;
-			m_JustCollidedRight = false;
-			move->MoveObject(0, 1);
 		}
-	}
+		move:
+		m_JustCollidedUp = false;
+		m_JustCollidedLeft = false;
+		m_JustCollidedRight = false;
+		m_JustCollidedDown = true;
+		move->MoveObject(0, 1);
+	}	
 }
