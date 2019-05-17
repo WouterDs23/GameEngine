@@ -46,7 +46,7 @@ std::vector<std::shared_ptr<dae::GameObject>> dae::MapGenerator::CreateMap(std::
 		currentHeight += tileSizeHeight;
 		currentWidth = 0;
 	}
-
+	createConnections();
 	return  m_Tiles;
 }
 

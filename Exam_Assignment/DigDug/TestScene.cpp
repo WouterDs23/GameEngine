@@ -11,6 +11,7 @@
 #include "WanderComponent.h"
 #include "MapGenerator.h"
 #include "MainCharComponent.h"
+#include "SeekComponent.h"
 
 
 dae::TestScene::TestScene(const std::string& name) :Scene(name)
@@ -37,6 +38,8 @@ void dae::TestScene::Initialize()
 	m_Test->SetSize(25, 25);
 	m_Test->SetPosition(192.f, 228.f);
 	m_Test->AddComponent(std::make_shared<MainCharComponent>(m_GridTest,Controllers::PLAYER01));
+	m_Test->AddComponent(std::make_shared<SeekComponent>());
+	m_Test->GetComponent<SeekComponent>().lock()->SetTarget(m_GridTest[0]);
 	Add(m_Test);
 
 }

@@ -49,7 +49,7 @@
       <Filter>Source Files\Behaviour\MainCharacter</Filter>
     </ClInclude>
     <ClInclude Include="CharacterBehaviour.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Behaviour\MainCharacter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -78,7 +78,7 @@
       <Filter>Source Files\Behaviour\MainCharacter</Filter>
     </ClCompile>
     <ClCompile Include="CharacterBehaviour.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Behaviour\MainCharacter</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -45,13 +45,16 @@ void dae::ConnectionComponent::CalculateCost(std::weak_ptr<GameObject> start, st
 {
 	float currentGCost = 0;
 	auto head = GetHeadConnection().lock();
-	auto headConn = head->GetComponent<ConnectionComponent>();
-	if (head && headConn.lock())
-		currentGCost = headConn.lock()->GetGCost();
-
 	auto parentPos = start.lock()->GetTransform().GetPosition();
-	if (head && headConn.lock())
-		parentPos = headConn.lock()->GetStartNode().lock()->GetTransform().GetPosition();
+	if (head)
+	{
+		auto headConn = head->GetComponent<ConnectionComponent>();
+		if (headConn.lock())
+			currentGCost = headConn.lock()->GetGCost();
+
+		if (headConn.lock())
+			parentPos = headConn.lock()->GetStartNode().lock()->GetTransform().GetPosition();
+	}
 	
 	auto tempV = DistanceBetween2Objects(GetEndNode().lock()->GetTransform().GetPosition(), parentPos);
 	float gCost = tempV.x + tempV.y;
