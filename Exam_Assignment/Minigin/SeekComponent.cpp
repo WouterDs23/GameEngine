@@ -44,9 +44,17 @@ void dae::SeekComponent::Update()
 		}
 
 		auto path = FindPath();
-		target = path.back();
+		if (path.size() > 2)
+		{
+			target = path.back();
+		}		
 		auto move = actor->GetComponent<MoveComponent>().lock();
 		auto linearVel = target->GetTransform().GetPosition() - actor->GetTransform().GetPosition();
+		auto dist = DistanceBetween2Objects(target->GetTransform().GetPosition(), actor->GetTransform().GetPosition());
+		if (dist.x <= 0.5 && dist.y <= 0.5)
+		{
+			return;
+		}
 		Normalize(linearVel);
 		move->MoveObject(linearVel.x, linearVel.y);
 		return;
