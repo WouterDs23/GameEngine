@@ -12,6 +12,8 @@
 #include "MapGenerator.h"
 #include "MainCharComponent.h"
 #include "SeekComponent.h"
+#include "GunComponent.h"
+#include "MoveComponent.h"
 
 
 dae::TestScene::TestScene(const std::string& name) :Scene(name)
@@ -38,9 +40,17 @@ void dae::TestScene::Initialize()
 	m_Test->SetSize(25, 25);
 	m_Test->SetPosition(192.f, 228.f);
 	m_Test->AddComponent(std::make_shared<MainCharComponent>(m_GridTest,Controllers::PLAYER01));
+	auto gun = std::make_shared<dae::GameObject>();
+	gun->SetTexture("dot.png");
+	gun->SetPosition(192.f, 228.f);
+	gun->AddComponent(std::make_shared<dae::MoveComponent>());
+	gun->AddComponent(std::make_shared<dae::CollisionComponent>());
+	gun->SetSize(25, 25);
+	m_Test->AddComponent(std::make_shared<GunComponent>(gun, m_Test));
 	//m_Test->AddComponent(std::make_shared<SeekComponent>());
 	//m_Test->GetComponent<SeekComponent>().lock()->SetTarget(m_GridTest[0]);
 	Add(m_Test);
+	Add(gun);
 
 }
 

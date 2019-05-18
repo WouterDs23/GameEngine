@@ -1,15 +1,11 @@
 #pragma once
 #include <BaseComponent.h>
-#pragma warning(push)
-#pragma warning (disable:4201)
-#include <glm/vec3.hpp>
 #include "GameObject.h"
-#pragma warning(pop)
 class GunComponent :
 	public dae::BaseComponent
 {
 public:
-	GunComponent(std::shared_ptr<dae::GameObject> gun);
+	GunComponent(std::shared_ptr<dae::GameObject> gun, std::weak_ptr<dae::GameObject> parent);
 	~GunComponent() override = default;
 
 	GunComponent(const GunComponent& other) = delete;
@@ -21,10 +17,13 @@ public:
 	void Update() override;
 	void Render() override;
 
-	void Shoot(glm::vec3 vel);
+	void Shoot(float x, float y);
 private:
 	std::shared_ptr<dae::GameObject> m_Gun{};
+	std::weak_ptr<dae::GameObject> m_Parent{};
 	bool m_Shot{ false };
 	float m_Timer{};
+	float m_xSpeed{};
+	float m_ySpeed{};
 };
 

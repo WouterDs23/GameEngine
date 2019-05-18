@@ -5,6 +5,11 @@
 #include "InputManager.h"
 #include "CharacterBehaviour.h"
 #include "CollisionComponent.h"
+#include "HealthComponent.h"
+#include "TextComponent.h"
+#include "ResourceManager.h"
+#include "GunComponent.h"
+#include "MoveComponent.h"
 
 MainCharComponent::MainCharComponent(std::vector<std::shared_ptr<dae::GameObject>> obstacles, dae::Controllers controller) :
 	m_Obstacles{ obstacles },
@@ -22,8 +27,8 @@ void MainCharComponent::Initialize()
 	auto gameObject = GetGameObject();
 	if (gameObject.lock())
 	{
-		gameObject.lock()->AddComponent(std::make_shared<dae::CollisionComponent>());
 		gameObject.lock()->AddComponent(std::make_shared<dae::CharacterComponent>());
+		gameObject.lock()->AddComponent(std::make_shared<HealthComponent>(3));;
 		auto& input = dae::InputManager::GetInstance();
 		input.ConfigButtons(std::make_shared<dae::Input>(0, GetGameObject().lock(), std::move(std::make_unique<dae::ExitGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_A, m_Controller));
 		input.ConfigButtons(std::make_shared<dae::Input>(1, GetGameObject().lock(), std::move(std::make_unique<MoveUp>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_UP, m_Controller));
@@ -36,15 +41,35 @@ void MainCharComponent::Initialize()
 		input.ConfigButtons(std::make_shared<dae::Input>(7, GetGameObject().lock(), std::move(std::make_unique<MoveDown>()), dae::Pressed, 'S', 0, m_Controller));
 		input.ConfigButtons(std::make_shared<dae::Input>(8, GetGameObject().lock(), std::move(std::make_unique<MoveLeft>()), dae::Pressed, 'A', 0, m_Controller));
 		input.ConfigButtons(std::make_shared<dae::Input>(9, GetGameObject().lock(), std::move(std::make_unique<MoveRight>()), dae::Pressed, 'D', 0, m_Controller));
+		input.ConfigButtons(std::make_shared<dae::Input>(10, GetGameObject().lock(), std::move(std::make_unique<Shoot>()), dae::Pressed, 'E', 0, m_Controller));
 		gameObject.lock()->GetComponent<dae::CharacterComponent>().lock()->SetObstacles(m_Obstacles);
 
 		gameObject.lock()->SetState(std::make_shared<WalkingState>());
+		auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 30);
+		gameObject.lock()->AddComponent(std::make_shared<dae::TextComponent>(font));
+		gameObject.lock()->GetComponent<dae::TextComponent>().lock()->SetPosition(0, 0);
+		int lives = gameObject.lock()->GetComponent<HealthComponent>().lock()->GetLives();
+		gameObject.lock()->GetComponent<dae::TextComponent>().lock()->SetText(std::to_string(lives));
 	}
 }
 
 void MainCharComponent::Update()
 {
-
+	auto gameObject = GetGameObject();
+	if (gameObject.lock())
+	{	
+		const auto health = gameObject.lock()->GetComponent<HealthComponent>().lock();
+		auto text = gameObject.lock()->GetComponent<dae::TextComponent>().lock();
+		if (health && text)
+		{
+			int lives = health->GetLives();
+			text->SetText(std::to_string(lives));
+			if (lives == 0)
+			{
+				gameObject.lock()->SetState(std::make_shared<DeadState>());
+			}
+		}
+	}
 }
 
 void MainCharComponent::Render()
@@ -110,5 +135,14 @@ bool MoveDown::execute(std::weak_ptr<dae::GameObject> actor)
 
 bool Shoot::execute(std::weak_ptr<dae::GameObject> actor)
 {
+	if (actor.lock())
+	{
+		auto comp = actor.lock()->GetComponent<dae::CharacterComponent>().lock();
+		auto gun = actor.lock()->GetComponent<GunComponent>().lock();
+		if (comp && gun)
+		{
+			gun->Shoot(comp->GetLastVelocityX(), comp->GetLastVelocityY());
+		}
+	}
 	return false;
 }

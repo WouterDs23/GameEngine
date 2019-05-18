@@ -47,3 +47,8 @@ void dae::TextComponent::SetText(std::string text)
 {
 	m_Text = text;
 }
+
+void dae::TextComponent::SetPosition(float x, float y)
+{
+	m_Transform.SetPosition(x, y, 0.0f);
+}

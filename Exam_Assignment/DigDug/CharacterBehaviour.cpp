@@ -40,16 +40,7 @@ bool ShootingState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_pt
 	{
 		std::string newState = typeid(input.lock()->sortCommand.operator*()).name();
 		std::string currentState = typeid(obj.lock()->GetState().lock().operator*()).name();
-		if (newState == "class MoveDown" || newState == "class MoveUp" || newState == "class MoveRight" || newState == "class MoveLeft")
-		{
-			obj.lock()->SetState(std::make_shared<WalkingState>());
-			return input.lock()->sortCommand->execute(obj);
-		}
 		if (newState == "class dae::ExitGame")
-		{
-			return input.lock()->sortCommand->execute(obj);
-		}
-		if (newState == "class Shoot")
 		{
 			return input.lock()->sortCommand->execute(obj);
 		}
@@ -70,4 +61,13 @@ bool HitState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae
 void HitState::Update(std::weak_ptr<dae::GameObject>)
 {
 
+}
+
+bool DeadState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input)
+{
+	return false;
+}
+
+void DeadState::Update(std::weak_ptr<dae::GameObject>)
+{
 }

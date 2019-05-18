@@ -3,9 +3,11 @@
 #include "MoveComponent.h"
 #include "CollisionComponent.h"
 #include "GameObject.h"
+#include "CharacterBehaviour.h"
 
-GunComponent::GunComponent(std::shared_ptr<dae::GameObject> gun):
-m_Gun(gun)
+GunComponent::GunComponent(std::shared_ptr<dae::GameObject> gun, std::weak_ptr<dae::GameObject> parent):
+m_Gun(gun),
+m_Parent(parent)
 {
 	
 }
@@ -15,6 +17,10 @@ void GunComponent::Initialize()
 	if (m_Gun)
 	{
 		m_Gun->SetDoRenderAndUpdate(false);
+		if (m_Parent.lock())
+		{
+			m_Gun->SetPosition(m_Parent.lock()->GetTransform().GetPosition().x, m_Parent.lock()->GetTransform().GetPosition().y);
+		}
 	}
 }
 
@@ -23,7 +29,7 @@ void GunComponent::Update()
 	if (m_Shot)
 	{
 		m_Timer += GameLifeSpan::deltaTime;
-		if (m_Timer >= 2.f)
+		if (m_Timer >= 0.5f)
 		{
 			m_Timer = 0.f;
 			m_Shot = false;
@@ -36,12 +42,18 @@ void GunComponent::Update()
 				if (m_Gun)
 				{
 					m_Gun->SetDoRenderAndUpdate(false);
+					m_Parent.lock()->SetState(std::make_shared<WalkingState>());
 				}
 			}
 		}
 		else
 		{
-			
+			auto move = m_Gun->GetComponent<dae::MoveComponent>().lock();
+			auto col = m_Gun->GetComponent<dae::CollisionComponent>().lock();
+			if (move && col)
+			{
+				move->MoveObject(m_xSpeed, m_ySpeed);
+			}
 		}
 	}
 }
@@ -50,15 +62,21 @@ void GunComponent::Render()
 {
 }
 
-void GunComponent::Shoot(glm::vec3 vel)
+void GunComponent::Shoot(float x, float y)
 {
 	if (m_Gun)
 	{
+		if (m_Parent.lock())
+		{
+			m_Gun->SetPosition(m_Parent.lock()->GetTransform().GetPosition().x, m_Parent.lock()->GetTransform().GetPosition().y);
+		}
 		auto move = m_Gun->GetComponent<dae::MoveComponent>().lock();
 		auto col = m_Gun->GetComponent<dae::CollisionComponent>().lock();
 		if (move && col)
 		{
-			move->SetSpeed(vel.x, vel.y);
+			m_xSpeed = x *2;
+			m_ySpeed = y *2;
+			move->MoveObject(m_xSpeed, m_ySpeed);
 			m_Shot = true;
 			m_Gun->SetDoRenderAndUpdate(true);
 		}

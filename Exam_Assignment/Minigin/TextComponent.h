@@ -23,6 +23,7 @@ namespace dae
 		void Update() override;
 		void Render() override;
 		void SetText(std::string text);
+		void SetPosition(float x, float y);
 	private:
 		std::string m_Text;
 		dae::Transform m_Transform;

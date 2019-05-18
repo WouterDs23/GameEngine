@@ -30,3 +30,12 @@ public:
 	bool HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input) override;
 	void Update(std::weak_ptr<dae::GameObject>) override;
 };
+class DeadState final : public dae::BaseState
+{
+public:
+	DeadState() = default;
+	~DeadState() override = default;
+
+	bool HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input) override;
+	void Update(std::weak_ptr<dae::GameObject>) override;
+};

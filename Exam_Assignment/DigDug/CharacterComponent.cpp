@@ -19,6 +19,9 @@ void dae::CharacterComponent::Initialize()
 {
 	GetGameObject().lock()->AddComponent(std::make_shared<dae::MoveComponent>());
 	GetGameObject().lock()->AddComponent(std::make_shared<dae::CollisionComponent>());
+
+	m_VelX = -1;
+	m_VelY = 0;
 }
 
 void dae::CharacterComponent::Update()
@@ -70,6 +73,8 @@ void dae::CharacterComponent::MoveLeft()
 			m_JustCollidedUp = false;
 			m_JustCollidedLeft = true;
 			move->MoveObject(-1, 0);
+			m_VelX = -1;
+			m_VelY = 0;
 		}
 	}
 }
@@ -114,6 +119,8 @@ void dae::CharacterComponent::MoveRight()
 		m_JustCollidedUp = false;
 		m_JustCollidedRight = true;
 		move->MoveObject(1, 0);
+		m_VelX = 1;
+		m_VelY = 0;
 	}
 }
 
@@ -156,6 +163,8 @@ void dae::CharacterComponent::MoveUp()
 			m_JustCollidedLeft = false;
 			m_JustCollidedRight = false;
 			move->MoveObject(0, -1);
+			m_VelX = 0;
+			m_VelY = -1;
 		}
 	}
 }
@@ -200,5 +209,7 @@ void dae::CharacterComponent::MoveDown()
 		m_JustCollidedRight = false;
 		m_JustCollidedDown = true;
 		move->MoveObject(0, 1);
+		m_VelX = 0;
+		m_VelY = 1;
 	}	
 }

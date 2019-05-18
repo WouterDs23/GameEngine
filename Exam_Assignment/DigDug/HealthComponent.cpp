@@ -14,3 +14,8 @@ void HealthComponent::Render()
 {
 
 }
+
+void HealthComponent::TakeDamage()
+{
+	m_Lives--;
+}

@@ -5,7 +5,7 @@ class HealthComponent :
 	public dae::BaseComponent
 {
 public:
-	HealthComponent()= default;
+	HealthComponent(int lives):m_Lives(lives){};
 	~HealthComponent() override = default;
 
 	HealthComponent(const HealthComponent& other) = delete;
@@ -16,5 +16,11 @@ public:
 	void Initialize() override;
 	void Update() override;
 	void Render() override;
+
+	void TakeDamage();
+
+	int GetLives() const { return m_Lives; }
+private:
+	int m_Lives{};
 };
 

@@ -24,6 +24,9 @@ namespace dae
 		bool GetCollidedTop() const { return m_JustCollidedUp; }
 		bool GetCollidedBottom() const { return m_JustCollidedDown; };
 
+		float GetLastVelocityX() const { return m_VelX; }
+		float GetLastVelocityY() const { return m_VelY; }
+
 		CharacterComponent(const CharacterComponent& other) = delete;
 		CharacterComponent(CharacterComponent&& other) noexcept = delete;
 		CharacterComponent& operator=(const CharacterComponent& other) = delete;
@@ -35,5 +38,7 @@ namespace dae
 		bool m_JustCollidedUp{};
 		bool m_JustCollidedDown{};
 		bool m_JustCollidedRight{};
+		float m_VelX;
+		float m_VelY;
 	};
 }

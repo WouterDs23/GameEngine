@@ -22,7 +22,7 @@ void dae::MoveComponent::Initialize()
 
 void dae::MoveComponent::Update()
 {
-
+	
 }
 
 void dae::MoveComponent::Render()
