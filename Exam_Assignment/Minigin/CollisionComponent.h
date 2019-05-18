@@ -1,11 +1,13 @@
 #pragma once
 #include "BaseComponent.h"
+#include "Transform.h"
 
 namespace dae {
 	class CollisionComponent final : public BaseComponent
 	{
 	public:
 		CollisionComponent();
+		CollisionComponent(Transform size);
 		~CollisionComponent() override;
 
 		void Initialize() override;
@@ -23,6 +25,8 @@ namespace dae {
 
 		void EnableGhost(bool enable);
 
+		Transform GetTransform() const { return m_Transform; }
+
 		CollisionComponent(const CollisionComponent& other) = delete;
 		CollisionComponent(CollisionComponent&& other) noexcept = delete;
 		CollisionComponent& operator=(const CollisionComponent& other) = delete;
@@ -30,5 +34,7 @@ namespace dae {
 	private:
 		bool m_IsObstacle;
 		bool m_InGhostForm;
+		bool m_Init{false};
+		Transform m_Transform; 
 	};
 }

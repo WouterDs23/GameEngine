@@ -23,7 +23,10 @@ void dae::Scene::Update()
 {
 	for(auto gameObject : mObjects)
 	{
-		gameObject->Update();
+		if (gameObject->GetDoRenderAndUpdate())
+		{
+			gameObject->Update();			
+		}
 	}
 }
 
@@ -31,7 +34,10 @@ void dae::Scene::Render() const
 {
 	for (const auto gameObject : mObjects)
 	{
-		gameObject->Render();
+		if (gameObject->GetDoRenderAndUpdate())
+		{
+			gameObject->Render();
+		}
 	}
 }
 

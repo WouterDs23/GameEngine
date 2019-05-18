@@ -9,7 +9,7 @@
 
 namespace dae
 {
-	class GameObject : public SceneObject , public std::enable_shared_from_this<GameObject>
+	class GameObject final : public SceneObject , public std::enable_shared_from_this<GameObject>
 	{
 	public:
 		void Update() override;

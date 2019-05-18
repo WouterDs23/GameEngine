@@ -175,6 +175,8 @@
     <ClInclude Include="CharacterComponent.h" />
     <ClInclude Include="FireComponent.h" />
     <ClInclude Include="GhostComponent.h" />
+    <ClInclude Include="GunComponent.h" />
+    <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="MainCharComponent.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
@@ -185,6 +187,8 @@
     <ClCompile Include="CharacterComponent.cpp" />
     <ClCompile Include="FireComponent.cpp" />
     <ClCompile Include="GhostComponent.cpp" />
+    <ClCompile Include="GunComponent.cpp" />
+    <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainCharComponent.cpp" />
     <ClCompile Include="Minigin.cpp" />

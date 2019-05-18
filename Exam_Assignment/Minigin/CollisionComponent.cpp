@@ -4,11 +4,20 @@
 #include "../DigDug/GhostComponent.h"
 
 dae::CollisionComponent::CollisionComponent()
-:m_IsObstacle(false),
-m_InGhostForm(false)
+	: m_IsObstacle(false),
+	m_InGhostForm(false),
+	m_Init(false)
 {
 }
 
+dae::CollisionComponent::CollisionComponent(Transform size)
+	:m_IsObstacle(false),
+	m_InGhostForm(false),
+	m_Transform(size),
+	m_Init(true)
+{
+
+}
 
 dae::CollisionComponent::~CollisionComponent()
 {
@@ -16,11 +25,25 @@ dae::CollisionComponent::~CollisionComponent()
 
 void dae::CollisionComponent::Initialize()
 {
+	if (!m_Init)
+	{
+		if (GetGameObject().lock())
+		{
+			m_Transform = GetGameObject().lock()->GetTransform();
+		}		
+	}
+	else
+	{
+		m_Transform.SetPosition(GetGameObject().lock()->GetTransform().GetPosition().x, GetGameObject().lock()->GetTransform().GetPosition().y, GetGameObject().lock()->GetTransform().GetPosition().z);
+	}
 }
 
 void dae::CollisionComponent::Update()
 {
-
+	if (GetGameObject().lock())
+	{
+		m_Transform.SetPosition(GetGameObject().lock()->GetTransform().GetPosition().x, GetGameObject().lock()->GetTransform().GetPosition().y, GetGameObject().lock()->GetTransform().GetPosition().z);
+	}
 }
 
 void dae::CollisionComponent::Render()
@@ -35,12 +58,12 @@ const bool dae::CollisionComponent::CheckCollisionTopBottem(std::weak_ptr<dae::G
 		auto compTest = other.lock()->GetComponent<CollisionComponent>().lock();
 		if (compTest && compTest->GetIsObstacle())
 		{
-			auto transO = other.lock()->GetTransform().GetPosition();
-			auto sizeO = other.lock()->GetTransform().GetSize();
+			auto transO = compTest->GetTransform().GetPosition();
+			auto sizeO = compTest->GetTransform().GetSize();
 
-			auto tranS = GetGameObject().lock()->GetTransform().GetPosition();
-			auto sizeS = GetGameObject().lock()->GetTransform().GetSize();
-			auto middleS = GetGameObject().lock()->GetTransform().GetMiddlePosition();
+			auto tranS = m_Transform.GetPosition();
+			auto sizeS = m_Transform.GetSize();
+			auto middleS = m_Transform.GetMiddlePosition();
 
 			if (transO.y + sizeO.y < tranS.y + offset ||(tranS.y + sizeS.y)+ offset < transO.y)
 			{
@@ -73,12 +96,12 @@ const bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::G
 		auto compTest = other.lock()->GetComponent<CollisionComponent>().lock();
 		if (compTest && compTest->GetIsObstacle())
 		{
-			auto transO = other.lock()->GetTransform().GetPosition();
-			auto sizeO = other.lock()->GetTransform().GetSize();
+			auto transO = compTest->GetTransform().GetPosition();
+			auto sizeO = compTest->GetTransform().GetSize();
 
-			auto tranS = GetGameObject().lock()->GetTransform().GetPosition();
-			auto sizeS = GetGameObject().lock()->GetTransform().GetSize();
-			auto middleS = GetGameObject().lock()->GetTransform().GetMiddlePosition();
+			auto tranS = m_Transform.GetPosition();
+			auto sizeS = m_Transform.GetSize();
+			auto middleS = m_Transform.GetMiddlePosition();
 
 			if (offset+(tranS.x + sizeS.x) < transO.x || transO.x + sizeO.x < tranS.x + offset)
 			{
@@ -112,12 +135,12 @@ const bool dae::CollisionComponent::CheckIfInObject(std::weak_ptr<dae::GameObjec
 		auto compTest = other.lock()->GetComponent<CollisionComponent>().lock();
 		if (compTest)
 		{
-			auto transO = other.lock()->GetTransform().GetPosition();
-			auto sizeO = other.lock()->GetTransform().GetSize();
+			auto transO = compTest->GetTransform().GetPosition();
+			auto sizeO = compTest->GetTransform().GetSize();
 
-			auto tranS = GetGameObject().lock()->GetTransform().GetPosition();
-			auto sizeS = GetGameObject().lock()->GetTransform().GetSize();
-			auto middleS = GetGameObject().lock()->GetTransform().GetMiddlePosition();
+			auto tranS = m_Transform.GetPosition();
+			auto sizeS = m_Transform.GetSize();
+			auto middleS = m_Transform.GetMiddlePosition();
 			if (transO.x - 2.f < tranS.x)
 			{
 				if (transO.x + sizeO.x + 2.f > tranS.x + sizeS.x)

@@ -4,6 +4,7 @@
 #include "CharacterComponent.h"
 #include "InputManager.h"
 #include "CharacterBehaviour.h"
+#include "CollisionComponent.h"
 
 MainCharComponent::MainCharComponent(std::vector<std::shared_ptr<dae::GameObject>> obstacles, dae::Controllers controller) :
 	m_Obstacles{ obstacles },
@@ -21,6 +22,7 @@ void MainCharComponent::Initialize()
 	auto gameObject = GetGameObject();
 	if (gameObject.lock())
 	{
+		gameObject.lock()->AddComponent(std::make_shared<dae::CollisionComponent>());
 		gameObject.lock()->AddComponent(std::make_shared<dae::CharacterComponent>());
 		auto& input = dae::InputManager::GetInstance();
 		input.ConfigButtons(std::make_shared<dae::Input>(0, GetGameObject().lock(), std::move(std::make_unique<dae::ExitGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_A, m_Controller));
@@ -103,5 +105,10 @@ bool MoveDown::execute(std::weak_ptr<dae::GameObject> actor)
 			comp->MoveDown();
 		}
 	}
+	return false;
+}
+
+bool Shoot::execute(std::weak_ptr<dae::GameObject> actor)
+{
 	return false;
 }

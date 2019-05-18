@@ -27,6 +27,12 @@ public:
 	virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
 };
 
+class Shoot final : public dae::Commands
+{
+public:
+	virtual bool execute(std::weak_ptr<dae::GameObject> actor) override;
+};
+
 class MainCharComponent final : public dae::BaseComponent
 {
 public:
