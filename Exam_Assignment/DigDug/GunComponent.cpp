@@ -44,7 +44,7 @@ void GunComponent::Update()
 					if (m_Gun)
 					{
 						m_Gun->SetDoRenderAndUpdate(false);
-						m_Parent.lock()->SetState(std::make_shared<WalkingState>());
+						m_Parent.lock()->SetState(std::make_shared<IdleState>());
 					}
 				}
 			}
@@ -73,7 +73,7 @@ void GunComponent::Update()
 				if (m_Gun)
 				{
 					m_Gun->SetDoRenderAndUpdate(false);
-					m_Parent.lock()->SetState(std::make_shared<WalkingState>());
+					m_Parent.lock()->SetState(std::make_shared<IdleState>());
 				}
 			}
 		}

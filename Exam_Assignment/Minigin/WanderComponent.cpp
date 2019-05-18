@@ -10,10 +10,10 @@ m_WanderRight(false),
 m_WanderTop(false),
 m_WanderBottem(false)
 {
-	/*m_GoLeft = std::make_unique<MoveLeft>();
+	m_GoLeft = std::make_unique<MoveLeft>();
 	m_GoRight = std::make_unique<MoveRight>();
 	m_GoUp = std::make_unique<MoveUp>();
-	m_GoDown = std::make_unique<MoveDown>();*/
+	m_GoDown = std::make_unique<MoveDown>();
 }
 
 dae::WanderComponent::~WanderComponent()
