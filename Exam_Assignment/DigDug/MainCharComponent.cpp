@@ -11,7 +11,7 @@
 #include "GunComponent.h"
 #include "MoveComponent.h"
 
-MainCharComponent::MainCharComponent(std::vector<std::shared_ptr<dae::GameObject>> obstacles, dae::Controllers controller) :
+MainCharComponent::MainCharComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles, dae::Controllers controller) :
 	m_Obstacles{ obstacles },
 	m_Controller{ controller }
 {

@@ -17,8 +17,8 @@ namespace dae
 		void MoveUp();
 		void MoveDown();
 
-		void SetObstacles(std::vector<std::shared_ptr<dae::GameObject>> obstacles) { m_Obstacles = obstacles; }
-		std::vector<std::shared_ptr<dae::GameObject>> GetObstacles() const { return m_Obstacles; }
+		void SetObstacles(std::vector<std::weak_ptr<dae::GameObject>> obstacles) { m_Obstacles = obstacles; }
+		std::vector<std::weak_ptr<dae::GameObject>> GetObstacles() const { return m_Obstacles; }
 
 		void SetEnemy(std::weak_ptr<dae::GameObject> enemy) { m_Enemy = enemy; }
 		std::weak_ptr<dae::GameObject> GetEnemy() const { return m_Enemy; }
@@ -34,7 +34,7 @@ namespace dae
 		AIComponent& operator=(AIComponent&& other) noexcept = delete;
 
 	private:
-		std::vector<std::shared_ptr<dae::GameObject>> m_Obstacles;
+		std::vector<std::weak_ptr<dae::GameObject>> m_Obstacles;
 		std::weak_ptr<dae::GameObject> m_Enemy;
 		bool m_JustCollidedLeft{};
 		bool m_JustCollidedUp{};

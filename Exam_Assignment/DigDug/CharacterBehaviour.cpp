@@ -10,7 +10,7 @@ bool IdleState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<da
 	{
 		std::string newState = typeid(input.lock()->sortCommand.operator*()).name();
 		std::string currentState = typeid(obj.lock()->GetState().lock().operator*()).name();
-		if (newState == "class MoveDown" || newState == "class MoveUp" || newState == "class MoveRight" || newState == "class MoveLeft")
+		if (newState == "class dae::MoveDown" || newState == "class dae::MoveUp" || newState == "class dae::MoveRight" || newState == "class dae::MoveLeft")
 		{
 			obj.lock()->SetState(std::make_shared<WalkingState>());
 			return input.lock()->sortCommand->execute(obj);
@@ -39,7 +39,7 @@ bool WalkingState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr
 	{
 		std::string newState = typeid(input.lock()->sortCommand.operator*()).name();
 		std::string currentState = typeid(obj.lock()->GetState().lock().operator*()).name();
-		if (newState == "class MoveDown" || newState == "class MoveUp" || newState == "class MoveRight" || newState == "class MoveLeft")
+		if (newState == "class dae::MoveDown" || newState == "class dae::MoveUp" || newState == "class dae::MoveRight" || newState == "class dae::MoveLeft")
 		{
 			return input.lock()->sortCommand->execute(obj);
 		}

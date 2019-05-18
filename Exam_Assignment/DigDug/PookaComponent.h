@@ -4,7 +4,7 @@
 class PookaComponent final : public dae::BaseComponent
 {
 public:
-	PookaComponent(std::vector<std::shared_ptr<dae::GameObject>> obstacles);
+	PookaComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles);
 	~PookaComponent() override = default;
 
 	PookaComponent(const PookaComponent& other) = delete;
@@ -18,6 +18,6 @@ public:
 	void Render() override;
 
 private:
-	std::vector<std::shared_ptr<dae::GameObject>> m_Obstacles;
+	std::vector<std::weak_ptr<dae::GameObject>> m_Obstacles;
 };
 

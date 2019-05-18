@@ -12,7 +12,7 @@ public:
 class MainCharComponent final : public dae::BaseComponent
 {
 public:
-	MainCharComponent(std::vector<std::shared_ptr<dae::GameObject>> obstacles, dae::Controllers controller);
+	MainCharComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles, dae::Controllers controller);
 	~MainCharComponent() override;
 	
 	MainCharComponent(const MainCharComponent& other) = delete;
@@ -26,7 +26,7 @@ public:
 	void Render() override;
 
 private:
-	std::vector<std::shared_ptr<dae::GameObject>> m_Obstacles;
+	std::vector<std::weak_ptr<dae::GameObject>> m_Obstacles;
 	dae::Controllers m_Controller{};
 	
 };

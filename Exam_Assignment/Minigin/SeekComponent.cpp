@@ -78,7 +78,7 @@ std::vector<std::shared_ptr<dae::GameObject>> dae::SeekComponent::FindPath()
 	const auto target = m_Target.lock();
 	if (actor && target)
 	{
-		std::vector<std::shared_ptr<dae::GameObject>> obstacles{};
+		std::vector<std::weak_ptr<dae::GameObject>> obstacles{};
 		if (actor->GetComponent<dae::CharacterComponent>().lock())
 		{
 			obstacles = actor->GetComponent<dae::CharacterComponent>().lock()->GetObstacles();
@@ -91,8 +91,8 @@ std::vector<std::shared_ptr<dae::GameObject>> dae::SeekComponent::FindPath()
 		glm::vec3 distanceStart{};
 		for (auto obs : obstacles)
 		{
-			auto collisionComp = obs->GetComponent<CollisionComponent>().lock();
-			auto conn = obs->GetComponent<ConnectionComponent>().lock();
+			auto collisionComp = obs.lock()->GetComponent<CollisionComponent>().lock();
+			auto conn = obs.lock()->GetComponent<ConnectionComponent>().lock();
 			if (conn)
 			{
 				conn->SetHeadConnection(std::shared_ptr<dae::GameObject>());
@@ -115,8 +115,8 @@ std::vector<std::shared_ptr<dae::GameObject>> dae::SeekComponent::FindPath()
 						continue;
 					}
 
-					const auto tempDistance = DistanceBetween2Objects(obs->GetTransform().GetMiddlePosition(), target->GetTransform().GetMiddlePosition());
-					const auto tempDistanceStart = DistanceBetween2Objects(obs->GetTransform().GetMiddlePosition(), actor->GetTransform().GetMiddlePosition());
+					const auto tempDistance = DistanceBetween2Objects(obs.lock()->GetTransform().GetMiddlePosition(), target->GetTransform().GetMiddlePosition());
+					const auto tempDistanceStart = DistanceBetween2Objects(obs.lock()->GetTransform().GetMiddlePosition(), actor->GetTransform().GetMiddlePosition());
 					if (tempDistance.x <= distance.x && tempDistance.y <= distance.y)
 					{
 						pObjective = obs;

@@ -38,12 +38,12 @@ void dae::GhostComponent::EnableGhostMode(bool enable)
 			m_InGhostForm = enable;
 			if (m_InGhostForm)
 			{
-				actor->SetTexture("dotGhost.png");
+				actor->SetTexture("Ghost.png");
 				return;
 			}
 			else
 			{
-				actor->SetTexture("dot.png");
+				actor->SetTexture("Pooka.png");
 				return;
 			}
 		}

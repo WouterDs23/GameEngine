@@ -53,7 +53,7 @@ void dae::CharacterComponent::MoveLeft()
 						{
 							if (col->CheckIfInObject(obstacle))
 							{
-								obs->SetTexture("dirtway.png");
+								obs.lock()->SetTexture("dirtway.png");
 								col->SetIsObstacle(false);
 								goto move;
 							}
@@ -62,7 +62,7 @@ void dae::CharacterComponent::MoveLeft()
 					}
 					else
 					{
-						obs->SetTexture("dirtway.png");
+						obs.lock()->SetTexture("dirtway.png");
 						col->SetIsObstacle(false);
 					}
 				}				
@@ -98,7 +98,7 @@ void dae::CharacterComponent::MoveRight()
 						{
 							if (col->CheckIfInObject(obstacle))
 							{
-								obs->SetTexture("dirtway.png");
+								obs.lock()->SetTexture("dirtway.png");
 								col->SetIsObstacle(false);
 								goto move;
 							}
@@ -107,7 +107,7 @@ void dae::CharacterComponent::MoveRight()
 					}
 					else
 					{
-						obs->SetTexture("dirtway.png");
+						obs.lock()->SetTexture("dirtway.png");
 						col->SetIsObstacle(false);
 					}
 				}
@@ -143,7 +143,7 @@ void dae::CharacterComponent::MoveUp()
 						{
 							if (col->CheckIfInObject(obstacle))
 							{
-								obs->SetTexture("dirtway.png");
+								obs.lock()->SetTexture("dirtway.png");
 								col->SetIsObstacle(false);
 								goto move;
 							}
@@ -152,7 +152,7 @@ void dae::CharacterComponent::MoveUp()
 					}
 					else
 					{
-						obs->SetTexture("dirtway.png");
+						obs.lock()->SetTexture("dirtway.png");
 						col->SetIsObstacle(false);
 					}
 				}
@@ -188,7 +188,7 @@ void dae::CharacterComponent::MoveDown()
 						{
 							if (col->CheckIfInObject(obstacle))
 							{
-								obs->SetTexture("dirtway.png");
+								obs.lock()->SetTexture("dirtway.png");
 								col->SetIsObstacle(false);
 								goto move;
 							}
@@ -197,7 +197,7 @@ void dae::CharacterComponent::MoveDown()
 					}
 					else
 					{
-						obs->SetTexture("dirtway.png");
+						obs.lock()->SetTexture("dirtway.png");
 						col->SetIsObstacle(false);
 					}
 				}

@@ -80,9 +80,9 @@ void GhostState::Update(std::weak_ptr<dae::GameObject> obj)
 			auto obstacles = AI->GetObstacles();
 			for (auto obs : obstacles)
 			{
-				if (obs)
+				if (obs.lock())
 				{
-					auto collision = obs->GetComponent<dae::CollisionComponent>().lock();
+					auto collision = obs.lock()->GetComponent<dae::CollisionComponent>().lock();
 					if (collision)
 					{
 						if (!collision->GetIsObstacle())

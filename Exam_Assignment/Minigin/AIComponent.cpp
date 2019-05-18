@@ -37,10 +37,10 @@ void dae::AIComponent::MoveLeft()
 	if (obj)
 	{
 		auto move = obj->GetComponent<dae::MoveComponent>().lock();
-		auto col = obj->GetComponent<dae::CollisionComponent>().lock();
+		const auto col = obj->GetComponent<dae::CollisionComponent>().lock();
 		if (move && col && !m_JustCollidedLeft)
 		{
-			for (auto obs : m_Obstacles)
+			for (const auto obs : m_Obstacles)
 			{
 				if (col->CheckCollisionLeftRight(obs) && !m_JustCollidedRight)
 				{
@@ -66,10 +66,10 @@ void dae::AIComponent::MoveRight()
 	if (obj)
 	{
 		auto move = obj->GetComponent<dae::MoveComponent>().lock();
-		auto col = obj->GetComponent<dae::CollisionComponent>().lock();
+		const auto col = obj->GetComponent<dae::CollisionComponent>().lock();
 		if (move && col && !m_JustCollidedRight)
 		{
-			for (auto obs : m_Obstacles)
+			for (const auto obs : m_Obstacles)
 			{
 				if (col->CheckCollisionLeftRight(obs) && !m_JustCollidedLeft)
 				{
@@ -95,10 +95,10 @@ void dae::AIComponent::MoveUp()
 	if (obj)
 	{
 		auto move = obj->GetComponent<dae::MoveComponent>().lock();
-		auto col = obj->GetComponent<dae::CollisionComponent>().lock();
+		const auto col = obj->GetComponent<dae::CollisionComponent>().lock();
 		if (move && col && !m_JustCollidedUp)
 		{
-			for (auto obs : m_Obstacles)
+			for (const auto obs : m_Obstacles)
 			{
 				if (col->CheckCollisionTopBottem(obs) && !m_JustCollidedDown)
 				{
@@ -124,10 +124,10 @@ void dae::AIComponent::MoveDown()
 	if (obj)
 	{
 		auto move = obj->GetComponent<dae::MoveComponent>().lock();
-		auto col = obj->GetComponent<dae::CollisionComponent>().lock();
+		const auto col = obj->GetComponent<dae::CollisionComponent>().lock();
 		if (move && col && !m_JustCollidedDown)
 		{
-			for (auto obs : m_Obstacles)
+			for (const auto obs : m_Obstacles)
 			{
 				if (col->CheckCollisionTopBottem(obs) && !m_JustCollidedUp)
 				{
