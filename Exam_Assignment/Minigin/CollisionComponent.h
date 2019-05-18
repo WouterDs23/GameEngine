@@ -13,9 +13,9 @@ namespace dae {
 		void Update() override;
 		void Render() override;
 
-		const bool CheckCollisionTopBottem(std::weak_ptr<dae::GameObject> other, float offset = 0);
-		const bool CheckCollisionLeftRight(std::weak_ptr<dae::GameObject> other, float offset = 0);
-		const bool CheckIfInObject(std::weak_ptr<dae::GameObject> other);
+		const bool CheckCollisionTopBottem(std::weak_ptr<dae::GameObject> other, float offset = 0, bool doDamage = false) const;
+		const bool CheckCollisionLeftRight(std::weak_ptr<dae::GameObject> other, float offset = 0, bool doDamage = false) const;
+		const bool CheckIfInObject(std::weak_ptr<dae::GameObject> other) const;
 		void SetIsObstacle(bool isObstacle = true)
 		{
 			m_IsObstacle = isObstacle;

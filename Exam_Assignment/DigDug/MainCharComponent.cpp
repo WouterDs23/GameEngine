@@ -41,10 +41,10 @@ void MainCharComponent::Initialize()
 		input.ConfigButtons(std::make_shared<dae::Input>(7, GetGameObject().lock(), std::move(std::make_unique<MoveDown>()), dae::Pressed, 'S', 0, m_Controller));
 		input.ConfigButtons(std::make_shared<dae::Input>(8, GetGameObject().lock(), std::move(std::make_unique<MoveLeft>()), dae::Pressed, 'A', 0, m_Controller));
 		input.ConfigButtons(std::make_shared<dae::Input>(9, GetGameObject().lock(), std::move(std::make_unique<MoveRight>()), dae::Pressed, 'D', 0, m_Controller));
-		input.ConfigButtons(std::make_shared<dae::Input>(10, GetGameObject().lock(), std::move(std::make_unique<Shoot>()), dae::Pressed, 'E', 0, m_Controller));
+		input.ConfigButtons(std::make_shared<dae::Input>(10, GetGameObject().lock(), std::move(std::make_unique<Shoot>()), dae::Released, 'E', 0, m_Controller));
 		gameObject.lock()->GetComponent<dae::CharacterComponent>().lock()->SetObstacles(m_Obstacles);
 
-		gameObject.lock()->SetState(std::make_shared<WalkingState>());
+		gameObject.lock()->SetState(std::make_shared<IdleState>());
 		auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 30);
 		gameObject.lock()->AddComponent(std::make_shared<dae::TextComponent>(font));
 		gameObject.lock()->GetComponent<dae::TextComponent>().lock()->SetPosition(0, 0);

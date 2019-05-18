@@ -12,6 +12,7 @@ namespace dae
 
 		virtual bool HandleInput(std::weak_ptr<dae::GameObject>, std::weak_ptr<Input>) { return false; }
 		virtual void Update(std::weak_ptr<dae::GameObject>) {}
+	private:
 	};
 }
 

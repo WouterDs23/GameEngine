@@ -28,7 +28,7 @@ void dae::CollisionComponent::Render()
 
 }
 
-const bool dae::CollisionComponent::CheckCollisionTopBottem(std::weak_ptr<dae::GameObject> other, float offset)
+const bool dae::CollisionComponent::CheckCollisionTopBottem (std::weak_ptr<dae::GameObject> other, float offset, bool)const
 {
 	if (other.lock() && !m_InGhostForm)
 	{
@@ -66,7 +66,7 @@ const bool dae::CollisionComponent::CheckCollisionTopBottem(std::weak_ptr<dae::G
 	return false;
 }
 
-const bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::GameObject> other, float offset)
+const bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::GameObject> other, float offset, bool)const
 {
 	if (other.lock() && !m_InGhostForm)
 	{
@@ -104,7 +104,7 @@ const bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::G
 	return false;
 }
 
-const bool dae::CollisionComponent::CheckIfInObject(std::weak_ptr<dae::GameObject> other)
+const bool dae::CollisionComponent::CheckIfInObject(std::weak_ptr<dae::GameObject> other)const
 {
 
 	if (other.lock())

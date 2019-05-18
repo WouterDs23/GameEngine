@@ -18,12 +18,17 @@ public:
 	void Render() override;
 
 	void Shoot(float x, float y);
+	void DoPump();
 private:
 	std::shared_ptr<dae::GameObject> m_Gun{};
 	std::weak_ptr<dae::GameObject> m_Parent{};
 	bool m_Shot{ false };
+	bool m_DoPump{ false };
+	bool m_Hit{ false };
 	float m_Timer{};
+	float m_HitTimer{};
 	float m_xSpeed{};
 	float m_ySpeed{};
+
 };
 

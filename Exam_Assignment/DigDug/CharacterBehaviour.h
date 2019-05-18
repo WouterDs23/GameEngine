@@ -1,6 +1,16 @@
 #pragma once
 #include "BaseState.h"
 
+class IdleState final : public dae::BaseState
+{
+public:
+	IdleState() = default;
+	~IdleState() override = default;
+
+	bool HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input) override;
+	void Update(std::weak_ptr<dae::GameObject>) override;
+};
+
 class WalkingState final : public dae::BaseState
 {
 public:
@@ -9,6 +19,8 @@ public:
 
 	bool HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input) override;
 	void Update(std::weak_ptr<dae::GameObject>) override;
+private:
+	float m_Timer{};
 };
 
 class ShootingState final : public dae::BaseState
@@ -19,6 +31,9 @@ public:
 
 	bool HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input) override;
 	void Update(std::weak_ptr<dae::GameObject>) override;
+private:
+	bool m_FirstTime{true};
+	float m_Timer{};
 };
 
 class HitState final : public dae::BaseState
@@ -29,6 +44,8 @@ public:
 
 	bool HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input) override;
 	void Update(std::weak_ptr<dae::GameObject>) override;
+private:
+	float m_Timer{};
 };
 class DeadState final : public dae::BaseState
 {

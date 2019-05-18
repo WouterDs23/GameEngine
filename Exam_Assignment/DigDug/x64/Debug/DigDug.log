@@ -1,2 +1,9 @@
-﻿  MainCharComponent.cpp
+﻿  CharacterBehaviour.cpp
+  CharacterComponent.cpp
+  GhostComponent.cpp
+  GunComponent.cpp
+  MainCharComponent.cpp
+  Minigin.cpp
+  TestScene.cpp
+  Generating Code...
   DigDug.vcxproj -> E:\DAEGameEngine\GameEngine\Exam_Assignment\x64\Debug\DigDug.exe

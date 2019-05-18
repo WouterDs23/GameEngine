@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Behaviour\MainCharacter">
       <UniqueIdentifier>{72099e5a-1b52-4554-86e1-0ed764fecdd7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Behaviour\Pooka">
+      <UniqueIdentifier>{c6ee1f54-5528-44ec-818b-acf4f1e706a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniginPCH.h">
@@ -56,6 +59,12 @@
     </ClInclude>
     <ClInclude Include="HealthComponent.h">
       <Filter>Source Files\Behaviour\MainCharacter</Filter>
+    </ClInclude>
+    <ClInclude Include="PookaComponent.h">
+      <Filter>Source Files\Behaviour\Pooka</Filter>
+    </ClInclude>
+    <ClInclude Include="PookaBehaviour.h">
+      <Filter>Source Files\Behaviour\Pooka</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +100,12 @@
     </ClCompile>
     <ClCompile Include="HealthComponent.cpp">
       <Filter>Source Files\Behaviour\MainCharacter</Filter>
+    </ClCompile>
+    <ClCompile Include="PookaComponent.cpp">
+      <Filter>Source Files\Behaviour\Pooka</Filter>
+    </ClCompile>
+    <ClCompile Include="PookaBehaviour.cpp">
+      <Filter>Source Files\Behaviour\Pooka</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

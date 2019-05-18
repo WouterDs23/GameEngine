@@ -49,6 +49,7 @@ namespace dae
 		int KeyBoardCode;
 		int ControllerButton;
 		Controllers Player;
+		bool DoExecute{false};
 	};
 	class GameObject;
 

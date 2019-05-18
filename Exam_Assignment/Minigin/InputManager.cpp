@@ -16,8 +16,25 @@ bool dae::InputManager::ProcessInput()
 			{
 				if (Controllers(i) == it->second->Player)
 				{
-					m_EndIt = it->second->Actor->HandleInput(it->second);
+					if (it->second->TriggerState != InputTriggerState::Released)
+					{
+						m_EndIt = it->second->Actor->HandleInput(it->second);
+						it->second->DoExecute = false;
+					}
+					else
+					{
+						it->second->DoExecute = true;
+					}
 				}
+			}
+			else
+			{
+				if (it->second->DoExecute)
+				{
+					m_EndIt = it->second->Actor->HandleInput(it->second);
+					it->second->DoExecute = false;
+				}
+				
 			}
 		}
 	}
