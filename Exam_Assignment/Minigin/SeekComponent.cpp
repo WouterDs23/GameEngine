@@ -9,6 +9,7 @@
 #include <map>
 #include <limits>
 #include "ConnectionComponent.h"
+#include "AIComponent.h"
 
 dae::SeekComponent::SeekComponent()
 {
@@ -77,7 +78,15 @@ std::vector<std::shared_ptr<dae::GameObject>> dae::SeekComponent::FindPath()
 	const auto target = m_Target.lock();
 	if (actor && target)
 	{
-		auto obstacles = actor->GetComponent<dae::CharacterComponent>().lock()->GetObstacles();
+		std::vector<std::shared_ptr<dae::GameObject>> obstacles{};
+		if (actor->GetComponent<dae::CharacterComponent>().lock())
+		{
+			obstacles = actor->GetComponent<dae::CharacterComponent>().lock()->GetObstacles();
+		}
+		if (actor->GetComponent<dae::AIComponent>().lock())
+		{
+			obstacles = actor->GetComponent<dae::AIComponent>().lock()->GetObstacles();
+		}
 		glm::vec3 distance{};
 		glm::vec3 distanceStart{};
 		for (auto obs : obstacles)

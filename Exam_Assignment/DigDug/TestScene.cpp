@@ -51,12 +51,12 @@ void dae::TestScene::Initialize()
 	Add(m_Test);
 	Add(gun);
 
-	m_Pooka = std::make_shared<GameObject>();
-	m_Pooka->SetTexture("Pooka.png");
-	m_Pooka->SetSize(25, 25);
-	m_Pooka->SetPosition(64.f, 160.f);
-	m_Pooka->AddComponent(std::make_shared<PookaComponent>(m_GridTest));
-	Add(m_Pooka);
+	//m_Pooka = std::make_shared<GameObject>();
+	//m_Pooka->SetTexture("Pooka.png");
+	//m_Pooka->SetSize(25, 25);
+	//m_Pooka->SetPosition(64.f, 160.f);
+	////m_Pooka->AddComponent(std::make_shared<PookaComponent>(m_GridTest));
+	//Add(m_Pooka);
 
 }
 

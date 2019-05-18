@@ -3,6 +3,9 @@
 #include "GameObject.h"
 #include "WanderComponent.h"
 #include "AIComponent.h"
+#include "PookaBehaviour.h"
+#include "SeekComponent.h"
+#include "GhostComponent.h"
 
 PookaComponent::PookaComponent(std::vector<std::shared_ptr<dae::GameObject>> obstacles):
 m_Obstacles(obstacles)
@@ -17,7 +20,10 @@ void PookaComponent::Initialize()
 	{
 		gameObj->AddComponent(std::make_shared<dae::AIComponent>());
 		gameObj->AddComponent(std::make_shared<dae::WanderComponent>(true));
-		gameObj->GetComponent<dae::AIComponent>().lock()->SetObstacles(m_Obstacles);
+		gameObj->AddComponent(std::make_shared<dae::SeekComponent>());
+		gameObj->AddComponent(std::make_shared<dae::GhostComponent>());
+		//gameObj->GetComponent<dae::AIComponent>().lock()->SetObstacles(m_Obstacles);
+		gameObj->SetState(std::make_shared<WanderState>());
 	}
 }
 
