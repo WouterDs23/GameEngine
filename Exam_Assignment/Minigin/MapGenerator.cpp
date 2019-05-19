@@ -124,22 +124,11 @@ void dae::MapGenerator::createConnections()
 				pCurrentDownNode = obj;
 			}
 		}
-		if (!pCurrentLeftNode.lock()->GetComponent<CollisionComponent>().lock()->GetIsObstacle())
-		{
-			object->GetComponent<NodeComponent>().lock()->AddConnection(pCurrentLeftNode);
-		}
-		if (!pCurrentRightNode.lock()->GetComponent<CollisionComponent>().lock()->GetIsObstacle())
-		{
-			object->GetComponent<NodeComponent>().lock()->AddConnection(pCurrentRightNode);
-		}
-		if (!pCurrentUpNode.lock()->GetComponent<CollisionComponent>().lock()->GetIsObstacle())
-		{
-			object->GetComponent<NodeComponent>().lock()->AddConnection(pCurrentUpNode);
-		}
-		if (!pCurrentDownNode.lock()->GetComponent<CollisionComponent>().lock()->GetIsObstacle())
-		{
-			object->GetComponent<NodeComponent>().lock()->AddConnection(pCurrentDownNode);
-		}
+		
+		object->GetComponent<NodeComponent>().lock()->AddConnection(pCurrentLeftNode);
+		object->GetComponent<NodeComponent>().lock()->AddConnection(pCurrentRightNode);
+		object->GetComponent<NodeComponent>().lock()->AddConnection(pCurrentUpNode);
+		object->GetComponent<NodeComponent>().lock()->AddConnection(pCurrentDownNode);
 	}
 }
 

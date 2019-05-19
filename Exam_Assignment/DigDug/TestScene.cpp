@@ -16,6 +16,8 @@
 #include "MoveComponent.h"
 #include "PookaComponent.h"
 #include "AIComponent.h"
+#include "PookaBehaviour.h"
+#include "CharacterBehaviour.h"
 
 
 dae::TestScene::TestScene(const std::string& name) :Scene(name)
@@ -60,13 +62,25 @@ void dae::TestScene::Initialize()
 	m_Pooka->SetPosition(64.f, 160.f);
 	m_Pooka->AddComponent(std::make_shared<PookaComponent>(grids));
 	Add(m_Pooka);
-
+	m_Pooka->GetComponent<AIComponent>().lock()->SetEnemy(m_Test);
+	m_Test->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Pooka);
 }
 
 void dae::TestScene::Update()
 {
 	Scene::Update();
-	m_Pooka->GetComponent<AIComponent>().lock()->SetEnemy(m_Test);
+	if (m_Test)
+	{
+		auto mainChar = m_Test->GetComponent<MainCharComponent>().lock();
+		if (mainChar && mainChar->GetResetLevel())
+		{
+			mainChar->ResetLevel(false);
+			m_Pooka->SetPosition(64.f, 160.f);
+			m_Test->SetPosition(192.f, 228.f);
+			m_Pooka->SetState(std::make_shared<WanderState>());
+			m_Test->SetState(std::make_shared<IdleState>());
+		}
+	}
 }
 
 void dae::TestScene::Render() const

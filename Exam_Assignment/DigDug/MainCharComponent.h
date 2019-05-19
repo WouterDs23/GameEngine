@@ -25,9 +25,11 @@ public:
 	void Update() override;
 	void Render() override;
 
+	void ResetLevel(bool reset = true) { m_ResetLevel = reset; }
+	bool GetResetLevel() const { return m_ResetLevel; }
 private:
 	std::vector<std::weak_ptr<dae::GameObject>> m_Obstacles;
 	dae::Controllers m_Controller{};
-	
+	bool m_ResetLevel{ false };
 };
 

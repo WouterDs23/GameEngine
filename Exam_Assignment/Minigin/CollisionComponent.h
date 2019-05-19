@@ -24,6 +24,8 @@ namespace dae {
 
 		void EnableGhost(bool enable);
 
+		void DoCollision(bool enable) { m_doCollision = enable; }
+
 		CollisionComponent(const CollisionComponent& other) = delete;
 		CollisionComponent(CollisionComponent&& other) noexcept = delete;
 		CollisionComponent& operator=(const CollisionComponent& other) = delete;
@@ -31,5 +33,6 @@ namespace dae {
 	private:
 		bool m_IsObstacle;
 		bool m_InGhostForm;
+		bool m_doCollision{true};
 	};
 }

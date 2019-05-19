@@ -4,6 +4,8 @@
 #include "CollisionComponent.h"
 #include "GameObject.h"
 #include "CharacterBehaviour.h"
+#include "CharacterComponent.h"
+#include "PookaBehaviour.h"
 
 GunComponent::GunComponent(std::shared_ptr<dae::GameObject> gun, std::weak_ptr<dae::GameObject> parent):
 m_Gun(gun),
@@ -41,10 +43,13 @@ void GunComponent::Update()
 				{
 
 					move->SetSpeed(0, 0);
-					if (m_Gun)
+					if (m_Gun && m_Parent.lock())
 					{
 						m_Gun->SetDoRenderAndUpdate(false);
 						m_Parent.lock()->SetState(std::make_shared<IdleState>());
+						m_HitTimer = 0;
+						m_Timer = 0;
+						m_Hit = false;
 					}
 				}
 			}
@@ -53,10 +58,27 @@ void GunComponent::Update()
 
 				auto move = m_Gun->GetComponent<dae::MoveComponent>().lock();
 				auto col = m_Gun->GetComponent<dae::CollisionComponent>().lock();
+				auto character = m_Parent.lock()->GetComponent<dae::CharacterComponent>().lock();
 				if (move && col)
 				{
 					move->MoveObject(m_xSpeed, m_ySpeed);
 				}
+				if (character && col)
+				{
+					auto enemies = character->GetEnemies();
+					for (auto enemy : enemies)
+					{
+						if (col->CheckCollisionTopBottem(enemy,0,true) || col->CheckCollisionLeftRight(enemy, 0, true))
+						{
+							m_Hit = true;
+							m_HitTimer = 0.f;
+							m_Timer = 0.f;
+						}
+						
+					}
+				}
+				
+
 
 			}
 			return;
@@ -74,6 +96,9 @@ void GunComponent::Update()
 				{
 					m_Gun->SetDoRenderAndUpdate(false);
 					m_Parent.lock()->SetState(std::make_shared<IdleState>());
+					m_HitTimer = 0;
+					m_Timer = 0;
+					m_Hit = false;
 				}
 			}
 		}
@@ -107,10 +132,35 @@ void GunComponent::Shoot(float x, float y)
 
 void GunComponent::DoPump()
 {
-	m_Hit = true;
 	if (m_Hit == true)
 	{
 		m_HitTimer = 0.f;
-		m_DoPump = true;
+		auto col = m_Gun->GetComponent<dae::CollisionComponent>().lock();
+		auto character = m_Parent.lock()->GetComponent<dae::CharacterComponent>().lock();
+
+		if (character && col)
+		{
+			auto enemies = character->GetEnemies();
+			for (auto enemy : enemies)
+			{
+				if (col->CheckCollisionTopBottem(enemy, 0, true) || col->CheckCollisionLeftRight(enemy, 0, true))
+				{
+					
+					/*if (enemy.lock())
+					{
+						auto state = enemy.lock()->GetState().lock();
+						if (state)
+						{
+							std::string currentState = typeid(state.operator*()).name();
+							if (currentState == "class PookaHitState")
+							{
+								std::weak_ptr<PookaHitState> pooka =state;
+							}
+						}
+					}*/
+				}
+
+			}
+		}
 	}
 }

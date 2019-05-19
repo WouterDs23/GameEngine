@@ -48,8 +48,9 @@ void MainCharComponent::Initialize()
 		auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 30);
 		gameObject.lock()->AddComponent(std::make_shared<dae::TextComponent>(font));
 		gameObject.lock()->GetComponent<dae::TextComponent>().lock()->SetPosition(0, 0);
-		int lives = gameObject.lock()->GetComponent<HealthComponent>().lock()->GetLives();
-		gameObject.lock()->GetComponent<dae::TextComponent>().lock()->SetText(std::to_string(lives));
+		auto health = gameObject.lock()->GetComponent<HealthComponent>().lock();
+		health->SetState(std::make_shared<HitState>());
+		gameObject.lock()->GetComponent<dae::TextComponent>().lock()->SetText(std::to_string(health->GetLives()));
 	}
 }
 

@@ -23,7 +23,17 @@ void dae::AIComponent::Initialize()
 
 void dae::AIComponent::Update()
 {
-
+	
+	auto obj = GetGameObject().lock();
+	if (obj)
+	{
+		const auto col = obj->GetComponent<dae::CollisionComponent>().lock();
+		if (col)
+		{
+			col->CheckCollisionLeftRight(m_Enemy,0,true);
+			col->CheckCollisionTopBottem(m_Enemy, 0, true);
+		}
+	}
 }
 
 void dae::AIComponent::Render()

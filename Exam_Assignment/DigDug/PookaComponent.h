@@ -17,7 +17,10 @@ public:
 	void Update() override;
 	void Render() override;
 
+	void NextStage();
+	void ResetStage();
 private:
 	std::vector<std::weak_ptr<dae::GameObject>> m_Obstacles;
+	int m_Stage{};
 };
 

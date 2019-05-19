@@ -19,6 +19,10 @@ namespace dae
 
 		void SetObstacles(std::vector<std::weak_ptr<dae::GameObject>> obstacles) { m_Obstacles = obstacles; }
 		std::vector<std::weak_ptr<dae::GameObject>> GetObstacles() const { return m_Obstacles; }
+
+		void AddEnemy(std::weak_ptr<dae::GameObject> enemy) { m_Enemies.push_back(enemy); }
+		std::vector<std::weak_ptr<dae::GameObject>> GetEnemies() const { return m_Enemies; }
+
 		bool GetCollidedLeft() const { return m_JustCollidedLeft; }
 		bool GetCollidedRight() const { return m_JustCollidedRight; }
 		bool GetCollidedTop() const { return m_JustCollidedUp; }
@@ -34,6 +38,7 @@ namespace dae
 
 	private:
 		std::vector<std::weak_ptr<dae::GameObject>> m_Obstacles;
+		std::vector<std::weak_ptr<dae::GameObject>> m_Enemies;
 		bool m_JustCollidedLeft{};
 		bool m_JustCollidedUp{};
 		bool m_JustCollidedDown{};

@@ -53,8 +53,12 @@ void dae::CharacterComponent::MoveLeft()
 						{
 							if (col->CheckIfInObject(obstacle))
 							{
+								auto collsion = obs.lock()->GetComponent<dae::CollisionComponent>().lock();
 								obs.lock()->SetTexture("dirtway.png");
-								col->SetIsObstacle(false);
+								if (collsion)
+								{
+									collsion->SetIsObstacle(false);
+								}
 								goto move;
 							}
 						}
@@ -62,8 +66,13 @@ void dae::CharacterComponent::MoveLeft()
 					}
 					else
 					{
+						auto collsion = obs.lock()->GetComponent<dae::CollisionComponent>().lock();
 						obs.lock()->SetTexture("dirtway.png");
-						col->SetIsObstacle(false);
+						if (collsion)
+						{
+							collsion->SetIsObstacle(false);
+						}
+						
 					}
 				}				
 			}
@@ -98,8 +107,12 @@ void dae::CharacterComponent::MoveRight()
 						{
 							if (col->CheckIfInObject(obstacle))
 							{
+								auto collsion = obs.lock()->GetComponent<dae::CollisionComponent>().lock();
 								obs.lock()->SetTexture("dirtway.png");
-								col->SetIsObstacle(false);
+								if (collsion)
+								{
+									collsion->SetIsObstacle(false);
+								}
 								goto move;
 							}
 						}
@@ -107,8 +120,12 @@ void dae::CharacterComponent::MoveRight()
 					}
 					else
 					{
+						auto collsion = obs.lock()->GetComponent<dae::CollisionComponent>().lock();
 						obs.lock()->SetTexture("dirtway.png");
-						col->SetIsObstacle(false);
+						if (collsion)
+						{
+							collsion->SetIsObstacle(false);
+						}
 					}
 				}
 			}
@@ -143,8 +160,12 @@ void dae::CharacterComponent::MoveUp()
 						{
 							if (col->CheckIfInObject(obstacle))
 							{
+								auto collsion = obs.lock()->GetComponent<dae::CollisionComponent>().lock();
 								obs.lock()->SetTexture("dirtway.png");
-								col->SetIsObstacle(false);
+								if (collsion)
+								{
+									collsion->SetIsObstacle(false);
+								}
 								goto move;
 							}
 						}
@@ -152,8 +173,12 @@ void dae::CharacterComponent::MoveUp()
 					}
 					else
 					{
+						auto collsion = obs.lock()->GetComponent<dae::CollisionComponent>().lock();
 						obs.lock()->SetTexture("dirtway.png");
-						col->SetIsObstacle(false);
+						if (collsion)
+						{
+							collsion->SetIsObstacle(false);
+						}
 					}
 				}
 			}
@@ -188,8 +213,12 @@ void dae::CharacterComponent::MoveDown()
 						{
 							if (col->CheckIfInObject(obstacle))
 							{
+								auto collsion = obs.lock()->GetComponent<dae::CollisionComponent>().lock();
 								obs.lock()->SetTexture("dirtway.png");
-								col->SetIsObstacle(false);
+								if (collsion)
+								{
+									collsion->SetIsObstacle(false);
+								}
 								goto move;
 							}
 						}
@@ -197,8 +226,12 @@ void dae::CharacterComponent::MoveDown()
 					}
 					else
 					{
+						auto collsion = obs.lock()->GetComponent<dae::CollisionComponent>().lock();
 						obs.lock()->SetTexture("dirtway.png");
-						col->SetIsObstacle(false);
+						if (collsion)
+						{
+							collsion->SetIsObstacle(false);
+						}
 					}
 				}
 			}

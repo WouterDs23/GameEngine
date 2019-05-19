@@ -57,6 +57,8 @@ namespace dae
 
 		bool HandleInput(std::weak_ptr<dae::Input> command);
 
+		void Destroy();
+
 		GameObject() = default;
 		virtual ~GameObject();
 		GameObject(const GameObject& other) = delete;

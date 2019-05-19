@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
+#include "BaseState.h"
 
 class HealthComponent :
 	public dae::BaseComponent
@@ -19,8 +20,12 @@ public:
 
 	void TakeDamage();
 
+	void SetState(std::shared_ptr<dae::BaseState> state) { m_DamagedState = state; }
+
 	int GetLives() const { return m_Lives; }
+	void SetLives(int lives) { m_Lives = lives; }
 private:
 	int m_Lives{};
+	std::shared_ptr<dae::BaseState> m_DamagedState{};
 };
 

@@ -45,7 +45,7 @@ void dae::SeekComponent::Update()
 		}
 
 		auto path = FindPath();
-		if (path.size() > 2)
+		if (path.size() > 2 && path.size() < 90 )
 		{
 			target = path.back();
 		}		
@@ -137,10 +137,14 @@ std::vector<std::shared_ptr<dae::GameObject>> dae::SeekComponent::FindPath()
 			for (auto conn : connections)
 			{
 				auto connection = conn.lock()->GetComponent<ConnectionComponent>();
-				if (connection.lock())
+				auto collision = conn.lock()->GetComponent<CollisionComponent>();
+				if (connection.lock() && collision.lock())
 				{
-					connection.lock()->CalculateCost(pStartObjective.lock(), pObjective.lock());
-					openList.push_back(conn.lock());
+					if (!collision.lock()->GetIsObstacle())
+					{
+						connection.lock()->CalculateCost(pStartObjective.lock(), pObjective.lock());
+						openList.push_back(conn.lock());
+					}					
 				}
 			}
 		}
@@ -219,6 +223,10 @@ std::vector<std::shared_ptr<dae::GameObject>> dae::SeekComponent::FindPath()
 				if (pCurrentNode.lock())
 				{
 					actionList.push_back(pCurrentNode.lock());
+					if (actionList.size() >= 100)
+					{
+						return actionList;
+					}
 				}
 			}
 		}

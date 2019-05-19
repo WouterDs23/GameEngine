@@ -1,10 +1,11 @@
 #include "MiniginPCH.h"
 #include "Scene.h"
 #include "GameObject.h"
+#include <algorithm>
 
 unsigned int dae::Scene::idCounter = 0;
 
-dae::Scene::Scene(const std::string& name) : mName(name)
+dae::Scene::Scene(const std::string& name) : m_Name(name)
 {
 }
 
@@ -12,7 +13,7 @@ dae::Scene::~Scene() = default;
 
 void dae::Scene::Add(const std::shared_ptr<SceneObject>& object)
 {
-	mObjects.push_back(object);
+	m_Objects.push_back(object);
 }
 
 void dae::Scene::Initialize()
@@ -21,9 +22,15 @@ void dae::Scene::Initialize()
 
 void dae::Scene::Update()
 {
-	for(auto gameObject : mObjects)
+	for(auto gameObject : m_Objects)
 	{
-		if (gameObject->GetDoRenderAndUpdate())
+		if (gameObject->GetDelete())
+		{
+			m_Objects.erase(remove(m_Objects.begin(), m_Objects.end(), gameObject));
+			gameObject.reset();
+			continue;
+		}
+		if (gameObject && gameObject->GetDoRenderAndUpdate())
 		{
 			gameObject->Update();			
 		}
@@ -32,9 +39,9 @@ void dae::Scene::Update()
 
 void dae::Scene::Render() const
 {
-	for (const auto gameObject : mObjects)
+	for (const auto gameObject : m_Objects)
 	{
-		if (gameObject->GetDoRenderAndUpdate())
+		if (gameObject && gameObject->GetDoRenderAndUpdate())
 		{
 			gameObject->Render();
 		}

@@ -10,6 +10,9 @@ namespace dae
 		bool GetDoRenderAndUpdate() const { return  m_RenderAndUpdate; }
 		void SetDoRenderAndUpdate(bool doIDo) { m_RenderAndUpdate = doIDo; }
 
+		bool GetDelete() const { return  m_DeleteMe; }
+		void SetDelete(bool doIDo) { m_DeleteMe = doIDo; }
+
 		SceneObject() = default;
 		virtual ~SceneObject() = default;
 		SceneObject(const SceneObject& other) = delete;
@@ -18,5 +21,6 @@ namespace dae
 		SceneObject& operator=(SceneObject&& other) = delete;
 	private:
 		bool m_RenderAndUpdate{ true };
+		bool m_DeleteMe{ false };
 	};
 }

@@ -13,6 +13,13 @@ bool dae::GameObject::HandleInput(std::weak_ptr<dae::Input> command)
 	return false;
 }
 
+void dae::GameObject::Destroy()
+{
+	m_pComponents.clear();
+	m_Texture.reset();
+	m_State.reset();
+}
+
 dae::GameObject::~GameObject() = default;
 
 void dae::GameObject::RootUpdate()
