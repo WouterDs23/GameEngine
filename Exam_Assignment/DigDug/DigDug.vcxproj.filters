@@ -42,9 +42,6 @@
     <ClInclude Include="TestScene.h">
       <Filter>Source Files\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Minigin.h">
-      <Filter>Source Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="CharacterComponent.h">
       <Filter>Source Files\Behaviour\MainCharacter</Filter>
     </ClInclude>
@@ -84,9 +81,6 @@
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Minigin.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="MiniginPCH.cpp">

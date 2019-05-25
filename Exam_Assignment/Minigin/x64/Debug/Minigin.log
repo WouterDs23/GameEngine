@@ -11,6 +11,7 @@
   InputManager.cpp
   Log.cpp
   MapGenerator.cpp
+  Minigin.cpp
   MoveComponent.cpp
   Renderer.cpp
   ResourceManager.cpp
@@ -18,9 +19,9 @@
   SceneManager.cpp
   SeekComponent.cpp
   SolidComponent.cpp
-  TextComponent.cpp
   Generating Code...
   Compiling...
+  TextComponent.cpp
   TextObject.cpp
   Texture2D.cpp
   Transform.cpp

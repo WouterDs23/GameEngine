@@ -7,11 +7,6 @@
 #include "Renderer.h"
 #include "ResourceManager.h"
 #include <SDL.h>
-#include "Scene.h"
-#include "Time.h"
-#include "TextObject.h"
-#include "GameObject.h"
-#include "FPSComponent.h"
 
 
 void dae::Minigin::Initialize()
@@ -25,8 +20,8 @@ void dae::Minigin::Initialize()
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		640,
-		480,
+		448,
+		608,
 		SDL_WINDOW_OPENGL
 	);
 	if (window == nullptr) 
@@ -63,17 +58,11 @@ void dae::Minigin::Run()
 	
 
 	LoadGame();
-
 	{		
 		auto t = std::chrono::high_resolution_clock::now();
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
-		input.ConfigButtons(ControllerButton::ButtonA, std::move(std::make_unique<ExitGame>()));
-		input.ConfigButtons(ControllerButton::DPad_Up, std::move(std::make_unique<MoveUp>()));
-		input.ConfigButtons(ControllerButton::DPad_Down, std::move(std::make_unique<MoveDown>()));
-		input.ConfigButtons(ControllerButton::DPad_Left, std::move(std::make_unique<MoveLeft>()));
-		input.ConfigButtons(ControllerButton::DPad_Right, std::move(std::make_unique<MoveRight>()));
 
 		auto lastTime = std::chrono::high_resolution_clock::now();
 		bool doContinue = true;
@@ -81,13 +70,17 @@ void dae::Minigin::Run()
 		while (doContinue)
 		{
 			const auto currentTime = std::chrono::high_resolution_clock::now();
-			Time::deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
+			GameLifeSpan::deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
 			lastTime = currentTime;
-			lag += Time::deltaTime;
+			lag += GameLifeSpan::deltaTime;
 			doContinue = input.ProcessInput();
 			int loops{};
-			while (lag >= float(msPerFrame/1000.f) || loops == maxLoops)
+			while (lag >= float(msPerFrame/1000.f))
 			{
+				if (loops >= maxLoops)
+				{
+					break;
+				}
 				loops++;
 				sceneManager.Update();
 				lag -= float(1.f/msPerFrame);

@@ -9,7 +9,6 @@
   HealthComponent.cpp
   Main.cpp
   MainCharComponent.cpp
-  Minigin.cpp
   EnemyBehaviour.cpp
   PookaComponent.cpp
   TestScene.cpp

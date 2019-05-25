@@ -34,9 +34,6 @@
     <Filter Include="Source Files\Objects">
       <UniqueIdentifier>{62375be5-78d7-4d93-ace1-e655d247aa2a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\DigDug">
-      <UniqueIdentifier>{68633763-6a6c-42f3-9bcc-ec35987b41a1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Components\GameElements">
       <UniqueIdentifier>{78429c3f-b95a-437c-b645-3d0abd329d46}</UniqueIdentifier>
     </Filter>
@@ -135,6 +132,9 @@
     <ClInclude Include="ConnectionComponent.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Minigin.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FPSComponent.cpp">
@@ -211,6 +211,9 @@
     </ClCompile>
     <ClCompile Include="ConnectionComponent.cpp">
       <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Minigin.cpp">
+      <Filter>Engine\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

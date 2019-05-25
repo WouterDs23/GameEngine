@@ -1,7 +1,7 @@
 #include "MiniginPCH.h"
 #include "SceneManager.h"
 #include "Scene.h"
-#include "TestScene.h"
+#include "../DigDug/TestScene.h"
 
 
 void dae::SceneManager::Update()
