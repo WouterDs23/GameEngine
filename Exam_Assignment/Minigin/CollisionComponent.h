@@ -1,6 +1,9 @@
 #pragma once
 #include "BaseComponent.h"
-#include "Transform.h"
+#pragma warning(push)
+#pragma warning (disable:4201)
+#include <glm/vec3.hpp>
+#pragma warning(pop)
 
 namespace dae {
 	class CollisionComponent final : public BaseComponent
@@ -13,9 +16,10 @@ namespace dae {
 		void Update() override;
 		void Render() override;
 
-		const bool CheckCollisionTopBottem(std::weak_ptr<dae::GameObject> other, float offset = 0, bool doDamage = false) const;
-		const bool CheckCollisionLeftRight(std::weak_ptr<dae::GameObject> other, float offset = 0, bool doDamage = false) const;
-		const bool CheckIfInObject(std::weak_ptr<dae::GameObject> other) const;
+		bool CheckCollisionTopBottem(std::weak_ptr<dae::GameObject> other, float offset = 0, bool doDamage = false) const;
+		bool CheckCollisionLeftRight(std::weak_ptr<dae::GameObject> other, float offset = 0, bool doDamage = false) const;
+		bool CheckIfInObject(std::weak_ptr<dae::GameObject> other) const;
+		bool CheckIfObjectInMe(glm::vec3 size,std::weak_ptr<dae::GameObject> other) const;
 		void SetIsObstacle(bool isObstacle = true)
 		{
 			m_IsObstacle = isObstacle;

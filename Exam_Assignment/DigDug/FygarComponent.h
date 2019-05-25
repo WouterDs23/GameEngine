@@ -6,7 +6,7 @@ namespace Enemies
 	class FygarComponent final : public dae::BaseComponent
 	{
 	public:
-		FygarComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles);
+		FygarComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles, std::shared_ptr<dae::GameObject> fireGun);
 		~FygarComponent() override = default;
 
 		FygarComponent(const FygarComponent& other) = delete;
@@ -23,6 +23,7 @@ namespace Enemies
 		void ResetStage();
 	private:
 		std::vector<std::weak_ptr<dae::GameObject>> m_Obstacles;
+		std::shared_ptr<dae::GameObject> m_FireGun;
 		int m_Stage{};
 	};
 }

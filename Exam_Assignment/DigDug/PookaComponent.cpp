@@ -8,6 +8,7 @@
 #include "GhostComponent.h"
 #include "CollisionComponent.h"
 #include "HealthComponent.h"
+#include "MoveComponent.h"
 
 Enemies::PookaComponent::PookaComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles):
 m_Obstacles(obstacles)
@@ -23,11 +24,13 @@ void Enemies::PookaComponent::Initialize()
 		gameObj->AddComponent(std::make_shared<dae::AIComponent>());
 		gameObj->AddComponent(std::make_shared<dae::WanderComponent>(true));
 		gameObj->AddComponent(std::make_shared<dae::SeekComponent>());
-		gameObj->AddComponent(std::make_shared<Enemies::GhostComponent>());
+		gameObj->AddComponent(std::make_shared<Enemies::GhostComponent>("Pooka.png"));
 		gameObj->AddComponent(std::make_shared<HealthComponent>(4));
 		gameObj->GetComponent<dae::AIComponent>().lock()->SetObstacles(m_Obstacles);
+		gameObj->GetComponent<dae::MoveComponent>().lock()->SetSpeed(2);
 		gameObj->GetComponent<HealthComponent>().lock()->SetState(std::make_shared<Enemies::EnemyHitState>());
 		gameObj->SetState(std::make_shared<Enemies::WanderState>());
+		gameObj->SetTexture("Pooka.png");
 	}
 }
 

@@ -19,19 +19,25 @@ void Enemies::WanderState::Update(std::weak_ptr<dae::GameObject> obj)
 	if (m_EndTimer < 0.f)
 	{
 		m_EndTimer = float(rand() % 3) + 2;
+		if (obj.lock())
+		{
+			auto ghost = obj.lock()->GetComponent<Enemies::GhostComponent>();
+			obj.lock()->GetComponent<dae::WanderComponent>().lock()->DoWander();
+			if (ghost.lock())
+			{
+				ghost.lock()->EnableGhostMode(false);
+			}
+			auto seek = obj.lock()->GetComponent<dae::SeekComponent>().lock();
+			auto col = obj.lock()->GetComponent<dae::CollisionComponent>().lock();
+			auto AI = obj.lock()->GetComponent<dae::AIComponent>().lock();
+			if (seek && AI)
+			{
+				seek->SetTarget(std::make_shared<dae::GameObject>());
+			}
+		}
 	}
 	m_Timer += GameLifeSpan::deltaTime;
 	
-	if (obj.lock())
-	{
-		auto seek = obj.lock()->GetComponent<dae::SeekComponent>().lock();
-		auto col = obj.lock()->GetComponent<dae::CollisionComponent>().lock();
-		auto AI = obj.lock()->GetComponent<dae::AIComponent>().lock();
-		if (seek && AI)
-		{
-			seek->SetTarget(std::make_shared<dae::GameObject>());
-		}
-	}
 	if (m_Timer >= m_EndTimer)
 	{
 		

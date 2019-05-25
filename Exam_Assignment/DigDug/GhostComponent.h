@@ -5,7 +5,7 @@ namespace Enemies
 	class GhostComponent final : public dae::BaseComponent
 	{
 	public:
-		GhostComponent();
+		GhostComponent(std::string nonGhostTexture);
 		~GhostComponent() override;
 
 		void Initialize() override;
@@ -22,5 +22,6 @@ namespace Enemies
 		GhostComponent& operator=(GhostComponent&& other) noexcept = delete;
 	private:
 		bool m_InGhostForm;
+		std::string m_NonGhostTexture = "";
 	};
 }

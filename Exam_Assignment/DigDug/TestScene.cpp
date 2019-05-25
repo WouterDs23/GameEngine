@@ -14,6 +14,7 @@
 #include "AIComponent.h"
 #include "CharacterBehaviour.h"
 #include "EnemyBehaviour.h"
+#include "FygarComponent.h"
 
 
 dae::TestScene::TestScene(const std::string& name) :Scene(name)
@@ -53,13 +54,26 @@ void dae::TestScene::Initialize()
 	Add(gun);
 
 	m_Pooka = std::make_shared<GameObject>();
-	m_Pooka->SetTexture("Pooka.png");
 	m_Pooka->SetSize(25, 25);
 	m_Pooka->SetPosition(64.f, 160.f);
 	m_Pooka->AddComponent(std::make_shared<Enemies::PookaComponent>(grids));
 	Add(m_Pooka);
+
+	gun = std::make_shared<dae::GameObject>();
+	gun->SetPosition(192.f, 228.f);
+	gun->SetSize(25, 25);
+	Add(gun);
+
+	m_Fygar = std::make_shared<GameObject>();
+	m_Fygar->SetSize(25, 25);
+	m_Fygar->SetPosition(64.f, 480.f);
+	m_Fygar->AddComponent(std::make_shared<Enemies::FygarComponent>(grids, gun));
+	Add(m_Fygar);
+
 	m_Pooka->GetComponent<AIComponent>().lock()->SetEnemy(m_Test);
+	m_Fygar->GetComponent<AIComponent>().lock()->SetEnemy(m_Test);
 	m_Test->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Pooka);
+	m_Test->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Fygar);
 }
 
 void dae::TestScene::Update()
@@ -71,10 +85,20 @@ void dae::TestScene::Update()
 		if (mainChar && mainChar->GetResetLevel())
 		{
 			mainChar->ResetLevel(false);
-			m_Pooka->SetPosition(64.f, 160.f);
 			m_Test->SetPosition(192.f, 228.f);
-			m_Pooka->SetState(std::make_shared<Enemies::WanderState>());
 			m_Test->SetState(std::make_shared<DigDug::IdleState>());
+
+			if (m_Pooka)
+			{
+				m_Pooka->SetPosition(64.f, 160.f);
+				m_Pooka->SetState(std::make_shared<Enemies::WanderState>());
+			}
+
+			if (m_Fygar)
+			{
+				m_Fygar->SetPosition(64.f, 480.f);
+				m_Fygar->SetState(std::make_shared<Enemies::WanderState>());
+			}
 		}
 	}
 }

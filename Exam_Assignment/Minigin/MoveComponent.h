@@ -10,23 +10,24 @@ namespace dae
 	class MoveComponent final : public BaseComponent
 	{
 	public:
-		MoveComponent(float xSpeed = 0, float ySpeed = 0, float zSpeed = 0);
+		MoveComponent(float MoveSpeed = 1.f);
 		~MoveComponent() override;
 
 		void Initialize() override;
 		void Update() override;
 		void Render() override;
 
-		void SetSpeed(float xSpeed, float ySpeed, float zSpeed = 0);
-		glm::vec3 GetSpeed() { return m_Speed; }
+		void SetSpeed(float MoveSpeed);
 		void MoveObject(float xSpeed, float ySpeed, float zSpeed = 0);
+		glm::vec3 GetPrevSpeed() const { return m_PrevSpeed; }
 
 		MoveComponent(const MoveComponent& other) = delete;
 		MoveComponent(MoveComponent&& other) noexcept = delete;
 		MoveComponent& operator=(const MoveComponent& other) = delete;
 		MoveComponent& operator=(MoveComponent&& other) noexcept = delete;
 	private:
-		glm::vec3 m_Speed{};
+		float m_MoveSpeed;
+		glm::vec3 m_PrevSpeed{1.f,0.f,0.f};
 	};
 }
 

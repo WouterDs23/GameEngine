@@ -3,11 +3,10 @@
 #include "GameObject.h"
 #include "Renderer.h"
 
-dae::MoveComponent::MoveComponent(float xSpeed, float ySpeed, float zSpeed)
+dae::MoveComponent::MoveComponent(float MoveSpeed):
+	m_MoveSpeed(MoveSpeed)
 {
-	m_Speed.x = xSpeed;
-	m_Speed.y = ySpeed;
-	m_Speed.z = zSpeed;
+	
 }
 
 
@@ -30,15 +29,16 @@ void dae::MoveComponent::Render()
 
 }
 
-void dae::MoveComponent::SetSpeed(float xSpeed, float ySpeed, float zSpeed)
+void dae::MoveComponent::SetSpeed(float MoveSpeed)
 {
-	m_Speed.x = xSpeed;
-	m_Speed.y = ySpeed;
-	m_Speed.z = zSpeed;
+	m_MoveSpeed = MoveSpeed;
 }
 
 void dae::MoveComponent::MoveObject(float xSpeed, float ySpeed, float)
 {
+	xSpeed *= m_MoveSpeed;
+	ySpeed *= m_MoveSpeed;
+	m_PrevSpeed = { xSpeed,ySpeed,0 };
 	auto gam = GetGameObject().lock();
 	if (gam)
 	{

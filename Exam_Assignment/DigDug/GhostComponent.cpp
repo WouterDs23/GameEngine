@@ -4,8 +4,9 @@
 #include "CollisionComponent.h"
 #include "Texture2D.h"
 
-Enemies::GhostComponent::GhostComponent():
-	m_InGhostForm(false)
+Enemies::GhostComponent::GhostComponent(std::string nonGhostTexture) :
+	m_InGhostForm(false),
+	m_NonGhostTexture(nonGhostTexture)
 {
 }
 
@@ -43,7 +44,7 @@ void Enemies::GhostComponent::EnableGhostMode(bool enable)
 			}
 			else
 			{
-				actor->SetTexture("Pooka.png");
+				actor->SetTexture(m_NonGhostTexture);
 				return;
 			}
 		}

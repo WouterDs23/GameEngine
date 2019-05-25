@@ -8,9 +8,12 @@
 #include "CollisionComponent.h"
 #include "HealthComponent.h"
 #include "EnemyBehaviour.h"
+#include "MoveComponent.h"
+#include "FireComponent.h"
 
-Enemies::FygarComponent::FygarComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles):
-m_Obstacles(obstacles)
+Enemies::FygarComponent::FygarComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles, std::shared_ptr<dae::GameObject> fireGun):
+m_Obstacles(obstacles),
+m_FireGun(fireGun)
 {
 
 }
@@ -23,12 +26,21 @@ void Enemies::FygarComponent::Initialize()
 		gameObj->AddComponent(std::make_shared<dae::AIComponent>());
 		gameObj->AddComponent(std::make_shared<dae::WanderComponent>(true));
 		gameObj->AddComponent(std::make_shared<dae::SeekComponent>());
-		gameObj->AddComponent(std::make_shared<Enemies::GhostComponent>());
+		gameObj->AddComponent(std::make_shared<Enemies::GhostComponent>("Fygar.png"));
+		gameObj->AddComponent(std::make_shared<Enemies::FireComponent>(gameObj->GetTransform().GetSize().x*2.5f, gameObj->GetTransform().GetSize().y * 2.5f,m_FireGun, gameObj));
 		gameObj->AddComponent(std::make_shared<HealthComponent>(4));
 		gameObj->GetComponent<dae::AIComponent>().lock()->SetObstacles(m_Obstacles);
 		gameObj->GetComponent<HealthComponent>().lock()->SetState(std::make_shared<Enemies::EnemyHitState>());
 		gameObj->SetState(std::make_shared<Enemies::WanderState>());
+		gameObj->SetTexture("Fygar.png");
 	}
+	if (m_FireGun)
+	{
+		m_FireGun->AddComponent(std::make_shared<dae::MoveComponent>(2.f));
+		m_FireGun->AddComponent(std::make_shared<dae::CollisionComponent>());
+		m_FireGun->SetTexture("Fire.png");
+	}
+	
 }
 
 void Enemies::FygarComponent::Update()
@@ -61,13 +73,13 @@ void Enemies::FygarComponent::NextStage()
 		switch (m_Stage)
 		{
 		case 1:
-			gameObject.lock()->SetTexture("PookaFirstHit.png");
+			gameObject.lock()->SetTexture("FygarFirstHit.png");
 			break;
 		case 2:
-			gameObject.lock()->SetTexture("PookaSecondHit.png");
+			gameObject.lock()->SetTexture("FygarSecondHit.png");
 			break;
 		case 3:
-			gameObject.lock()->SetTexture("PookaThirdHit.png");
+			gameObject.lock()->SetTexture("FygarThirdHit.png");
 			break;
 		default:
 			break;
@@ -82,6 +94,6 @@ void Enemies::FygarComponent::ResetStage()
 	auto gameObject = GetGameObject();
 	if (gameObject.lock())
 	{
-		gameObject.lock()->SetTexture("Pooka.png");
+		gameObject.lock()->SetTexture("Fygar.png");
 	}
 }

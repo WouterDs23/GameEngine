@@ -29,9 +29,9 @@ void dae::CollisionComponent::Render()
 
 }
 
-const bool dae::CollisionComponent::CheckCollisionTopBottem (std::weak_ptr<dae::GameObject> other, float offset, bool doDamage)const
+bool dae::CollisionComponent::CheckCollisionTopBottem (std::weak_ptr<dae::GameObject> other, float offset, bool doDamage)const
 {
-	if (other.lock() && !m_InGhostForm && m_doCollision)
+	if (other.lock() && (!m_InGhostForm || doDamage) && m_doCollision)
 	{
 		auto compTest = other.lock()->GetComponent<CollisionComponent>().lock();
 		if (compTest && (compTest->GetIsObstacle() || doDamage))
@@ -82,9 +82,9 @@ const bool dae::CollisionComponent::CheckCollisionTopBottem (std::weak_ptr<dae::
 	return false;
 }
 
-const bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::GameObject> other, float offset, bool doDamage)const
+bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::GameObject> other, float offset, bool doDamage)const
 {
-	if (other.lock() && !m_InGhostForm && m_doCollision)
+	if (other.lock() && (!m_InGhostForm || doDamage) && m_doCollision)
 	{
 		auto compTest = other.lock()->GetComponent<CollisionComponent>().lock();
 		if (compTest && (compTest->GetIsObstacle() || doDamage))
@@ -135,7 +135,7 @@ const bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::G
 	return false;
 }
 
-const bool dae::CollisionComponent::CheckIfInObject(std::weak_ptr<dae::GameObject> other)const
+bool dae::CollisionComponent::CheckIfInObject(std::weak_ptr<dae::GameObject> other)const
 {
 
 	if (other.lock())
@@ -156,6 +156,36 @@ const bool dae::CollisionComponent::CheckIfInObject(std::weak_ptr<dae::GameObjec
 					if (transO.y - 2.f < tranS.y)
 					{
 						if (transO.y + sizeO.y + 2.f > tranS.y + sizeS.y)
+						{
+							return true;
+						}
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
+
+bool dae::CollisionComponent::CheckIfObjectInMe(glm::vec3 size, std::weak_ptr<dae::GameObject> other) const
+{
+	if (other.lock())
+	{
+		auto compTest = other.lock()->GetComponent<CollisionComponent>().lock();
+		if (compTest)
+		{
+			auto transO = other.lock()->GetTransform().GetPosition();
+			auto sizeO = other.lock()->GetTransform().GetSize();
+
+			auto sizeS = size;
+			auto middleS = GetGameObject().lock()->GetTransform().GetMiddlePosition();
+			if (transO.x - 2.f > middleS.x - sizeS.x)
+			{
+				if (transO.x + sizeO.x + 2.f < middleS.x + sizeS.x)
+				{
+					if (transO.y - 2.f > middleS.y - sizeS.y)
+					{
+						if (transO.y + sizeO.y + 2.f < middleS.y + sizeS.y)
 						{
 							return true;
 						}

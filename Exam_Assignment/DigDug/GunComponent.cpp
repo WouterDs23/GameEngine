@@ -41,7 +41,6 @@ void DigDug::GunComponent::Update()
 				if (move && col)
 				{
 
-					move->SetSpeed(0, 0);
 					if (m_Gun && m_Parent.lock())
 					{
 						m_Gun->SetDoRenderAndUpdate(false);
@@ -76,9 +75,6 @@ void DigDug::GunComponent::Update()
 						
 					}
 				}
-				
-
-
 			}
 			return;
 		}
@@ -89,8 +85,6 @@ void DigDug::GunComponent::Update()
 			auto col = m_Gun->GetComponent<dae::CollisionComponent>().lock();
 			if (move && col)
 			{
-
-				move->SetSpeed(0, 0);
 				if (m_Gun)
 				{
 					m_Gun->SetDoRenderAndUpdate(false);
