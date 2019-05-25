@@ -45,6 +45,7 @@ void Enemies::PookaComponent::Update()
 			int lives = health->GetLives();
 			if (lives == 0)
 			{
+				Notify(gameObject);
 				gameObject.lock()->SetDelete(true);
 			}
 		}

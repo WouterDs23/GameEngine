@@ -1,9 +1,10 @@
 #pragma once
 #include "BaseComponent.h"
+#include "Subject.h"
 
 namespace Enemies
 {
-	class FygarComponent final : public dae::BaseComponent
+	class FygarComponent final : public dae::BaseComponent, public dae::Subject
 	{
 	public:
 		FygarComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles, std::shared_ptr<dae::GameObject> fireGun);

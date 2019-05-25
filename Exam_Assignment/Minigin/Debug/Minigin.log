@@ -1,27 +1,26 @@
 ﻿  MiniginPCH.cpp
+  AIComponent.cpp
   BaseComponent.cpp
-  CharacterComponent.cpp
   CollisionComponent.cpp
   Commands.cpp
-  FireComponent.cpp
+  ConnectionComponent.cpp
   FleeComponent.cpp
   Font.cpp
   FPSComponent.cpp
   GameObject.cpp
-  GhostComponent.cpp
   InputManager.cpp
   Log.cpp
-  Main.cpp
   Minigin.cpp
   MoveComponent.cpp
+  Observer.cpp
   Renderer.cpp
   ResourceManager.cpp
   Scene.cpp
   SceneManager.cpp
   SeekComponent.cpp
+  SolidComponent.cpp
   Generating Code...
   Compiling...
-  SolidComponent.cpp
   TextComponent.cpp
   TextObject.cpp
   Texture2D.cpp

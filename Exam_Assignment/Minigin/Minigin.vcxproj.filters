@@ -132,6 +132,12 @@
     <ClInclude Include="Minigin.h">
       <Filter>Engine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Engine\SceneHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Engine\SceneHelpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FPSComponent.cpp">
@@ -208,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="Minigin.cpp">
       <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>Engine\SceneHelpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

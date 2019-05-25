@@ -91,12 +91,22 @@ void Enemies::GhostState::Update(std::weak_ptr<dae::GameObject> obj)
 	m_Timer += GameLifeSpan::deltaTime;
 	if (!(m_Timer >= 1.f))
 	{
+		auto fire = obj.lock()->GetComponent<FireComponent>().lock();
+		if (fire)
+		{
+			fire->CanFire(false);
+		}
 		return;
 	}
 	if (obj.lock())
 	{
 		auto col = obj.lock()->GetComponent<dae::CollisionComponent>().lock();
 		auto AI = obj.lock()->GetComponent<dae::AIComponent>().lock();
+		auto fire = obj.lock()->GetComponent<FireComponent>().lock();
+		if (fire)
+		{
+			fire->CanFire(true);
+		}
 		if (col && AI)
 		{
 			auto obstacles = AI->GetObstacles();
@@ -182,7 +192,7 @@ void Enemies::EnemyHitState::Update(std::weak_ptr<dae::GameObject> obj)
 		auto fire = obj.lock()->GetComponent<FireComponent>().lock();
 		if (fire)
 		{
-			fire->CanFire(false);
+			fire->CanFire(true);
 		}
 
 	}

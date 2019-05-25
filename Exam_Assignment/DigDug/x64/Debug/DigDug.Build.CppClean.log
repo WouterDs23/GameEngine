@@ -3,6 +3,7 @@ e:\daegameengine\gameengine\exam_assignment\digdug\x64\debug\vc141.pdb
 e:\daegameengine\gameengine\exam_assignment\digdug\x64\debug\vc141.idb
 e:\daegameengine\gameengine\exam_assignment\digdug\x64\debug\miniginpch.obj
 e:\daegameengine\gameengine\exam_assignment\digdug\x64\debug\testscene.obj
+e:\daegameengine\gameengine\exam_assignment\digdug\x64\debug\scoreobserver.obj
 e:\daegameengine\gameengine\exam_assignment\digdug\x64\debug\rockcomponent.obj
 e:\daegameengine\gameengine\exam_assignment\digdug\x64\debug\pookacomponent.obj
 e:\daegameengine\gameengine\exam_assignment\digdug\x64\debug\enemybehaviour.obj
@@ -19,8 +20,8 @@ e:\daegameengine\gameengine\exam_assignment\digdug\x64\debug\charactercomponent.
 e:\daegameengine\gameengine\exam_assignment\digdug\x64\debug\characterbehaviour.obj
 e:\daegameengine\gameengine\exam_assignment\x64\debug\digdug.lib
 e:\daegameengine\gameengine\exam_assignment\x64\debug\digdug.exp
-e:\daegameengine\gameengine\exam_assignment\x64\debug\digdug.exe
 e:\daegameengine\gameengine\exam_assignment\x64\debug\digdug.ilk
+e:\daegameengine\gameengine\exam_assignment\x64\debug\digdug.exe
 e:\daegameengine\gameengine\exam_assignment\x64\debug\digdug.pdb
 e:\daegameengine\gameengine\exam_assignment\digdug\x64\debug\digdug.tlog\cl.command.1.tlog
 e:\daegameengine\gameengine\exam_assignment\digdug\x64\debug\digdug.tlog\cl.read.1.tlog

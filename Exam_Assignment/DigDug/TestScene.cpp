@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+﻿#include "MiniginPCH.h"
 #include "TestScene.h"
 #include "ResourceManager.h"
 #include "GameObject.h"
@@ -16,6 +16,8 @@
 #include "EnemyBehaviour.h"
 #include "FygarComponent.h"
 #include "RockComponent.h"
+#include "ScoreObserver.h"
+#include <future>
 
 
 dae::TestScene::TestScene(const std::string& name) :Scene(name)
@@ -27,10 +29,10 @@ dae::TestScene::TestScene(const std::string& name) :Scene(name)
 
 void dae::TestScene::Initialize()
 {
-	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 30);
-	auto to = std::make_shared<TextObject>("DigDugSceneDemo", font);
-	to->SetPosition(120, 0);
-	Add(to);
+	auto scoreObserver = std::make_shared<ScoreObserver>();
+
+	ScoreKeeper::GetInstance().ResetScore();
+
 	auto m_GridTest = MapGenerator::GetInstance().CreateMap("../Data/Map.txt", m_GridSizeWidth, m_GridSizeHeight);
 	std::vector<std::weak_ptr<GameObject>> grids{};
 	for (auto grid : m_GridTest)
@@ -64,6 +66,7 @@ void dae::TestScene::Initialize()
 	m_Pooka->SetSize(25, 25);
 	m_Pooka->SetPosition(64.f, 160.f);
 	m_Pooka->AddComponent(std::make_shared<Enemies::PookaComponent>(obs->GetObstacles()));
+	scoreObserver->Attach(m_Pooka->GetComponent<Enemies::PookaComponent>());
 	Add(m_Pooka);
 
 	gun = std::make_shared<dae::GameObject>();
@@ -75,6 +78,7 @@ void dae::TestScene::Initialize()
 	m_Fygar->SetSize(25, 25);
 	m_Fygar->SetPosition(64.f, 480.f);
 	m_Fygar->AddComponent(std::make_shared<Enemies::FygarComponent>(obs->GetObstacles(), gun));
+	scoreObserver->Attach(m_Fygar->GetComponent<Enemies::FygarComponent>());
 	Add(m_Fygar);
 
 	m_Pooka->GetComponent<AIComponent>().lock()->SetEnemy(m_Test);
@@ -90,6 +94,7 @@ void dae::TestScene::Initialize()
 			comp.lock()->AddEnemy(m_Pooka);
 			comp.lock()->AddEnemy(m_Test);
 			comp.lock()->AddEnemy(m_Fygar);
+			scoreObserver->Attach(rocks.lock()->GetComponent<Environment::RockComponent>());
 		}
 	}
 	if (obs)
@@ -106,6 +111,16 @@ void dae::TestScene::Initialize()
 			}
 		}
 	}
+
+	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
+	auto to = std::make_shared<TextObject>("DigDugSceneDemo", font);
+	to->SetPosition(120, 0);
+	Add(to);
+
+	font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 30);
+	m_Score = std::make_shared<TextObject>("0", font);
+	m_Score->SetPosition(384.f, 0);
+	Add(m_Score);
 }
 
 void dae::TestScene::Update()
@@ -132,6 +147,10 @@ void dae::TestScene::Update()
 				m_Fygar->SetState(std::make_shared<Enemies::WanderState>());
 			}
 		}
+	}
+	if (m_Score)
+	{
+		m_Score->SetText(std::to_string(ScoreKeeper::GetInstance().GetScore()));
 	}
 }
 

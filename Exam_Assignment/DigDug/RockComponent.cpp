@@ -46,6 +46,7 @@ void Environment::RockComponent::Update()
 						{
 							health.lock()->InstaKillDamage();
 						}
+						Notify(gameObj);
 						gameObj->SetDelete(true);
 					}
 				}
@@ -59,7 +60,7 @@ void Environment::RockComponent::Update()
 			}
 			else 
 			{
-				int size{};
+				unsigned int size{};
 				for (auto obs : m_Obstacles)
 				{
 					if (!col->CheckCollisionTopBottem(obs, 0,10))

@@ -1,8 +1,10 @@
 #pragma once
 #include "BaseComponent.h"
+#include "Subject.h"
+
 namespace Environment
 {
-	class RockComponent final : public dae::BaseComponent
+	class RockComponent final : public dae::BaseComponent, public dae::Subject
 	{
 	public:
 		RockComponent();

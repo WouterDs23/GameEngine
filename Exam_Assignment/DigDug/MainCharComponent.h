@@ -2,6 +2,8 @@
 #include "BaseComponent.h"
 #include "InputManager.h"
 #include "BaseState.h"
+#include "Subject.h"
+
 namespace DigDug
 {
 	class Shoot final : public dae::Commands

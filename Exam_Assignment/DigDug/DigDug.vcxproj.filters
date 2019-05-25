@@ -81,6 +81,12 @@
     <ClInclude Include="RockComponent.h">
       <Filter>Source Files\Behaviour\Rock</Filter>
     </ClInclude>
+    <ClInclude Include="ScoreObserver.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreKeeper.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GhostComponent.cpp">
@@ -130,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="RockComponent.cpp">
       <Filter>Source Files\Behaviour\Rock</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreObserver.cpp">
+      <Filter>Source Files\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

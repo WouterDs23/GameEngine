@@ -1,8 +1,10 @@
 #pragma once
 #include "BaseComponent.h"
+#include "Subject.h"
+
 namespace Enemies
 {
-	class PookaComponent final : public dae::BaseComponent
+	class PookaComponent final : public dae::BaseComponent, public dae::Subject
 	{
 	public:
 		PookaComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles);

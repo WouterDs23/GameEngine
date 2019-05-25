@@ -17,7 +17,7 @@ void dae::Minigin::Initialize()
 	}
 
 	window = SDL_CreateWindow(
-		"Programming 4 assignment",
+		"Wouter De Smedt DigDug Engine",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
 		448,

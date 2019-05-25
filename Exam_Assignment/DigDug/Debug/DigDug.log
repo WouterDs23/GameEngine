@@ -1,0 +1,20 @@
+﻿  MiniginPCH.cpp
+  CharacterBehaviour.cpp
+  CharacterComponent.cpp
+  FireComponent.cpp
+  FygarBehaviourh.cpp
+  FygarComponent.cpp
+  GhostComponent.cpp
+  GunComponent.cpp
+  HealthComponent.cpp
+  Main.cpp
+  MainCharComponent.cpp
+  MapGenerator.cpp
+  EnemyBehaviour.cpp
+  PookaComponent.cpp
+  RockComponent.cpp
+  ScoreObserver.cpp
+  TestScene.cpp
+  Generating Code...
+     Creating library E:\DAEGameEngine\GameEngine\Exam_Assignment\Debug\DigDug.lib and object E:\DAEGameEngine\GameEngine\Exam_Assignment\Debug\DigDug.exp
+  DigDug.vcxproj -> E:\DAEGameEngine\GameEngine\Exam_Assignment\Debug\DigDug.exe

@@ -185,6 +185,8 @@
     <ClInclude Include="EnemyBehaviour.h" />
     <ClInclude Include="PookaComponent.h" />
     <ClInclude Include="RockComponent.h" />
+    <ClInclude Include="ScoreKeeper.h" />
+    <ClInclude Include="ScoreObserver.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +210,7 @@
     <ClCompile Include="EnemyBehaviour.cpp" />
     <ClCompile Include="PookaComponent.cpp" />
     <ClCompile Include="RockComponent.cpp" />
+    <ClCompile Include="ScoreObserver.cpp" />
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
