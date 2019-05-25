@@ -11,18 +11,18 @@
 #include "GunComponent.h"
 #include "MoveComponent.h"
 
-MainCharComponent::MainCharComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles, dae::Controllers controller) :
+DigDug::MainCharComponent::MainCharComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles, dae::Controllers controller) :
 	m_Obstacles{ obstacles },
 	m_Controller{ controller }
 {
 }
 
 
-MainCharComponent::~MainCharComponent()
+DigDug::MainCharComponent::~MainCharComponent()
 {
 }
 
-void MainCharComponent::Initialize()
+void DigDug::MainCharComponent::Initialize()
 {
 	auto gameObject = GetGameObject();
 	if (gameObject.lock())
@@ -54,7 +54,7 @@ void MainCharComponent::Initialize()
 	}
 }
 
-void MainCharComponent::Update()
+void DigDug::MainCharComponent::Update()
 {
 	auto gameObject = GetGameObject();
 	if (gameObject.lock())
@@ -73,12 +73,12 @@ void MainCharComponent::Update()
 	}
 }
 
-void MainCharComponent::Render()
+void DigDug::MainCharComponent::Render()
 {
 	//m_State->Render();
 }
 
-bool Shoot::execute(std::weak_ptr<dae::GameObject> actor)
+bool DigDug::Shoot::execute(std::weak_ptr<dae::GameObject> actor)
 {
 	if (actor.lock())
 	{

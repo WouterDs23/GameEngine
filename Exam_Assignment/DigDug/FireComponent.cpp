@@ -2,24 +2,24 @@
 #include "FireComponent.h"
 
 
-dae::FireComponent::FireComponent()
+Enemies::FireComponent::FireComponent()
 {
 }
 
 
-dae::FireComponent::~FireComponent()
+Enemies::FireComponent::~FireComponent()
 {
 }
 
-void dae::FireComponent::Initialize()
+void Enemies::FireComponent::Initialize()
 {
 }
 
-void dae::FireComponent::Update()
+void Enemies::FireComponent::Update()
 {
 }
 
-void dae::FireComponent::Render()
+void Enemies::FireComponent::Render()
 {
 
 }

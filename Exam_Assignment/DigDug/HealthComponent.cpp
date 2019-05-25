@@ -23,31 +23,23 @@ void HealthComponent::TakeDamage()
 	auto player = GetGameObject().lock();
 	if (player)
 	{
-		auto pooka = player->GetComponent<PookaComponent>().lock();
+		m_Lives--;
+
+		if (player && m_DamagedState)
+		{
+			player->SetState(m_DamagedState);
+		}
+		auto pooka = player->GetComponent<Enemies::PookaComponent>().lock();
 		if (pooka)
 		{
-			m_Lives--;
 			pooka->NextStage();
-
-			if (player && m_DamagedState)
-			{
-				player->SetState(m_DamagedState);
-			}
 			return;
 		}
-		auto charact = player->GetComponent<MainCharComponent>().lock();
+		auto charact = player->GetComponent<DigDug::MainCharComponent>().lock();
 		if (charact)
-		{
-			if (player->GetState().lock() != m_DamagedState)
-			{
-				m_Lives--;
-
-				if (player && m_DamagedState)
-				{
-					player->SetState(m_DamagedState);
-				}
-				charact->ResetLevel();
-			}
+		{			
+			charact->ResetLevel();
+			return;
 		}
 	}
 	

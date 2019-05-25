@@ -2,22 +2,18 @@
 #include "TestScene.h"
 #include "ResourceManager.h"
 #include "GameObject.h"
-#include "FPSComponent.h"
 #include "TextObject.h"
-#include "Renderer.h"
 #include "CollisionComponent.h"
 #include "CharacterComponent.h"
 #include "InputManager.h"
-#include "WanderComponent.h"
 #include "MapGenerator.h"
 #include "MainCharComponent.h"
-#include "SeekComponent.h"
 #include "GunComponent.h"
 #include "MoveComponent.h"
 #include "PookaComponent.h"
 #include "AIComponent.h"
-#include "PookaBehaviour.h"
 #include "CharacterBehaviour.h"
+#include "EnemyBehaviour.h"
 
 
 dae::TestScene::TestScene(const std::string& name) :Scene(name)
@@ -45,14 +41,14 @@ void dae::TestScene::Initialize()
 	m_Test->SetTexture("dot.png");
 	m_Test->SetSize(25, 25);
 	m_Test->SetPosition(192.f, 228.f);
-	m_Test->AddComponent(std::make_shared<MainCharComponent>(grids,Controllers::PLAYER01));
+	m_Test->AddComponent(std::make_shared<DigDug::MainCharComponent>(grids,Controllers::PLAYER01));
 	auto gun = std::make_shared<dae::GameObject>();
 	gun->SetTexture("Gun.png");
 	gun->SetPosition(192.f, 228.f);
 	gun->AddComponent(std::make_shared<dae::MoveComponent>());
 	gun->AddComponent(std::make_shared<dae::CollisionComponent>());
 	gun->SetSize(25, 25);
-	m_Test->AddComponent(std::make_shared<GunComponent>(gun, m_Test));
+	m_Test->AddComponent(std::make_shared<DigDug::GunComponent>(gun, m_Test));
 	Add(m_Test);
 	Add(gun);
 
@@ -60,7 +56,7 @@ void dae::TestScene::Initialize()
 	m_Pooka->SetTexture("Pooka.png");
 	m_Pooka->SetSize(25, 25);
 	m_Pooka->SetPosition(64.f, 160.f);
-	m_Pooka->AddComponent(std::make_shared<PookaComponent>(grids));
+	m_Pooka->AddComponent(std::make_shared<Enemies::PookaComponent>(grids));
 	Add(m_Pooka);
 	m_Pooka->GetComponent<AIComponent>().lock()->SetEnemy(m_Test);
 	m_Test->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Pooka);
@@ -71,14 +67,14 @@ void dae::TestScene::Update()
 	Scene::Update();
 	if (m_Test)
 	{
-		auto mainChar = m_Test->GetComponent<MainCharComponent>().lock();
+		auto mainChar = m_Test->GetComponent<DigDug::MainCharComponent>().lock();
 		if (mainChar && mainChar->GetResetLevel())
 		{
 			mainChar->ResetLevel(false);
 			m_Pooka->SetPosition(64.f, 160.f);
 			m_Test->SetPosition(192.f, 228.f);
-			m_Pooka->SetState(std::make_shared<WanderState>());
-			m_Test->SetState(std::make_shared<IdleState>());
+			m_Pooka->SetState(std::make_shared<Enemies::WanderState>());
+			m_Test->SetState(std::make_shared<DigDug::IdleState>());
 		}
 	}
 }

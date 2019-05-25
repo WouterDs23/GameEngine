@@ -172,7 +172,7 @@ void dae::CollisionComponent::EnableGhost(bool enable)
 	auto actor = GetGameObject().lock();
 	if (actor)
 	{
-		auto ghost = actor->GetComponent<GhostComponent>().lock();
+		auto ghost = actor->GetComponent<Enemies::GhostComponent>().lock();
 		if (ghost)
 		{
 			if (enable)

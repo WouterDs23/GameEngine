@@ -28,13 +28,13 @@
     <Filter Include="Source Files\Behaviour\Pooka">
       <UniqueIdentifier>{c6ee1f54-5528-44ec-818b-acf4f1e706a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Behaviour\Fygar">
+      <UniqueIdentifier>{d7040f98-5beb-4f9f-b1bf-633fd6d3574d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniginPCH.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FireComponent.h">
-      <Filter>Source Files\Behaviour</Filter>
     </ClInclude>
     <ClInclude Include="GhostComponent.h">
       <Filter>Source Files\Behaviour</Filter>
@@ -57,20 +57,26 @@
     <ClInclude Include="GunComponent.h">
       <Filter>Source Files\Behaviour\MainCharacter</Filter>
     </ClInclude>
-    <ClInclude Include="HealthComponent.h">
-      <Filter>Source Files\Behaviour\MainCharacter</Filter>
-    </ClInclude>
     <ClInclude Include="PookaComponent.h">
       <Filter>Source Files\Behaviour\Pooka</Filter>
     </ClInclude>
-    <ClInclude Include="PookaBehaviour.h">
-      <Filter>Source Files\Behaviour\Pooka</Filter>
+    <ClInclude Include="FygarBehaviourh.h">
+      <Filter>Source Files\Behaviour\Fygar</Filter>
+    </ClInclude>
+    <ClInclude Include="FygarComponent.h">
+      <Filter>Source Files\Behaviour\Fygar</Filter>
+    </ClInclude>
+    <ClInclude Include="FireComponent.h">
+      <Filter>Source Files\Behaviour\Fygar</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBehaviour.h">
+      <Filter>Source Files\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthComponent.h">
+      <Filter>Source Files\Behaviour</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FireComponent.cpp">
-      <Filter>Source Files\Behaviour</Filter>
-    </ClCompile>
     <ClCompile Include="GhostComponent.cpp">
       <Filter>Source Files\Behaviour</Filter>
     </ClCompile>
@@ -98,14 +104,23 @@
     <ClCompile Include="GunComponent.cpp">
       <Filter>Source Files\Behaviour\MainCharacter</Filter>
     </ClCompile>
-    <ClCompile Include="HealthComponent.cpp">
-      <Filter>Source Files\Behaviour\MainCharacter</Filter>
-    </ClCompile>
     <ClCompile Include="PookaComponent.cpp">
       <Filter>Source Files\Behaviour\Pooka</Filter>
     </ClCompile>
-    <ClCompile Include="PookaBehaviour.cpp">
-      <Filter>Source Files\Behaviour\Pooka</Filter>
+    <ClCompile Include="FygarBehaviourh.cpp">
+      <Filter>Source Files\Behaviour\Fygar</Filter>
+    </ClCompile>
+    <ClCompile Include="FygarComponent.cpp">
+      <Filter>Source Files\Behaviour\Fygar</Filter>
+    </ClCompile>
+    <ClCompile Include="FireComponent.cpp">
+      <Filter>Source Files\Behaviour\Fygar</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBehaviour.cpp">
+      <Filter>Source Files\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthComponent.cpp">
+      <Filter>Source Files\Behaviour</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

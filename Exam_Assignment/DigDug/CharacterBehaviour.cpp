@@ -4,7 +4,7 @@
 #include "GameObject.h"
 #include "GunComponent.h"
 
-bool IdleState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input)
+bool DigDug::IdleState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input)
 {
 	if (input.lock() && obj.lock())
 	{
@@ -28,12 +28,12 @@ bool IdleState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<da
 	return false;
 }
 
-void IdleState::Update(std::weak_ptr<dae::GameObject>)
+void DigDug::IdleState::Update(std::weak_ptr<dae::GameObject>)
 {
 
 }
 
-bool WalkingState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input)
+bool DigDug::WalkingState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input)
 {
 	if (input.lock() && obj.lock())
 	{
@@ -56,7 +56,7 @@ bool WalkingState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr
 	return false;
 }
 
-void WalkingState::Update(std::weak_ptr<dae::GameObject> obj)
+void DigDug::WalkingState::Update(std::weak_ptr<dae::GameObject> obj)
 {
 	if (obj.lock())
 	{
@@ -68,7 +68,7 @@ void WalkingState::Update(std::weak_ptr<dae::GameObject> obj)
 	}	
 }
 
-bool ShootingState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input)
+bool DigDug::ShootingState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input)
 {
 	if (input.lock() && obj.lock())
 	{
@@ -91,7 +91,7 @@ bool ShootingState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_pt
 	return false;
 }
 
-void ShootingState::Update(std::weak_ptr<dae::GameObject> obj)
+void DigDug::ShootingState::Update(std::weak_ptr<dae::GameObject> obj)
 {
 	if (obj.lock())
 	{
@@ -103,7 +103,7 @@ void ShootingState::Update(std::weak_ptr<dae::GameObject> obj)
 	}
 }
 
-bool HitState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input)
+bool DigDug::HitState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input)
 {
 	if (input.lock() && obj.lock())
 	{
@@ -117,7 +117,7 @@ bool HitState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae
 	return false;
 }
 
-void HitState::Update(std::weak_ptr<dae::GameObject> obj)
+void DigDug::HitState::Update(std::weak_ptr<dae::GameObject> obj)
 {
 	if (obj.lock())
 	{
@@ -129,11 +129,11 @@ void HitState::Update(std::weak_ptr<dae::GameObject> obj)
 	}
 }
 
-bool DeadState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input)
+bool DigDug::DeadState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input)
 {
 	return false;
 }
 
-void DeadState::Update(std::weak_ptr<dae::GameObject>)
+void DigDug::DeadState::Update(std::weak_ptr<dae::GameObject>)
 {
 }

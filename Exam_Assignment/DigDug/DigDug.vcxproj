@@ -174,13 +174,15 @@
     <ClInclude Include="CharacterBehaviour.h" />
     <ClInclude Include="CharacterComponent.h" />
     <ClInclude Include="FireComponent.h" />
+    <ClInclude Include="FygarBehaviourh.h" />
+    <ClInclude Include="FygarComponent.h" />
     <ClInclude Include="GhostComponent.h" />
     <ClInclude Include="GunComponent.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="MainCharComponent.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
-    <ClInclude Include="PookaBehaviour.h" />
+    <ClInclude Include="EnemyBehaviour.h" />
     <ClInclude Include="PookaComponent.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
@@ -188,6 +190,8 @@
     <ClCompile Include="CharacterBehaviour.cpp" />
     <ClCompile Include="CharacterComponent.cpp" />
     <ClCompile Include="FireComponent.cpp" />
+    <ClCompile Include="FygarBehaviourh.cpp" />
+    <ClCompile Include="FygarComponent.cpp" />
     <ClCompile Include="GhostComponent.cpp" />
     <ClCompile Include="GunComponent.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
@@ -200,7 +204,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="PookaBehaviour.cpp" />
+    <ClCompile Include="EnemyBehaviour.cpp" />
     <ClCompile Include="PookaComponent.cpp" />
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>

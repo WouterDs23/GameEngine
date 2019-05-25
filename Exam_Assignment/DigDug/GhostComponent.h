@@ -1,8 +1,8 @@
 #pragma once
 #include "BaseComponent.h"
-namespace dae
+namespace Enemies
 {
-	class GhostComponent final : public BaseComponent
+	class GhostComponent final : public dae::BaseComponent
 	{
 	public:
 		GhostComponent();

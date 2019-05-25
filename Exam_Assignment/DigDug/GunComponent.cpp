@@ -5,16 +5,15 @@
 #include "GameObject.h"
 #include "CharacterBehaviour.h"
 #include "CharacterComponent.h"
-#include "PookaBehaviour.h"
 
-GunComponent::GunComponent(std::shared_ptr<dae::GameObject> gun, std::weak_ptr<dae::GameObject> parent):
+DigDug::GunComponent::GunComponent(std::shared_ptr<dae::GameObject> gun, std::weak_ptr<dae::GameObject> parent):
 m_Gun(gun),
 m_Parent(parent)
 {
 	
 }
 
-void GunComponent::Initialize()
+void DigDug::GunComponent::Initialize()
 {
 	if (m_Gun)
 	{
@@ -26,7 +25,7 @@ void GunComponent::Initialize()
 	}
 }
 
-void GunComponent::Update()
+void DigDug::GunComponent::Update()
 {
 	if (m_Shot)
 	{
@@ -105,11 +104,11 @@ void GunComponent::Update()
 	}
 }
 
-void GunComponent::Render()
+void DigDug::GunComponent::Render()
 {
 }
 
-void GunComponent::Shoot(float x, float y)
+void DigDug::GunComponent::Shoot(float x, float y)
 {
 	if (m_Gun)
 	{
@@ -130,7 +129,7 @@ void GunComponent::Shoot(float x, float y)
 	}
 }
 
-void GunComponent::DoPump()
+void DigDug::GunComponent::DoPump()
 {
 	if (m_Hit == true)
 	{
@@ -145,19 +144,7 @@ void GunComponent::DoPump()
 			{
 				if (col->CheckCollisionTopBottem(enemy, 0, true) || col->CheckCollisionLeftRight(enemy, 0, true))
 				{
-					
-					/*if (enemy.lock())
-					{
-						auto state = enemy.lock()->GetState().lock();
-						if (state)
-						{
-							std::string currentState = typeid(state.operator*()).name();
-							if (currentState == "class PookaHitState")
-							{
-								std::weak_ptr<PookaHitState> pooka =state;
-							}
-						}
-					}*/
+				
 				}
 
 			}

@@ -30,7 +30,7 @@ void dae::SeekComponent::Update()
 	auto target = m_Target.lock();
 	if (actor && target)
 	{
-		const auto ghostComp = actor->GetComponent<GhostComponent>().lock();
+		const auto ghostComp = actor->GetComponent<Enemies::GhostComponent>().lock();
 		if (ghostComp)
 		{
 			if (ghostComp->GetInGhostForm())

@@ -3,19 +3,19 @@
 #include "GameObject.h"
 #include "WanderComponent.h"
 #include "AIComponent.h"
-#include "PookaBehaviour.h"
+#include "EnemyBehaviour.h"
 #include "SeekComponent.h"
 #include "GhostComponent.h"
 #include "CollisionComponent.h"
 #include "HealthComponent.h"
 
-PookaComponent::PookaComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles):
+Enemies::PookaComponent::PookaComponent(std::vector<std::weak_ptr<dae::GameObject>> obstacles):
 m_Obstacles(obstacles)
 {
 
 }
 
-void PookaComponent::Initialize()
+void Enemies::PookaComponent::Initialize()
 {
 	auto gameObj = GetGameObject().lock();
 	if (gameObj)
@@ -23,15 +23,15 @@ void PookaComponent::Initialize()
 		gameObj->AddComponent(std::make_shared<dae::AIComponent>());
 		gameObj->AddComponent(std::make_shared<dae::WanderComponent>(true));
 		gameObj->AddComponent(std::make_shared<dae::SeekComponent>());
-		gameObj->AddComponent(std::make_shared<dae::GhostComponent>());
+		gameObj->AddComponent(std::make_shared<Enemies::GhostComponent>());
 		gameObj->AddComponent(std::make_shared<HealthComponent>(4));
 		gameObj->GetComponent<dae::AIComponent>().lock()->SetObstacles(m_Obstacles);
-		gameObj->GetComponent<HealthComponent>().lock()->SetState(std::make_shared<PookaHitState>());
-		gameObj->SetState(std::make_shared<WanderState>());
+		gameObj->GetComponent<HealthComponent>().lock()->SetState(std::make_shared<Enemies::EnemyHitState>());
+		gameObj->SetState(std::make_shared<Enemies::WanderState>());
 	}
 }
 
-void PookaComponent::Update()
+void Enemies::PookaComponent::Update()
 {
 	auto gameObject = GetGameObject();
 	if (gameObject.lock())
@@ -48,12 +48,12 @@ void PookaComponent::Update()
 	}
 }
 
-void PookaComponent::Render()
+void Enemies::PookaComponent::Render()
 {
 
 }
 
-void PookaComponent::NextStage()
+void Enemies::PookaComponent::NextStage()
 {
 	auto gameObject = GetGameObject();
 	if (gameObject.lock())
@@ -76,7 +76,7 @@ void PookaComponent::NextStage()
 	}
 }
 
-void PookaComponent::ResetStage()
+void Enemies::PookaComponent::ResetStage()
 {
 	m_Stage = 0;
 	auto gameObject = GetGameObject();

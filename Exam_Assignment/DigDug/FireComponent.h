@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
-namespace dae
+namespace Enemies
 {
 	class FireComponent final : public dae::BaseComponent
 	{

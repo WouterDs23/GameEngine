@@ -4,34 +4,34 @@
 #include "CollisionComponent.h"
 #include "Texture2D.h"
 
-dae::GhostComponent::GhostComponent():
+Enemies::GhostComponent::GhostComponent():
 	m_InGhostForm(false)
 {
 }
 
 
-dae::GhostComponent::~GhostComponent()
+Enemies::GhostComponent::~GhostComponent()
 {
 }
 
-void dae::GhostComponent::Initialize()
+void Enemies::GhostComponent::Initialize()
 {
 }
 
-void dae::GhostComponent::Update()
+void Enemies::GhostComponent::Update()
 {
 }
 
-void dae::GhostComponent::Render()
+void Enemies::GhostComponent::Render()
 {
 }
 
-void dae::GhostComponent::EnableGhostMode(bool enable)
+void Enemies::GhostComponent::EnableGhostMode(bool enable)
 {
 	auto actor = GetGameObject().lock();
 	if (actor)
 	{
-		auto collision = actor->GetComponent<CollisionComponent>().lock();
+		auto collision = actor->GetComponent<dae::CollisionComponent>().lock();
 		if (collision)
 		{
 			collision->EnableGhost(enable);
