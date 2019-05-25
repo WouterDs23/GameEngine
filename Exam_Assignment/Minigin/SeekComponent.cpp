@@ -168,9 +168,9 @@ std::vector<std::shared_ptr<dae::GameObject>> dae::SeekComponent::FindPath()
 			auto newNode = pCurrentNode.lock()->GetComponent<NodeComponent>();
 			auto CurrentConnection = pCurrentNode.lock()->GetComponent<ConnectionComponent>();
 			auto newObj = CurrentConnection.lock()->GetEndNode().lock();
-			if (newObj)
+			if (pCurrentNode.lock())
 			{
-				newNode = newObj->GetComponent<NodeComponent>();
+				newNode = pCurrentNode.lock()->GetComponent<NodeComponent>();
 			}
 
 			std::vector<std::weak_ptr<dae::GameObject>> vpConnections = newNode.lock()->GetConnections();

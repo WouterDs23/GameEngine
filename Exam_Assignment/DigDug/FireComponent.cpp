@@ -5,6 +5,7 @@
 #include "CollisionComponent.h"
 #include "MoveComponent.h"
 #include "FygarBehaviourh.h"
+#include "HealthComponent.h"
 
 Enemies::FireComponent::FireComponent(float collisionSizeX, float collisionSizeY,std::shared_ptr<dae::GameObject> firegun, std::weak_ptr<dae::GameObject> parent) :
 	m_FireGun(firegun),
@@ -27,70 +28,78 @@ void Enemies::FireComponent::Initialize()
 
 void Enemies::FireComponent::Update()
 {
-	if (m_FireGun.lock() && m_FireGun.lock()->GetDoRenderAndUpdate())
+	if (m_CanFire)
 	{
-		m_Timer += GameLifeSpan::deltaTime;
-		if (m_Timer >= 0.5f)
+		if (m_FireGun.lock() && m_FireGun.lock()->GetDoRenderAndUpdate())
 		{
-			m_Timer = 0.f;
-			auto move = m_FireGun.lock()->GetComponent<dae::MoveComponent>().lock();
-			auto col = m_FireGun.lock()->GetComponent<dae::CollisionComponent>().lock();
-			if (move && col)
+			m_Timer += GameLifeSpan::deltaTime;
+			if (m_Timer >= 0.5f)
 			{
-				if (m_FireGun.lock() && m_Parent.lock())
+				m_Timer = 0.f;
+				auto move = m_FireGun.lock()->GetComponent<dae::MoveComponent>().lock();
+				auto col = m_FireGun.lock()->GetComponent<dae::CollisionComponent>().lock();
+				if (move && col)
 				{
-					m_FireGun.lock()->SetDoRenderAndUpdate(false);
-					m_Timer = 0;
+					if (m_FireGun.lock() && m_Parent.lock())
+					{
+						m_FireGun.lock()->SetDoRenderAndUpdate(false);
+						m_Timer = 0;
+					}
 				}
 			}
-		}
-		else
-		{
-			auto move = m_FireGun.lock()->GetComponent<dae::MoveComponent>().lock();
-			auto col = m_FireGun.lock()->GetComponent<dae::CollisionComponent>().lock();
-			auto AI = m_Parent.lock()->GetComponent<dae::AIComponent>().lock();
-			auto moveParent = m_Parent.lock()->GetComponent<dae::MoveComponent>().lock();
-			if (move && col && moveParent)
+			else
 			{
-				move->MoveObject(moveParent->GetPrevSpeed().x, moveParent->GetPrevSpeed().y);
-			}
-			if (AI && col)
-			{
-				auto enemy = AI->GetEnemy();
-				if (col->CheckCollisionTopBottem(enemy, 0, true) || col->CheckCollisionLeftRight(enemy, 0, true))
+				auto move = m_FireGun.lock()->GetComponent<dae::MoveComponent>().lock();
+				auto col = m_FireGun.lock()->GetComponent<dae::CollisionComponent>().lock();
+				auto AI = m_Parent.lock()->GetComponent<dae::AIComponent>().lock();
+				auto moveParent = m_Parent.lock()->GetComponent<dae::MoveComponent>().lock();
+				if (move && col && moveParent)
 				{
-					if (move && col)
+					move->MoveObject(moveParent->GetPrevSpeed().x, moveParent->GetPrevSpeed().y);
+				}
+				if (AI && col)
+				{
+					auto enemy = AI->GetEnemy();
+					if (col->CheckCollisionTopBottem(enemy, 0, 0, true) || col->CheckCollisionLeftRight(enemy, 0, 0, true))
 					{
-						if (m_FireGun.lock() && m_Parent.lock())
+						auto health = enemy.lock()->GetComponent<HealthComponent>();
+						if (health.lock())
 						{
-							m_FireGun.lock()->SetDoRenderAndUpdate(false);
-							m_Timer = 0;
+							health.lock()->TakeDamage();
+						}
+						if (move && col)
+						{
+							if (m_FireGun.lock() && m_Parent.lock())
+							{
+								m_FireGun.lock()->SetDoRenderAndUpdate(false);
+								m_Timer = 0;
+							}
 						}
 					}
 				}
 			}
+
 		}
-		
-	}
-	else if (m_Parent.lock())
-	{
-		auto AI = m_Parent.lock()->GetComponent<dae::AIComponent>();
-		auto col = m_Parent.lock()->GetComponent<dae::CollisionComponent>();
-		if (AI.lock() && col.lock())
+		else if (m_Parent.lock())
 		{
-			if (col.lock()->CheckIfObjectInMe(m_CollisionSize,AI.lock()->GetEnemy()))
+			auto AI = m_Parent.lock()->GetComponent<dae::AIComponent>();
+			auto col = m_Parent.lock()->GetComponent<dae::CollisionComponent>();
+			if (AI.lock() && col.lock())
 			{
-				if (m_FireGun.lock() && !m_FireGun.lock()->GetDoRenderAndUpdate())
+				if (col.lock()->CheckIfObjectInMe(m_CollisionSize, AI.lock()->GetEnemy()))
 				{
-					m_FireGun.lock()->SetDoRenderAndUpdate(true);
-					if (m_Parent.lock())
+					if (m_FireGun.lock() && !m_FireGun.lock()->GetDoRenderAndUpdate())
 					{
-						m_Parent.lock()->SetState(std::make_shared<Fygar::ShootingState>());
-						m_FireGun.lock()->SetPosition(m_Parent.lock()->GetTransform().GetPosition().x, m_Parent.lock()->GetTransform().GetPosition().y);
+						m_FireGun.lock()->SetDoRenderAndUpdate(true);
+						if (m_Parent.lock())
+						{
+							m_Parent.lock()->SetState(std::make_shared<Fygar::ShootingState>());
+							m_FireGun.lock()->SetPosition(m_Parent.lock()->GetTransform().GetPosition().x, m_Parent.lock()->GetTransform().GetPosition().y);
+						}
 					}
 				}
+
 			}
-			
 		}
 	}
 }

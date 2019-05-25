@@ -114,9 +114,6 @@
     <ClInclude Include="GameLifeSpan.h">
       <Filter>Engine\SceneHelpers</Filter>
     </ClInclude>
-    <ClInclude Include="MapGenerator.h">
-      <Filter>Engine\SceneHelpers</Filter>
-    </ClInclude>
     <ClInclude Include="MoveComponent.h">
       <Filter>Engine\Components\GameElements</Filter>
     </ClInclude>
@@ -199,9 +196,6 @@
     </ClCompile>
     <ClCompile Include="CollisionComponent.cpp">
       <Filter>Engine\Components\GameElements</Filter>
-    </ClCompile>
-    <ClCompile Include="MapGenerator.cpp">
-      <Filter>Engine\SceneHelpers</Filter>
     </ClCompile>
     <ClCompile Include="MoveComponent.cpp">
       <Filter>Engine\Components\GameElements</Filter>

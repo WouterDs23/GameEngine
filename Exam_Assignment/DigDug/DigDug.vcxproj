@@ -180,9 +180,11 @@
     <ClInclude Include="GunComponent.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="MainCharComponent.h" />
+    <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="EnemyBehaviour.h" />
     <ClInclude Include="PookaComponent.h" />
+    <ClInclude Include="RockComponent.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +198,7 @@
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainCharComponent.cpp" />
+    <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="MiniginPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -204,6 +207,7 @@
     </ClCompile>
     <ClCompile Include="EnemyBehaviour.cpp" />
     <ClCompile Include="PookaComponent.cpp" />
+    <ClCompile Include="RockComponent.cpp" />
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

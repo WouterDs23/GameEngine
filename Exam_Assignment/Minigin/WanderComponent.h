@@ -31,11 +31,16 @@ namespace dae
 		};
 		void RandomDirCalc(Direction DontGo = Default);
 
+		int m_Tries{0};
 		bool m_DoWander;
 		bool m_WanderLeft;
 		bool m_WanderRight;
 		bool m_WanderTop;
 		bool m_WanderBottem;
+		bool m_TriedWanderLeft;
+		bool m_TriedWanderRight;
+		bool m_TriedWanderTop;
+		bool m_TriedWanderBottem;
 		std::unique_ptr<Commands> m_GoLeft;
 		std::unique_ptr<Commands> m_GoRight;
 		std::unique_ptr<Commands> m_GoUp;

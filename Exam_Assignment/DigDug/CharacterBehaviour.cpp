@@ -19,7 +19,7 @@ bool DigDug::IdleState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::wea
 		{
 			return input.lock()->sortCommand->execute(obj);
 		}
-		if (newState == "class Shoot")
+		if (newState == "class DigDug::Shoot")
 		{
 			obj.lock()->SetState(std::make_shared<ShootingState>());
 			return input.lock()->sortCommand->execute(obj);
@@ -47,7 +47,7 @@ bool DigDug::WalkingState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::
 		{
 			return input.lock()->sortCommand->execute(obj);
 		}
-		if (newState == "class Shoot")
+		if (newState == "class DigDug::Shoot")
 		{
 			obj.lock()->SetState(std::make_shared<ShootingState>());
 			return input.lock()->sortCommand->execute(obj);
@@ -78,7 +78,7 @@ bool DigDug::ShootingState::HandleInput(std::weak_ptr<dae::GameObject> obj, std:
 		{
 			return input.lock()->sortCommand->execute(obj);
 		}
-		if (currentState == "class ShootingState" && newState == "class Shoot")
+		if (currentState == "class DigDug::ShootingState" && newState == "class DigDug::Shoot")
 		{
 			auto gun = obj.lock()->GetComponent<GunComponent>().lock();
 			if (gun)

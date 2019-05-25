@@ -55,6 +55,7 @@ void Enemies::FygarComponent::Update()
 			if (lives == 0)
 			{
 				gameObject.lock()->SetDelete(true);
+				m_FireGun->SetDelete(true);
 			}
 		}
 	}

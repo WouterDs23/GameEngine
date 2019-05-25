@@ -24,6 +24,10 @@ void dae::Scene::Update()
 {
 	for(auto gameObject : m_Objects)
 	{
+		if (!gameObject)
+		{
+			continue;
+		}
 		if (gameObject->GetDelete())
 		{
 			m_Objects.erase(remove(m_Objects.begin(), m_Objects.end(), gameObject));
@@ -41,6 +45,10 @@ void dae::Scene::Render() const
 {
 	for (const auto gameObject : m_Objects)
 	{
+		if (!gameObject)
+		{
+			continue;
+		}
 		if (gameObject && gameObject->GetDoRenderAndUpdate())
 		{
 			gameObject->Render();

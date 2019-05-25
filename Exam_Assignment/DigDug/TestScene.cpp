@@ -15,6 +15,7 @@
 #include "CharacterBehaviour.h"
 #include "EnemyBehaviour.h"
 #include "FygarComponent.h"
+#include "RockComponent.h"
 
 
 dae::TestScene::TestScene(const std::string& name) :Scene(name)
@@ -35,12 +36,17 @@ void dae::TestScene::Initialize()
 	for (auto grid : m_GridTest)
 	{
 		Add(grid);
-		grids.push_back(grid);
+		auto comp = grid->GetComponent<Environment::RockComponent>();
+		if (comp.lock())
+		{
+			m_Rocks.push_back(grid);
+		}
+		else { grids.push_back(grid); }
+		
 	}
-	m_GridTest.clear();
 	m_Test = std::make_shared<GameObject>();
 	m_Test->SetTexture("dot.png");
-	m_Test->SetSize(25, 25);
+	m_Test->SetSize(30, 30);
 	m_Test->SetPosition(192.f, 228.f);
 	m_Test->AddComponent(std::make_shared<DigDug::MainCharComponent>(grids,Controllers::PLAYER01));
 	auto gun = std::make_shared<dae::GameObject>();
@@ -50,13 +56,14 @@ void dae::TestScene::Initialize()
 	gun->AddComponent(std::make_shared<dae::CollisionComponent>());
 	gun->SetSize(25, 25);
 	m_Test->AddComponent(std::make_shared<DigDug::GunComponent>(gun, m_Test));
+	auto obs = m_Test->GetComponent<CharacterComponent>().lock();
 	Add(m_Test);
 	Add(gun);
 
 	m_Pooka = std::make_shared<GameObject>();
 	m_Pooka->SetSize(25, 25);
 	m_Pooka->SetPosition(64.f, 160.f);
-	m_Pooka->AddComponent(std::make_shared<Enemies::PookaComponent>(grids));
+	m_Pooka->AddComponent(std::make_shared<Enemies::PookaComponent>(obs->GetObstacles()));
 	Add(m_Pooka);
 
 	gun = std::make_shared<dae::GameObject>();
@@ -67,20 +74,45 @@ void dae::TestScene::Initialize()
 	m_Fygar = std::make_shared<GameObject>();
 	m_Fygar->SetSize(25, 25);
 	m_Fygar->SetPosition(64.f, 480.f);
-	m_Fygar->AddComponent(std::make_shared<Enemies::FygarComponent>(grids, gun));
+	m_Fygar->AddComponent(std::make_shared<Enemies::FygarComponent>(obs->GetObstacles(), gun));
 	Add(m_Fygar);
 
 	m_Pooka->GetComponent<AIComponent>().lock()->SetEnemy(m_Test);
 	m_Fygar->GetComponent<AIComponent>().lock()->SetEnemy(m_Test);
 	m_Test->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Pooka);
 	m_Test->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Fygar);
+
+	for (auto rocks : m_Rocks)
+	{
+		auto comp = rocks.lock()->GetComponent<Environment::RockComponent>();
+		if (comp.lock())
+		{
+			comp.lock()->AddEnemy(m_Pooka);
+			comp.lock()->AddEnemy(m_Test);
+			comp.lock()->AddEnemy(m_Fygar);
+		}
+	}
+	if (obs)
+	{
+		for (auto rocks : m_Rocks)
+		{
+			if (rocks.lock())
+			{
+				auto comp = rocks.lock()->GetComponent<Environment::RockComponent>();
+				if (comp.lock())
+				{
+					comp.lock()->SetObstacles(grids);
+				}
+			}
+		}
+	}
 }
 
 void dae::TestScene::Update()
 {
 	Scene::Update();
 	if (m_Test)
-	{
+	{		
 		auto mainChar = m_Test->GetComponent<DigDug::MainCharComponent>().lock();
 		if (mainChar && mainChar->GetResetLevel())
 		{

@@ -2,6 +2,7 @@ e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\minigin.pch
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\minigin.pdb
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\minigin.idb
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\miniginpch.obj
+e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\textcomponent.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\solidcomponent.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\seekcomponent.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\scenemanager.obj
@@ -10,7 +11,6 @@ e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\resourcemanager.ob
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\renderer.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\movecomponent.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\minigin.obj
-e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\mapgenerator.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\log.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\inputmanager.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\gameobject.obj
@@ -26,7 +26,6 @@ e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\wandercomponent.ob
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\transform.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\texture2d.obj
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\textobject.obj
-e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\textcomponent.obj
 e:\daegameengine\gameengine\exam_assignment\x64\debug\minigin.lib
 e:\daegameengine\gameengine\exam_assignment\x64\debug\minigin.pdb
 e:\daegameengine\gameengine\exam_assignment\minigin\x64\debug\minigin.tlog\cl.command.1.tlog

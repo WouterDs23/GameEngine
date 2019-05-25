@@ -8,6 +8,9 @@
 #include "WanderComponent.h"
 #include "HealthComponent.h"
 #include "PookaComponent.h"
+#include "FygarBehaviourh.h"
+#include "FireComponent.h"
+#include "FygarComponent.h"
 
 bool Enemies::WanderState::HandleInput(std::weak_ptr<dae::GameObject>, std::weak_ptr<dae::Input>)
 {
@@ -18,7 +21,7 @@ void Enemies::WanderState::Update(std::weak_ptr<dae::GameObject> obj)
 {
 	if (m_EndTimer < 0.f)
 	{
-		m_EndTimer = float(rand() % 3) + 2;
+		m_EndTimer = float(rand() % 2) + 8;
 		if (obj.lock())
 		{
 			auto ghost = obj.lock()->GetComponent<Enemies::GhostComponent>();
@@ -136,6 +139,12 @@ void Enemies::EnemyHitState::Update(std::weak_ptr<dae::GameObject> obj)
 		auto seek = obj.lock()->GetComponent<dae::SeekComponent>().lock();
 		auto col = obj.lock()->GetComponent<dae::CollisionComponent>().lock();
 		auto AI = obj.lock()->GetComponent<dae::AIComponent>().lock();
+		auto fire = obj.lock()->GetComponent<FireComponent>().lock();
+		if (fire)
+		{
+			fire->CanFire(false);
+		}
+		obj.lock()->GetComponent<dae::WanderComponent>().lock()->StopWander();
 		if (seek && AI)
 		{
 			seek->SetTarget(std::make_shared<dae::GameObject>());
@@ -159,11 +168,22 @@ void Enemies::EnemyHitState::Update(std::weak_ptr<dae::GameObject> obj)
 		{
 			pooka->ResetStage();
 		}
+		auto fygar = obj.lock()->GetComponent<FygarComponent>().lock();
+		if (fygar)
+		{
+			fygar->ResetStage();
+		}
 		obj.lock()->SetState(std::make_shared<SeekState>());
 		auto col = obj.lock()->GetComponent<dae::CollisionComponent>().lock();
 		if (col)
 		{
 			col->DoCollision(true);
 		}
+		auto fire = obj.lock()->GetComponent<FireComponent>().lock();
+		if (fire)
+		{
+			fire->CanFire(false);
+		}
+
 	}
 }

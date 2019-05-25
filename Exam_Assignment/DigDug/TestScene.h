@@ -21,7 +21,7 @@ namespace dae
 		std::shared_ptr<dae::GameObject> m_Test;
 		std::shared_ptr<dae::GameObject> m_Pooka;
 		std::shared_ptr<dae::GameObject> m_Fygar;
-		//std::vector< std::shared_ptr<dae::GameObject>> m_GridTest;
+		std::vector< std::weak_ptr<dae::GameObject>> m_Rocks;
 		int m_GridSizeWidth{};
 		int m_GridSizeHeight{};
 		float m_GridWidth{};

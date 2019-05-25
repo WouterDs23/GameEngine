@@ -20,6 +20,8 @@ public:
 
 	void TakeDamage();
 
+	void InstaKillDamage();
+
 	void SetState(std::shared_ptr<dae::BaseState> state) { m_DamagedState = state; }
 
 	int GetLives() const { return m_Lives; }

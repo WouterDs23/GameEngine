@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Behaviour\Fygar">
       <UniqueIdentifier>{d7040f98-5beb-4f9f-b1bf-633fd6d3574d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Behaviour\Rock">
+      <UniqueIdentifier>{0944b15c-abf4-45e3-a714-b2dd795d39a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniginPCH.h">
@@ -71,6 +74,12 @@
     </ClInclude>
     <ClInclude Include="HealthComponent.h">
       <Filter>Source Files\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="MapGenerator.h">
+      <Filter>Source Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="RockComponent.h">
+      <Filter>Source Files\Behaviour\Rock</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +124,12 @@
     </ClCompile>
     <ClCompile Include="HealthComponent.cpp">
       <Filter>Source Files\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="MapGenerator.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="RockComponent.cpp">
+      <Filter>Source Files\Behaviour\Rock</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

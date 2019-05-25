@@ -29,12 +29,12 @@ void dae::CollisionComponent::Render()
 
 }
 
-bool dae::CollisionComponent::CheckCollisionTopBottem (std::weak_ptr<dae::GameObject> other, float offset, bool doDamage)const
+bool dae::CollisionComponent::CheckCollisionTopBottem (std::weak_ptr<dae::GameObject> other, float offsetX, float offsetY, bool overrideGhost)const
 {
-	if (other.lock() && (!m_InGhostForm || doDamage) && m_doCollision)
+	if (other.lock() && (!m_InGhostForm || overrideGhost) && m_doCollision)
 	{
 		auto compTest = other.lock()->GetComponent<CollisionComponent>().lock();
-		if (compTest && (compTest->GetIsObstacle() || doDamage))
+		if (compTest && (compTest->GetIsObstacle() || overrideGhost))
 		{
 			auto transO = other.lock()->GetTransform().GetPosition();
 			auto sizeO = other.lock()->GetTransform().GetSize();
@@ -42,37 +42,24 @@ bool dae::CollisionComponent::CheckCollisionTopBottem (std::weak_ptr<dae::GameOb
 			auto tranS = GetGameObject().lock()->GetTransform().GetPosition();
 			auto sizeS = GetGameObject().lock()->GetTransform().GetSize();
 			auto middleS = GetGameObject().lock()->GetTransform().GetMiddlePosition();
+			middleS.x += offsetX;
+			middleS.y += offsetY;
 
-			if (transO.y + sizeO.y < tranS.y + offset ||(tranS.y + sizeS.y)+ offset < transO.y)
+			if (transO.y + sizeO.y < tranS.y + offsetY ||(tranS.y + sizeS.y)+ offsetY < transO.y)
 			{
 				return false;
 			}
 
 			if (transO.x + sizeO.x > middleS.x && middleS.x > transO.x)
 			{
-				auto health = other.lock()->GetComponent<HealthComponent>();
-				if (health.lock() && doDamage)
-				{
-					health.lock()->TakeDamage();
-				}
 				return true;
 			}
 			if (transO.x + sizeO.x > middleS.x + ((sizeS.x/2.f)- (sizeS.x / 10)) && middleS.x + ((sizeS.x / 2.f) - (sizeS.x / 10)) > transO.x)
 			{
-				auto health = other.lock()->GetComponent<HealthComponent>();
-				if (health.lock() && doDamage)
-				{
-					health.lock()->TakeDamage();
-				}
 				return true;
 			}
 			if (transO.x + sizeO.x > middleS.x - ((sizeS.x / 2.f) - (sizeS.x/10)) && middleS.x -((sizeS.x / 2.f) - (sizeS.x / 10)) > transO.x)
 			{
-				auto health = other.lock()->GetComponent<HealthComponent>();
-				if (health.lock() && doDamage)
-				{
-					health.lock()->TakeDamage();
-				}
 				return true;
 			}
 			return false;
@@ -82,12 +69,12 @@ bool dae::CollisionComponent::CheckCollisionTopBottem (std::weak_ptr<dae::GameOb
 	return false;
 }
 
-bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::GameObject> other, float offset, bool doDamage)const
+bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::GameObject> other, float offsetX, float offsetY ,bool overrideGhost)const
 {
-	if (other.lock() && (!m_InGhostForm || doDamage) && m_doCollision)
+	if (other.lock() && (!m_InGhostForm || overrideGhost) && m_doCollision)
 	{
 		auto compTest = other.lock()->GetComponent<CollisionComponent>().lock();
-		if (compTest && (compTest->GetIsObstacle() || doDamage))
+		if (compTest && (compTest->GetIsObstacle()))
 		{
 			auto transO = other.lock()->GetTransform().GetPosition();
 			auto sizeO = other.lock()->GetTransform().GetSize();
@@ -96,36 +83,24 @@ bool dae::CollisionComponent::CheckCollisionLeftRight(std::weak_ptr<dae::GameObj
 			auto sizeS = GetGameObject().lock()->GetTransform().GetSize();
 			auto middleS = GetGameObject().lock()->GetTransform().GetMiddlePosition();
 
-			if (offset+(tranS.x + sizeS.x) < transO.x || transO.x + sizeO.x < tranS.x + offset)
+			middleS.x += offsetX;
+			middleS.y += offsetY;
+
+			if (offsetX +(tranS.x + sizeS.x) < transO.x || transO.x + sizeO.x < tranS.x + offsetX)
 			{
 				return false;
 			}
 
 			if (transO.y + sizeO.y > middleS.y && middleS.y > transO.y)
 			{
-				auto health = other.lock()->GetComponent<HealthComponent>();
-				if (health.lock() && doDamage)
-				{
-					health.lock()->TakeDamage();
-				}
 				return true;
 			}
 			if (transO.y + sizeO.y > middleS.y + ((sizeS.y / 2.f) - (sizeS.y / 10)) && middleS.y + ((sizeS.y / 2.f) - (sizeS.y / 10)) > transO.y)
 			{
-				auto health = other.lock()->GetComponent<HealthComponent>();
-				if (health.lock() && doDamage)
-				{
-					health.lock()->TakeDamage();
-				}
 				return true;
 			}
 			if (transO.y + sizeO.y > middleS.y - ((sizeS.y / 2.f) - (sizeS.y / 10)) && middleS.y - ((sizeS.y / 2.f) - (sizeS.y / 10)) > transO.y)
 			{
-				auto health = other.lock()->GetComponent<HealthComponent>();
-				if (health.lock() && doDamage)
-				{
-					health.lock()->TakeDamage();
-				}
 				return true;
 			}
 			return false;

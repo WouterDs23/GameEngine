@@ -17,6 +17,8 @@ namespace Enemies
 		void Update() override;
 		void Render() override;
 
+		void CanFire(bool canI) { m_CanFire = canI; }
+
 		FireComponent(const FireComponent& other) = delete;
 		FireComponent(FireComponent&& other) noexcept = delete;
 		FireComponent& operator=(const FireComponent& other) = delete;
@@ -26,6 +28,7 @@ namespace Enemies
 		std::weak_ptr<dae::GameObject> m_Parent{};
 		glm::vec3 m_CollisionSize{};
 		float m_Timer{};
+		bool m_CanFire{ true };
 	};
 }
 

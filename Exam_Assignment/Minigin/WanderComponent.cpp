@@ -8,7 +8,11 @@ dae::WanderComponent::WanderComponent(bool doWander)
 m_WanderLeft(false),
 m_WanderRight(false),
 m_WanderTop(false),
-m_WanderBottem(false)
+m_WanderBottem(false),
+m_TriedWanderLeft(false),
+m_TriedWanderTop(false),
+m_TriedWanderBottem(false),
+m_TriedWanderRight(false)
 {
 	m_GoLeft = std::make_unique<MoveLeft>();
 	m_GoRight = std::make_unique<MoveRight>();
@@ -33,6 +37,7 @@ void dae::WanderComponent::Update()
 		if (m_WanderLeft)
 		{
 			m_GoLeft->execute(GetGameObject());
+			m_Tries++;
 			if (actor)
 			{
 				auto comp = actor->GetComponent<AIComponent>().lock();
@@ -41,16 +46,27 @@ void dae::WanderComponent::Update()
 					if (comp->GetCollidedLeft())
 					{
 						m_WanderLeft = false;
+						m_TriedWanderLeft = false;
+						m_Tries = 0;
 						RandomDirCalc(Left);
+						return;
 					}
 					
 				}
 			}
+			if (m_Tries >= 5)
+			{
+				m_TriedWanderBottem = false;
+				m_TriedWanderTop = false;
+				m_TriedWanderRight = false;
+				m_TriedWanderLeft = false;
+			}			
 			return;
 		}
 		if (m_WanderRight)
 		{
 			m_GoRight->execute(GetGameObject());
+			m_Tries++;
 			if (actor)
 			{
 				auto comp = actor->GetComponent<AIComponent>().lock();
@@ -59,16 +75,27 @@ void dae::WanderComponent::Update()
 					if (comp->GetCollidedRight())
 					{
 						m_WanderRight = false;
+						m_TriedWanderRight = false;
+						m_Tries = 0;
 						RandomDirCalc(Right);
+						return;
 					}
 
 				}
+			}
+			if (m_Tries >= 5)
+			{
+				m_TriedWanderBottem = false;
+				m_TriedWanderTop = false;
+				m_TriedWanderRight = false;
+				m_TriedWanderLeft = false;
 			}
 			return;
 		}
 		if (m_WanderTop)
 		{
 			m_GoUp->execute(GetGameObject());
+			m_Tries++;
 			if (actor)
 			{
 				auto comp = actor->GetComponent<AIComponent>().lock();
@@ -77,16 +104,27 @@ void dae::WanderComponent::Update()
 					if (comp->GetCollidedTop())
 					{
 						m_WanderTop = false;
+						m_TriedWanderTop = false;
+						m_Tries = 0;
 						RandomDirCalc(Up);
+						return;
 					}
 
 				}
+			}
+			if (m_Tries >= 5)
+			{
+				m_TriedWanderBottem = false;
+				m_TriedWanderTop = false;
+				m_TriedWanderRight = false;
+				m_TriedWanderLeft = false;
 			}
 			return;
 		}
 		if (m_WanderBottem)
 		{
 			m_GoDown->execute(GetGameObject());
+			m_Tries++;
 			if (actor)
 			{
 				auto comp = actor->GetComponent<AIComponent>().lock();
@@ -95,10 +133,19 @@ void dae::WanderComponent::Update()
 					if (comp->GetCollidedBottom())
 					{
 						m_WanderBottem = false;
+						m_TriedWanderBottem = false;
+						m_Tries = 0;
 						RandomDirCalc(Down);
+						return;
 					}
-
 				}
+			}
+			if (m_Tries >= 5)
+			{
+				m_TriedWanderBottem = false;
+				m_TriedWanderTop = false;
+				m_TriedWanderRight = false;
+				m_TriedWanderLeft = false;
 			}
 			return;
 		}
@@ -133,25 +180,25 @@ void dae::WanderComponent::RandomDirCalc(Direction DontGo)
 			switch (randStartLoc)
 			{
 			case 0:
-				if (DontGo != Left)
+				if (DontGo != Left && !m_TriedWanderLeft)
 				{
 					m_WanderLeft = canGo = true;
 				}
 				break;
 			case 1:
-				if (DontGo != Right)
+				if (DontGo != Right && !m_TriedWanderRight)
 				{
 					m_WanderRight = canGo = true;
 				}				
 				break;
 			case 2:
-				if (DontGo != Up)
+				if (DontGo != Up && !m_TriedWanderTop)
 				{
 					m_WanderTop = canGo = true;
 				}
 				break;
 			case 3:
-				if (DontGo != Down)
+				if (DontGo != Down && !m_TriedWanderBottem)
 				{
 					m_WanderBottem = canGo = true;
 				}

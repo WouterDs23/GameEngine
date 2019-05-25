@@ -4,6 +4,7 @@
 #include "MoveComponent.h"
 #include "GameObject.h"
 #include "InputManager.h"
+#include "../DigDug/HealthComponent.h"
 
 dae::AIComponent::AIComponent()
 {
@@ -30,8 +31,15 @@ void dae::AIComponent::Update()
 		const auto col = obj->GetComponent<dae::CollisionComponent>().lock();
 		if (col)
 		{
-			col->CheckCollisionLeftRight(m_Enemy,0,true);
-			col->CheckCollisionTopBottem(m_Enemy, 0, true);
+			
+			if (col->CheckCollisionLeftRight(m_Enemy,0,0,true) || col->CheckCollisionTopBottem(m_Enemy, 0,0, true))
+			{
+				auto health = m_Enemy.lock()->GetComponent<HealthComponent>();
+				if (health.lock())
+				{
+					health.lock()->TakeDamage();
+				}
+			}			
 		}
 	}
 }

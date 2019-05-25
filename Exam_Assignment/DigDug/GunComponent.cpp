@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "CharacterBehaviour.h"
 #include "CharacterComponent.h"
+#include "HealthComponent.h"
 
 DigDug::GunComponent::GunComponent(std::shared_ptr<dae::GameObject> gun, std::weak_ptr<dae::GameObject> parent):
 m_Gun(gun),
@@ -66,8 +67,13 @@ void DigDug::GunComponent::Update()
 					auto enemies = character->GetEnemies();
 					for (auto enemy : enemies)
 					{
-						if (col->CheckCollisionTopBottem(enemy,0,true) || col->CheckCollisionLeftRight(enemy, 0, true))
+						if (col->CheckCollisionTopBottem(enemy, 0, 0, true) || col->CheckCollisionLeftRight(enemy, 0, 0, true))
 						{
+							auto health = enemy.lock()->GetComponent<HealthComponent>();
+							if (health.lock())
+							{
+								health.lock()->TakeDamage();
+							}
 							m_Hit = true;
 							m_HitTimer = 0.f;
 							m_Timer = 0.f;
@@ -136,9 +142,13 @@ void DigDug::GunComponent::DoPump()
 			auto enemies = character->GetEnemies();
 			for (auto enemy : enemies)
 			{
-				if (col->CheckCollisionTopBottem(enemy, 0, true) || col->CheckCollisionLeftRight(enemy, 0, true))
+				if (col->CheckCollisionTopBottem(enemy, 0, 0, true) || col->CheckCollisionLeftRight(enemy, 0, 0, true))
 				{
-				
+					auto health = enemy.lock()->GetComponent<HealthComponent>();
+					if (health.lock())
+					{
+						health.lock()->TakeDamage();
+					}
 				}
 
 			}
