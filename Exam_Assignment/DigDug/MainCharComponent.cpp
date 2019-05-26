@@ -29,6 +29,8 @@ void DigDug::MainCharComponent::Initialize()
 	{
 		gameObject.lock()->AddComponent(std::make_shared<dae::CharacterComponent>());
 		gameObject.lock()->AddComponent(std::make_shared<HealthComponent>(3));;
+		auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 30);
+		gameObject.lock()->AddComponent(std::make_shared<dae::TextComponent>(font));
 		auto& input = dae::InputManager::GetInstance();
 
 		if (m_Controller == dae::Controllers::PLAYER02)
@@ -48,6 +50,7 @@ void DigDug::MainCharComponent::Initialize()
 			input.ConfigButtons(std::make_shared<dae::Input>(34, GetGameObject().lock(), std::move(std::make_unique<dae::MoveRight>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_RIGHT, m_Controller));
 			input.ConfigButtons(std::make_shared<dae::Input>(35, GetGameObject().lock(), std::move(std::make_unique<Shoot>()), dae::Released, -1, XINPUT_GAMEPAD_A, m_Controller));
 			input.ConfigButtons(std::make_shared<dae::Input>(36, GetGameObject().lock(), std::move(std::make_unique<dae::ResetGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_B, m_Controller));
+			gameObject.lock()->GetComponent<dae::TextComponent>().lock()->SetPosition(30, 0);
 		}
 		else
 		{
@@ -66,15 +69,13 @@ void DigDug::MainCharComponent::Initialize()
 			input.ConfigButtons(std::make_shared<dae::Input>(4, GetGameObject().lock(), std::move(std::make_unique<dae::MoveRight>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_RIGHT, m_Controller));
 			input.ConfigButtons(std::make_shared<dae::Input>(28, GetGameObject().lock(), std::move(std::make_unique<Shoot>()), dae::Released, -1, XINPUT_GAMEPAD_A, m_Controller));
 			input.ConfigButtons(std::make_shared<dae::Input>(29, GetGameObject().lock(), std::move(std::make_unique<dae::ResetGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_B, m_Controller));
+			gameObject.lock()->GetComponent<dae::TextComponent>().lock()->SetPosition(0, 0);
 		}
 
 		
 		gameObject.lock()->GetComponent<dae::CharacterComponent>().lock()->SetObstacles(m_Obstacles);
 
 		gameObject.lock()->SetState(std::make_shared<IdleState>());
-		auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 30);
-		gameObject.lock()->AddComponent(std::make_shared<dae::TextComponent>(font));
-		gameObject.lock()->GetComponent<dae::TextComponent>().lock()->SetPosition(0, 0);
 		auto health = gameObject.lock()->GetComponent<HealthComponent>().lock();
 		health->SetState(std::make_shared<HitState>());
 		gameObject.lock()->GetComponent<dae::TextComponent>().lock()->SetText(std::to_string(health->GetLives()));

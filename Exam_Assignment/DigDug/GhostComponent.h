@@ -23,5 +23,6 @@ namespace Enemies
 	private:
 		bool m_InGhostForm;
 		std::string m_NonGhostTexture = "";
+		float m_WaitTimer{};
 	};
 }

@@ -263,7 +263,7 @@ void dae::FirstLevelVS::Reset()
 
 	if (m_Fygar)
 	{
-		m_Fygar->SetPosition(64.f, 480.f);
+		m_Fygar->SetPosition(70.f, 480.f);
 		m_Fygar->SetState(std::make_shared<Fygar::IdleState>());
 		m_Fygar->GetComponent<AIComponent>().lock()->SetObstacles(grids);
 		Add(m_Fygar->GetComponent<Enemies::FygarComponent>().lock()->GetGun());
@@ -302,7 +302,7 @@ void dae::FirstLevelVS::Reset()
 	
 
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
-	auto to = std::make_shared<TextObject>("DigDugFirstLevelDemo", font);
+	auto to = std::make_shared<TextObject>("DigDugFirstLevelVSDemo", font);
 	to->SetPosition(120, 0);
 	Add(to);
 

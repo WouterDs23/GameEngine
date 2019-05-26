@@ -104,6 +104,9 @@ void dae::FirstLevelTwoP::Initialize()
 	m_PlayerOne->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Pooka);
 	m_PlayerOne->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Fygar);
 
+	m_PlayerTwo->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Pooka);
+	m_PlayerTwo->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Fygar);
+
 	for (auto rocks : m_Rocks)
 	{
 		auto comp = rocks.lock()->GetComponent<Environment::RockComponent>();
@@ -111,6 +114,7 @@ void dae::FirstLevelTwoP::Initialize()
 		{
 			comp.lock()->AddEnemy(m_Pooka);
 			comp.lock()->AddEnemy(m_PlayerOne);
+			comp.lock()->AddEnemy(m_PlayerTwo);
 			comp.lock()->AddEnemy(m_Fygar);
 			comp.lock()->SetObstacles(grids);
 			scoreObserver->Attach(rocks.lock()->GetComponent<Environment::RockComponent>());
@@ -226,6 +230,11 @@ void dae::FirstLevelTwoP::Update()
 	{
 		auto health = m_PlayerOne->GetComponent<HealthComponent>();
 		auto health2 = m_PlayerTwo->GetComponent<HealthComponent>();
+		if (health.lock()->GetLives() == 0 && health2.lock()->GetLives() != 0)
+		{
+			m_Pooka->GetComponent<AIComponent>().lock()->SetEnemy(m_PlayerTwo);
+			m_Fygar->GetComponent<AIComponent>().lock()->SetEnemy(m_PlayerTwo);
+		}
 		if (health.lock()->GetLives() == 0 && health2.lock()->GetLives() == 0)
 		{
 			SceneManager::GetInstance().DeleteActiveScene();
@@ -298,7 +307,7 @@ void dae::FirstLevelTwoP::Reset()
 
 	if (m_PlayerTwo)
 	{
-		m_PlayerTwo->SetPosition(192.f, 228.f);
+		m_PlayerTwo->SetPosition(192.f, 192.f);
 		auto obs = m_PlayerTwo->GetComponent<HealthComponent>().lock();
 		obs->SetLives(3);
 		m_PlayerTwo->GetComponent<CharacterComponent>().lock()->SetObstacles(grids);
@@ -367,6 +376,9 @@ void dae::FirstLevelTwoP::Reset()
 	m_PlayerOne->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Pooka);
 	m_PlayerOne->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Fygar);
 
+	m_PlayerTwo->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Pooka);
+	m_PlayerTwo->GetComponent<CharacterComponent>().lock()->AddEnemy(m_Fygar);
+
 	for (auto rocks : m_Rocks)
 	{
 		auto comp = rocks.lock()->GetComponent<Environment::RockComponent>();
@@ -374,6 +386,7 @@ void dae::FirstLevelTwoP::Reset()
 		{
 			comp.lock()->AddEnemy(m_Pooka);
 			comp.lock()->AddEnemy(m_PlayerOne);
+			comp.lock()->AddEnemy(m_PlayerTwo);
 			comp.lock()->AddEnemy(m_Fygar);
 			comp.lock()->SetObstacles(grids);
 		}
@@ -381,7 +394,7 @@ void dae::FirstLevelTwoP::Reset()
 	
 
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
-	auto to = std::make_shared<TextObject>("DigDugFirstLevelDemo", font);
+	auto to = std::make_shared<TextObject>("DigDugFirstLevel2PDemo", font);
 	to->SetPosition(120, 0);
 	Add(to);
 
