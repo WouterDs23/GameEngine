@@ -8,6 +8,12 @@ namespace dae
 		MapGenerator();
 		~MapGenerator();
 		std::vector<std::shared_ptr<dae::GameObject>>CreateMap(std::string location, int nrOfTilesWidth, int nrOfTilesHeight);
+		std::vector<std::shared_ptr<dae::GameObject>> GetMap(std::string location, int nrOfTilesWidth, int nrOfTilesHeight)
+		{
+			m_Tiles.clear();
+			m_Rocks.clear();
+			return CreateMap(location,nrOfTilesWidth,nrOfTilesHeight);
+		}
 	private:
 		enum Type
 		{
@@ -19,6 +25,7 @@ namespace dae
 		void createConnections();
 		std::vector < std::shared_ptr<dae::GameObject>> m_Tiles;
 		std::vector < std::shared_ptr<dae::GameObject>> m_Rocks;
+		std::string m_Location{};
 	};
 }
 

@@ -6,6 +6,7 @@
 #include "MoveComponent.h"
 #include "FygarBehaviourh.h"
 #include "HealthComponent.h"
+#include "SeekComponent.h"
 
 Enemies::FireComponent::FireComponent(float collisionSizeX, float collisionSizeY,std::shared_ptr<dae::GameObject> firegun, std::weak_ptr<dae::GameObject> parent) :
 	m_FireGun(firegun),
@@ -84,7 +85,8 @@ void Enemies::FireComponent::Update()
 		{
 			auto AI = m_Parent.lock()->GetComponent<dae::AIComponent>();
 			auto col = m_Parent.lock()->GetComponent<dae::CollisionComponent>();
-			if (AI.lock() && col.lock())
+			auto seek = m_Parent.lock()->GetComponent<dae::SeekComponent>();
+			if (AI.lock() && col.lock() && seek.lock())
 			{
 				if (col.lock()->CheckIfObjectInMe(m_CollisionSize, AI.lock()->GetEnemy()))
 				{
@@ -107,4 +109,14 @@ void Enemies::FireComponent::Update()
 void Enemies::FireComponent::Render()
 {
 
+}
+
+void Enemies::FireComponent::Shoot()
+{
+	m_FireGun.lock()->SetDoRenderAndUpdate(true);
+	if (m_Parent.lock())
+	{
+		m_Parent.lock()->SetState(std::make_shared<Fygar::ShootingState>());
+		m_FireGun.lock()->SetPosition(m_Parent.lock()->GetTransform().GetPosition().x, m_Parent.lock()->GetTransform().GetPosition().y);
+	}
 }

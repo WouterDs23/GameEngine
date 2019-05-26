@@ -28,5 +28,6 @@ namespace Environment
 		std::vector<std::weak_ptr<dae::GameObject>> m_Enemies;
 		std::vector<std::weak_ptr<dae::GameObject>> m_Obstacles;
 		bool m_AvoidingCollision = false;
+		float m_Time{};
 	};
 }

@@ -173,13 +173,17 @@
   <ItemGroup>
     <ClInclude Include="CharacterBehaviour.h" />
     <ClInclude Include="CharacterComponent.h" />
+    <ClInclude Include="EndScreen.h" />
     <ClInclude Include="FireComponent.h" />
+    <ClInclude Include="FirstLevelTwoP.h" />
+    <ClInclude Include="FirstLevelVS.h" />
     <ClInclude Include="FygarBehaviourh.h" />
     <ClInclude Include="FygarComponent.h" />
     <ClInclude Include="GhostComponent.h" />
     <ClInclude Include="GunComponent.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="MainCharComponent.h" />
+    <ClInclude Include="MainMenuLevel.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="EnemyBehaviour.h" />
@@ -187,12 +191,18 @@
     <ClInclude Include="RockComponent.h" />
     <ClInclude Include="ScoreKeeper.h" />
     <ClInclude Include="ScoreObserver.h" />
-    <ClInclude Include="TestScene.h" />
+    <ClInclude Include="FirstLevel.h" />
+    <ClInclude Include="SecondLevel.h" />
+    <ClInclude Include="SecondLevelTwoP.h" />
+    <ClInclude Include="SecondLevelVS.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CharacterBehaviour.cpp" />
     <ClCompile Include="CharacterComponent.cpp" />
+    <ClCompile Include="EndScreen.cpp" />
     <ClCompile Include="FireComponent.cpp" />
+    <ClCompile Include="FirstLevelTwoP.cpp" />
+    <ClCompile Include="FirstLevelVS.cpp" />
     <ClCompile Include="FygarBehaviourh.cpp" />
     <ClCompile Include="FygarComponent.cpp" />
     <ClCompile Include="GhostComponent.cpp" />
@@ -200,6 +210,7 @@
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainCharComponent.cpp" />
+    <ClCompile Include="MainMenuLevel.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="MiniginPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -211,7 +222,10 @@
     <ClCompile Include="PookaComponent.cpp" />
     <ClCompile Include="RockComponent.cpp" />
     <ClCompile Include="ScoreObserver.cpp" />
-    <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="FirstLevel.cpp" />
+    <ClCompile Include="SecondLevel.cpp" />
+    <ClCompile Include="SecondLevelTwoP.cpp" />
+    <ClCompile Include="SecondLevelVS.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

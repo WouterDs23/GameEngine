@@ -5,5 +5,4 @@
 struct GameLifeSpan final
 {
 	inline static float deltaTime{};
-	inline static float elapsedTime{};
 };

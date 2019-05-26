@@ -36,7 +36,13 @@ void Environment::RockComponent::Update()
 		{
 			if (m_AvoidingCollision)
 			{
+				m_Time += GameLifeSpan::deltaTime;
+				if (m_Time < 0.3f)
+				{
+					return;
+				}
 				move->MoveObject(0, 1);
+				move->SetSpeed(2.f);
 				for (auto enemy : m_Enemies)
 				{
 					if (col->CheckCollisionTopBottem(enemy, 0, 0, true))

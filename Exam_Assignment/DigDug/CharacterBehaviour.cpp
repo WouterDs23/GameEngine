@@ -15,7 +15,7 @@ bool DigDug::IdleState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::wea
 			obj.lock()->SetState(std::make_shared<WalkingState>());
 			return input.lock()->sortCommand->execute(obj);
 		}
-		if (newState == "class dae::ExitGame")
+		if (newState == "class dae::ExitGame" || newState == "class dae::ResetGame")
 		{
 			return input.lock()->sortCommand->execute(obj);
 		}
@@ -43,7 +43,7 @@ bool DigDug::WalkingState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::
 		{
 			return input.lock()->sortCommand->execute(obj);
 		}
-		if (newState == "class dae::ExitGame")
+		if (newState == "class dae::ExitGame" || newState == "class dae::ResetGame")
 		{
 			return input.lock()->sortCommand->execute(obj);
 		}
@@ -74,7 +74,7 @@ bool DigDug::ShootingState::HandleInput(std::weak_ptr<dae::GameObject> obj, std:
 	{
 		std::string newState = typeid(input.lock()->sortCommand.operator*()).name();
 		std::string currentState = typeid(obj.lock()->GetState().lock().operator*()).name();
-		if (newState == "class dae::ExitGame")
+		if (newState == "class dae::ExitGame" || newState == "class dae::ResetGame")
 		{
 			return input.lock()->sortCommand->execute(obj);
 		}
@@ -109,7 +109,7 @@ bool DigDug::HitState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak
 	{
 		std::string newState = typeid(input.lock()->sortCommand.operator*()).name();
 		std::string currentState = typeid(obj.lock()->GetState().lock().operator*()).name();
-		if (newState == "class dae::ExitGame")
+		if (newState == "class dae::ExitGame" || newState == "class dae::ResetGame")
 		{
 			return input.lock()->sortCommand->execute(obj);
 		}

@@ -19,6 +19,10 @@ namespace Enemies
 
 		void CanFire(bool canI) { m_CanFire = canI; }
 
+		void SetGun(std::weak_ptr<dae::GameObject> gun) { m_FireGun = gun; }
+
+		void Shoot();
+
 		FireComponent(const FireComponent& other) = delete;
 		FireComponent(FireComponent&& other) noexcept = delete;
 		FireComponent& operator=(const FireComponent& other) = delete;

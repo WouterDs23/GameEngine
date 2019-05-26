@@ -11,7 +11,8 @@ namespace dae
 		PLAYER01 = 0,
 		PLAYER02 = 1,
 		PLAYER03 = 2,
-		PLAYER04 = 3
+		PLAYER04 = 3,
+		None = 500
 	};
 	enum InputTriggerState
 	{

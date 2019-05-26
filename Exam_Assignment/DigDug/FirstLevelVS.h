@@ -6,22 +6,22 @@ namespace dae
 {
 	class GameObject;
 	class TextObject;
-	class TestScene final :public dae::Scene
+	class FirstLevelVS final :public dae::Scene
 	{
 	public:
-		explicit TestScene(const std::string& name);
+		explicit FirstLevelVS(const std::string& name);
 
 		void Initialize() override;
 		void Update() override;
 		void Render() const override;
+		void Reset() override;
 
-
-		TestScene(const TestScene& other) = delete;
-		TestScene(TestScene&& other) = delete;
-		TestScene& operator=(const TestScene& other) = delete;
-		TestScene& operator=(TestScene&& other) = delete;
+		FirstLevelVS(const FirstLevelVS& other) = delete;
+		FirstLevelVS(FirstLevelVS&& other) = delete;
+		FirstLevelVS& operator=(const FirstLevelVS& other) = delete;
+		FirstLevelVS& operator=(FirstLevelVS&& other) = delete;
 	private:
-		std::shared_ptr<dae::GameObject> m_Test;
+		std::shared_ptr<dae::GameObject> m_PlayerOne;
 		std::shared_ptr<dae::GameObject> m_Pooka;
 		std::shared_ptr<dae::GameObject> m_Fygar;
 		std::vector< std::weak_ptr<dae::GameObject>> m_Rocks;

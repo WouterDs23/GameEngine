@@ -34,6 +34,12 @@
     <Filter Include="Source Files\Behaviour\Rock">
       <UniqueIdentifier>{0944b15c-abf4-45e3-a714-b2dd795d39a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Scene\FirstLevel">
+      <UniqueIdentifier>{4e2f1687-fa91-470d-8328-05f5761d56d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene\SecondLevel">
+      <UniqueIdentifier>{53c7c2fc-58cf-41b2-8c89-513e4c01188a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniginPCH.h">
@@ -41,9 +47,6 @@
     </ClInclude>
     <ClInclude Include="GhostComponent.h">
       <Filter>Source Files\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="TestScene.h">
-      <Filter>Source Files\Scene</Filter>
     </ClInclude>
     <ClInclude Include="CharacterComponent.h">
       <Filter>Source Files\Behaviour\MainCharacter</Filter>
@@ -87,13 +90,34 @@
     <ClInclude Include="ScoreKeeper.h">
       <Filter>Source Files\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="MainMenuLevel.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="EndScreen.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstLevelTwoP.h">
+      <Filter>Source Files\Scene\FirstLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstLevelVS.h">
+      <Filter>Source Files\Scene\FirstLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstLevel.h">
+      <Filter>Source Files\Scene\FirstLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="SecondLevel.h">
+      <Filter>Source Files\Scene\SecondLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="SecondLevelTwoP.h">
+      <Filter>Source Files\Scene\SecondLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="SecondLevelVS.h">
+      <Filter>Source Files\Scene\SecondLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GhostComponent.cpp">
       <Filter>Source Files\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="TestScene.cpp">
-      <Filter>Source Files\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\Engine</Filter>
@@ -139,6 +163,30 @@
     </ClCompile>
     <ClCompile Include="ScoreObserver.cpp">
       <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuLevel.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="EndScreen.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstLevelTwoP.cpp">
+      <Filter>Source Files\Scene\FirstLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstLevelVS.cpp">
+      <Filter>Source Files\Scene\FirstLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstLevel.cpp">
+      <Filter>Source Files\Scene\FirstLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="SecondLevel.cpp">
+      <Filter>Source Files\Scene\SecondLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="SecondLevelTwoP.cpp">
+      <Filter>Source Files\Scene\SecondLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="SecondLevelVS.cpp">
+      <Filter>Source Files\Scene\SecondLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

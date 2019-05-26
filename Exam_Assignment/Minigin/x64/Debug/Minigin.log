@@ -1,32 +1,4 @@
-﻿  MiniginPCH.cpp
-  AIComponent.cpp
-  BaseComponent.cpp
-  CollisionComponent.cpp
-  Commands.cpp
-  ConnectionComponent.cpp
-  FleeComponent.cpp
-  Font.cpp
-  FPSComponent.cpp
-  GameObject.cpp
-  InputManager.cpp
-  Log.cpp
-  Minigin.cpp
-  MoveComponent.cpp
-  Observer.cpp
-  Renderer.cpp
-  ResourceManager.cpp
-  Scene.cpp
-  SceneManager.cpp
-  SeekComponent.cpp
-  SolidComponent.cpp
-  Generating Code...
-  Compiling...
-  TextComponent.cpp
-  TextObject.cpp
-  Texture2D.cpp
-  Transform.cpp
-  WanderComponent.cpp
-  Generating Code...
+﻿  SceneManager.cpp
   Minigin.vcxproj -> E:\DAEGameEngine\GameEngine\Exam_Assignment\x64\Debug\Minigin.lib
   E:\DAEGameEngine\GameEngine\Exam_Assignment\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied

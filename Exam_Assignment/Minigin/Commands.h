@@ -17,6 +17,16 @@ namespace dae
 		virtual bool execute(std::weak_ptr<dae::GameObject>) override { return true; }
 	};
 
+	class ResetGame final : public Commands
+	{
+	public:
+		virtual bool execute(std::weak_ptr<dae::GameObject>) override
+		{
+			SceneManager::GetInstance().ResetScene();
+			return false;
+		}
+	};
+
 	class MoveLeft final : public dae::Commands
 	{
 	public:

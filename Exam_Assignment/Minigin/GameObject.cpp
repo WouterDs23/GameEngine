@@ -10,6 +10,7 @@ bool dae::GameObject::HandleInput(std::weak_ptr<dae::Input> command)
 	{
 		return m_State->HandleInput(shared_from_this(), command);
 	}
+	else { return command.lock()->sortCommand->execute(shared_from_this()); }
 	return false;
 }
 

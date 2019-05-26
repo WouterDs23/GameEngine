@@ -36,9 +36,8 @@ void dae::Minigin::Initialize()
  * Code constructing the scene world starts here
  */
 void dae::Minigin::LoadGame() const
-{
-	SceneManager::GetInstance().CreateScene("Demo", SceneManager::TestScene);
-
+{	
+	SceneManager::GetInstance().CreateScene("MainMenu", SceneManager::MainMenu);
 }
 
 void dae::Minigin::Cleanup()

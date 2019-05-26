@@ -19,6 +19,19 @@ dae::MapGenerator::~MapGenerator()
 
 std::vector<std::shared_ptr<dae::GameObject>> dae::MapGenerator::CreateMap(std::string location, int nrOfTilesWidth, int nrOfTilesHeight)
 {
+	if (m_Tiles.size() != 0)
+	{
+		if (m_Location == location)
+		{
+			return  m_Tiles;
+		}
+		else
+		{
+			m_Tiles.clear();
+			m_Rocks.clear();
+		}
+		
+	}
 	char tile{};
 	std::ifstream mapFile;
 	mapFile.open(location);
@@ -50,6 +63,7 @@ std::vector<std::shared_ptr<dae::GameObject>> dae::MapGenerator::CreateMap(std::
 	}
 	createConnections();
 	m_Tiles.insert(m_Tiles.end(), m_Rocks.begin(), m_Rocks.end());
+	m_Location = location;
 	return  m_Tiles;
 }
 

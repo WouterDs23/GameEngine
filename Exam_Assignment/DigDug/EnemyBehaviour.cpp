@@ -42,8 +42,7 @@ void Enemies::WanderState::Update(std::weak_ptr<dae::GameObject> obj)
 	m_Timer += GameLifeSpan::deltaTime;
 	
 	if (m_Timer >= m_EndTimer)
-	{
-		
+	{		
 		if (obj.lock())
 		{
 			obj.lock()->SetState(std::make_shared<GhostState>());
@@ -154,7 +153,11 @@ void Enemies::EnemyHitState::Update(std::weak_ptr<dae::GameObject> obj)
 		{
 			fire->CanFire(false);
 		}
-		obj.lock()->GetComponent<dae::WanderComponent>().lock()->StopWander();
+		auto wander = obj.lock()->GetComponent<dae::WanderComponent>().lock();
+		if (wander)
+		{
+			wander->StopWander();
+		}
 		if (seek && AI)
 		{
 			seek->SetTarget(std::make_shared<dae::GameObject>());

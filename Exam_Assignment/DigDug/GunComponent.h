@@ -19,6 +19,8 @@ namespace DigDug
 		void Update() override;
 		void Render() override;
 
+		std::shared_ptr<dae::GameObject> GetGun() const { return m_Gun; }
+
 		void Shoot(float x, float y);
 		void DoPump();
 	private:

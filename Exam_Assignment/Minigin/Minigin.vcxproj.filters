@@ -96,9 +96,6 @@
     <ClInclude Include="Commands.h">
       <Filter>Engine\SceneHelpers</Filter>
     </ClInclude>
-    <ClInclude Include="FleeComponent.h">
-      <Filter>Engine\Components\GameElements</Filter>
-    </ClInclude>
     <ClInclude Include="SeekComponent.h">
       <Filter>Engine\Components\GameElements</Filter>
     </ClInclude>
@@ -187,9 +184,6 @@
     </ClCompile>
     <ClCompile Include="Commands.cpp">
       <Filter>Engine\SceneHelpers</Filter>
-    </ClCompile>
-    <ClCompile Include="FleeComponent.cpp">
-      <Filter>Engine\Components\GameElements</Filter>
     </ClCompile>
     <ClCompile Include="SeekComponent.cpp">
       <Filter>Engine\Components\GameElements</Filter>

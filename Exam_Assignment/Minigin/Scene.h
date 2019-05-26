@@ -12,6 +12,13 @@ namespace dae
 
 		void Add(const std::shared_ptr<SceneObject>& object);
 
+		std::string GetName() const { return m_Name; }
+
+		virtual void Reset()
+		{
+			m_Objects.clear();
+		};
+
 		virtual void Initialize();
 		virtual void Update();
 		virtual void Render() const;

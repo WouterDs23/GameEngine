@@ -3,6 +3,7 @@
 #include "Font.h"
 #include "TextComponent.h"
 #include "GameObject.h"
+#include "Renderer.h"
 
 dae::FPSComponent::FPSComponent(std::shared_ptr<dae::Font> font) :
 	m_FpsCount(0),
@@ -11,6 +12,7 @@ dae::FPSComponent::FPSComponent(std::shared_ptr<dae::Font> font) :
 	
 {
 	m_TextComponent = std::make_shared<TextComponent>(font);
+	m_Size = font->GetSize();
 }
 
 
@@ -21,6 +23,7 @@ dae::FPSComponent::~FPSComponent()
 void dae::FPSComponent::Initialize()
 {
 	m_pGameObject.lock()->AddComponent(m_TextComponent);
+	m_TextComponent->SetPosition(0, Renderer::GetInstance().GetHeight() - m_Size);
 }
 
 void dae::FPSComponent::Update()

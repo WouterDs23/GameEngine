@@ -7,6 +7,7 @@ namespace dae
 	{
 	public:
 		TTF_Font* GetFont() const;
+		unsigned int GetSize() { return m_Size; }
 		explicit Font(const std::string& fullPath, unsigned int size);
 		~Font();
 
@@ -16,7 +17,7 @@ namespace dae
 		Font & operator= (const Font &&) = delete;
 	private:
 		TTF_Font* mFont;
-		unsigned int mSize;
+		unsigned int m_Size;
 	};
 
 }

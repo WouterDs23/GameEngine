@@ -1,8 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
 #include "InputManager.h"
-#include "BaseState.h"
-#include "Subject.h"
 
 namespace DigDug
 {

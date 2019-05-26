@@ -19,9 +19,10 @@ namespace dae
 		void Update() override;
 		void Render() override;
 	private:
-		int m_FPS;
-		float m_FpsTimer;
-		int m_FpsCount;
 		std::shared_ptr <TextComponent>  m_TextComponent;
+		float m_FpsTimer;
+		int m_FPS;
+		int m_FpsCount;
+		unsigned int m_Size{};
 	};
 }

@@ -26,6 +26,16 @@ namespace Enemies
 		void Update(std::weak_ptr<dae::GameObject>) override;
 	};
 
+	/*class RunAwayState final : public dae::BaseState
+	{
+	public:
+		RunAwayState() = default;
+		~RunAwayState() override = default;
+
+		bool HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input) override;
+		void Update(std::weak_ptr<dae::GameObject>) override;
+	};*/
+
 	class GhostState final : public dae::BaseState
 	{
 	public:
