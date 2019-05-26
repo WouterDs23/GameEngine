@@ -8,6 +8,7 @@
 #include "../DigDug/SecondLevel.h"
 #include "../DigDug/SecondLevelVS.h"
 #include "../DigDug/SecondLevelTwoP.h"
+#include "../DigDug/EndScreen.h"
 
 
 void dae::SceneManager::Update()
@@ -52,6 +53,10 @@ void dae::SceneManager::CreateScene(const std::string& name, TypeOfScene type)
 		m_Scenes.push_back(std::make_shared<dae::SecondLevelVS>(name));
 		m_Scenes.back()->Initialize();
 		break;
+	case EndScreen:
+		m_Scenes.push_back(std::make_shared<dae::EndScreen>(name));
+		m_Scenes.back()->Initialize();
+		break;
 	default:
 		m_Scenes.push_back(std::make_shared<Scene>(name));
 		m_Scenes.back()->Initialize();
@@ -81,5 +86,6 @@ void dae::SceneManager::ResetScene()
 
 void dae::SceneManager::DeleteActiveScene()
 {
+	m_Scenes.clear();
 	m_ActiveScene.reset();
 }

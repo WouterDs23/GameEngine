@@ -131,6 +131,16 @@ void DigDug::HitState::Update(std::weak_ptr<dae::GameObject> obj)
 
 bool DigDug::DeadState::HandleInput(std::weak_ptr<dae::GameObject> obj, std::weak_ptr<dae::Input> input)
 {
+	if (input.lock() && obj.lock())
+	{
+		std::string newState = typeid(input.lock()->sortCommand.operator*()).name();
+		std::string currentState = typeid(obj.lock()->GetState().lock().operator*()).name();
+		if (newState == "class dae::ExitGame" || newState == "class dae::ResetGame")
+		{
+			return input.lock()->sortCommand->execute(obj);
+		}
+	}
+	return false;
 	return false;
 }
 

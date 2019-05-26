@@ -13,8 +13,6 @@ dae::EndScreen::EndScreen(const std::string& name) :Scene(name)
 
 void dae::EndScreen::Initialize()
 {
-	ScoreKeeper::GetInstance().ResetScore();
-
 	m_pBackGround = std::make_shared<GameObject>();
 	m_pBackGround->SetTexture("background.jpg");
 	Add(m_pBackGround);

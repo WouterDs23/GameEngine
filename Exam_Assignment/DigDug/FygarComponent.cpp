@@ -25,6 +25,7 @@ void Enemies::FygarComponent::Initialize()
 	auto gameObj = GetGameObject().lock();
 	if (gameObj)
 	{
+		gameObj->AddComponent(std::make_shared<dae::AIComponent>());
 		auto& input = dae::InputManager::GetInstance();
 		if (m_Controller == dae::Controllers::None)
 		{
@@ -53,7 +54,6 @@ void Enemies::FygarComponent::Initialize()
 			input.ConfigButtons(std::make_shared<dae::Input>(27, GetGameObject().lock(), std::move(std::make_unique<dae::ResetGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_B, m_Controller));
 			gameObj->SetState(std::make_shared<Fygar::IdleState>());
 		}
-		gameObj->AddComponent(std::make_shared<dae::AIComponent>());
 		gameObj->AddComponent(std::make_shared<Enemies::GhostComponent>("Fygar.png"));
 		gameObj->AddComponent(std::make_shared<Enemies::FireComponent>(gameObj->GetTransform().GetSize().x*2.5f, gameObj->GetTransform().GetSize().y * 2.5f,m_FireGun, gameObj));
 		gameObj->AddComponent(std::make_shared<HealthComponent>(4));
@@ -81,9 +81,9 @@ void Enemies::FygarComponent::Update()
 			int lives = health->GetLives();
 			if (lives == 0)
 			{
-				Notify(gameObject);
 				gameObject.lock()->SetDelete(true);
 				m_FireGun->SetDelete(true);
+				Notify(gameObject);
 			}
 		}
 	}

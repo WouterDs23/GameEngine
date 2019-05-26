@@ -62,15 +62,15 @@ void dae::MainMenuLevel::Initialize()
 	Add(m_Quit);
 
 	auto& input = dae::InputManager::GetInstance();
-	input.ConfigButtons(std::make_shared<dae::Input>(0, m_pBackGround, std::move(std::make_unique<dae::ExitGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_Y, Controllers::PLAYER01));
-	input.ConfigButtons(std::make_shared<dae::Input>(1, m_pBackGround, std::move(std::make_unique<dae::NormalGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_A, Controllers::PLAYER01));
-	input.ConfigButtons(std::make_shared<dae::Input>(2, m_pBackGround, std::move(std::make_unique<dae::TwoPlayerGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_X, Controllers::PLAYER01));
-	input.ConfigButtons(std::make_shared<dae::Input>(3, m_pBackGround, std::move(std::make_unique<dae::VersusGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_B, Controllers::PLAYER01));
+	input.ConfigButtons(std::make_shared<dae::Input>(0, m_pBackGround, std::move(std::make_unique<dae::ExitGame>()), dae::Released, -1, XINPUT_GAMEPAD_Y, Controllers::PLAYER01));
+	input.ConfigButtons(std::make_shared<dae::Input>(1, m_pBackGround, std::move(std::make_unique<dae::NormalGame>()), dae::Released, -1, XINPUT_GAMEPAD_A, Controllers::PLAYER01));
+	input.ConfigButtons(std::make_shared<dae::Input>(2, m_pBackGround, std::move(std::make_unique<dae::TwoPlayerGame>()), dae::Released, -1, XINPUT_GAMEPAD_X, Controllers::PLAYER01));
+	input.ConfigButtons(std::make_shared<dae::Input>(3, m_pBackGround, std::move(std::make_unique<dae::VersusGame>()), dae::Released, -1, XINPUT_GAMEPAD_B, Controllers::PLAYER01));
 
-	input.ConfigButtons(std::make_shared<dae::Input>(4, m_pBackGround, std::move(std::make_unique<dae::ExitGame>()), dae::Pressed, 'Q', 0, Controllers::PLAYER01));
-	input.ConfigButtons(std::make_shared<dae::Input>(5, m_pBackGround, std::move(std::make_unique<dae::NormalGame>()), dae::Pressed, 'W', 0, Controllers::PLAYER01));
-	input.ConfigButtons(std::make_shared<dae::Input>(6, m_pBackGround, std::move(std::make_unique<dae::TwoPlayerGame>()), dae::Pressed, 'E', 0, Controllers::PLAYER01));
-	input.ConfigButtons(std::make_shared<dae::Input>(7, m_pBackGround, std::move(std::make_unique<dae::VersusGame>()), dae::Pressed, 'R', 0, Controllers::PLAYER01));
+	input.ConfigButtons(std::make_shared<dae::Input>(4, m_pBackGround, std::move(std::make_unique<dae::ExitGame>()), dae::Released, 'Q', 0, Controllers::PLAYER01));
+	input.ConfigButtons(std::make_shared<dae::Input>(5, m_pBackGround, std::move(std::make_unique<dae::NormalGame>()), dae::Released, 'W', 0, Controllers::PLAYER01));
+	input.ConfigButtons(std::make_shared<dae::Input>(6, m_pBackGround, std::move(std::make_unique<dae::TwoPlayerGame>()), dae::Released, 'E', 0, Controllers::PLAYER01));
+	input.ConfigButtons(std::make_shared<dae::Input>(7, m_pBackGround, std::move(std::make_unique<dae::VersusGame>()), dae::Released, 'R', 0, Controllers::PLAYER01));
 }
 
 void dae::MainMenuLevel::Update()

@@ -30,13 +30,6 @@ void DigDug::MainCharComponent::Initialize()
 		gameObject.lock()->AddComponent(std::make_shared<dae::CharacterComponent>());
 		gameObject.lock()->AddComponent(std::make_shared<HealthComponent>(3));;
 		auto& input = dae::InputManager::GetInstance();
-		input.ConfigButtons(std::make_shared<dae::Input>(0, GetGameObject().lock(), std::move(std::make_unique<dae::ExitGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_Y, m_Controller));
-		input.ConfigButtons(std::make_shared<dae::Input>(1, GetGameObject().lock(), std::move(std::make_unique<dae::MoveUp>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_UP, m_Controller));
-		input.ConfigButtons(std::make_shared<dae::Input>(2, GetGameObject().lock(), std::move(std::make_unique<dae::MoveDown>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_DOWN, m_Controller));
-		input.ConfigButtons(std::make_shared<dae::Input>(3, GetGameObject().lock(), std::move(std::make_unique<dae::MoveLeft>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_LEFT, m_Controller));
-		input.ConfigButtons(std::make_shared<dae::Input>(4, GetGameObject().lock(), std::move(std::make_unique<dae::MoveRight>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_RIGHT, m_Controller));
-		input.ConfigButtons(std::make_shared<dae::Input>(28, GetGameObject().lock(), std::move(std::make_unique<Shoot>()), dae::Pressed, -1, XINPUT_GAMEPAD_A, m_Controller));
-		input.ConfigButtons(std::make_shared<dae::Input>(29, GetGameObject().lock(), std::move(std::make_unique<dae::ResetGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_B, m_Controller));
 
 		if (m_Controller == dae::Controllers::PLAYER02)
 		{
@@ -47,6 +40,14 @@ void DigDug::MainCharComponent::Initialize()
 			input.ConfigButtons(std::make_shared<dae::Input>(16, GetGameObject().lock(), std::move(std::make_unique<dae::MoveRight>()), dae::Pressed, VK_RIGHT, 0, m_Controller));
 			input.ConfigButtons(std::make_shared<dae::Input>(17, GetGameObject().lock(), std::move(std::make_unique<Shoot>()), dae::Released, 'M', 0, m_Controller));
 			input.ConfigButtons(std::make_shared<dae::Input>(18, GetGameObject().lock(), std::move(std::make_unique<dae::ResetGame>()), dae::Pressed, 'R', 0, m_Controller));
+
+			input.ConfigButtons(std::make_shared<dae::Input>(30, GetGameObject().lock(), std::move(std::make_unique<dae::ExitGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_Y, m_Controller));
+			input.ConfigButtons(std::make_shared<dae::Input>(31, GetGameObject().lock(), std::move(std::make_unique<dae::MoveUp>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_UP, m_Controller));
+			input.ConfigButtons(std::make_shared<dae::Input>(32, GetGameObject().lock(), std::move(std::make_unique<dae::MoveDown>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_DOWN, m_Controller));
+			input.ConfigButtons(std::make_shared<dae::Input>(33, GetGameObject().lock(), std::move(std::make_unique<dae::MoveLeft>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_LEFT, m_Controller));
+			input.ConfigButtons(std::make_shared<dae::Input>(34, GetGameObject().lock(), std::move(std::make_unique<dae::MoveRight>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_RIGHT, m_Controller));
+			input.ConfigButtons(std::make_shared<dae::Input>(35, GetGameObject().lock(), std::move(std::make_unique<Shoot>()), dae::Released, -1, XINPUT_GAMEPAD_A, m_Controller));
+			input.ConfigButtons(std::make_shared<dae::Input>(36, GetGameObject().lock(), std::move(std::make_unique<dae::ResetGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_B, m_Controller));
 		}
 		else
 		{
@@ -57,6 +58,14 @@ void DigDug::MainCharComponent::Initialize()
 			input.ConfigButtons(std::make_shared<dae::Input>(9, GetGameObject().lock(), std::move(std::make_unique<dae::MoveRight>()), dae::Pressed, 'D', 0, m_Controller));
 			input.ConfigButtons(std::make_shared<dae::Input>(10, GetGameObject().lock(), std::move(std::make_unique<Shoot>()), dae::Released, 'E', 0, m_Controller));
 			input.ConfigButtons(std::make_shared<dae::Input>(11, GetGameObject().lock(), std::move(std::make_unique<dae::ResetGame>()), dae::Pressed, 'R', 0, m_Controller));
+
+			input.ConfigButtons(std::make_shared<dae::Input>(0, GetGameObject().lock(), std::move(std::make_unique<dae::ExitGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_Y, m_Controller));
+			input.ConfigButtons(std::make_shared<dae::Input>(1, GetGameObject().lock(), std::move(std::make_unique<dae::MoveUp>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_UP, m_Controller));
+			input.ConfigButtons(std::make_shared<dae::Input>(2, GetGameObject().lock(), std::move(std::make_unique<dae::MoveDown>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_DOWN, m_Controller));
+			input.ConfigButtons(std::make_shared<dae::Input>(3, GetGameObject().lock(), std::move(std::make_unique<dae::MoveLeft>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_LEFT, m_Controller));
+			input.ConfigButtons(std::make_shared<dae::Input>(4, GetGameObject().lock(), std::move(std::make_unique<dae::MoveRight>()), dae::Pressed, -1, XINPUT_GAMEPAD_DPAD_RIGHT, m_Controller));
+			input.ConfigButtons(std::make_shared<dae::Input>(28, GetGameObject().lock(), std::move(std::make_unique<Shoot>()), dae::Released, -1, XINPUT_GAMEPAD_A, m_Controller));
+			input.ConfigButtons(std::make_shared<dae::Input>(29, GetGameObject().lock(), std::move(std::make_unique<dae::ResetGame>()), dae::Pressed, -1, XINPUT_GAMEPAD_B, m_Controller));
 		}
 
 		

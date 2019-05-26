@@ -131,12 +131,22 @@ void dae::FirstLevelVS::Update()
 			{
 				m_Pooka->SetPosition(64.f, 160.f);
 				m_Pooka->SetState(std::make_shared<Enemies::WanderState>());
+				auto pooka = m_Pooka->GetComponent<Enemies::PookaComponent>();
+				if (pooka.lock())
+				{
+					pooka.lock()->ResetStage();
+				}
 			}
 
 			if (m_Fygar)
 			{
 				m_Fygar->SetPosition(70.f, 480.f);
 				m_Fygar->SetState(std::make_shared<Fygar::IdleState>());
+				auto fygar = m_Fygar->GetComponent<Enemies::FygarComponent>();
+				if (fygar.lock())
+				{
+					fygar.lock()->ResetStage();
+				}
 			}
 		}
 	}
@@ -159,6 +169,16 @@ void dae::FirstLevelVS::Update()
 		if (health.lock()->GetLives() == 0)
 		{
 			m_Fygar.reset();
+		}
+	}
+
+	if (m_PlayerOne)
+	{
+		auto health = m_PlayerOne->GetComponent<HealthComponent>();
+		if (health.lock()->GetLives() == 0)
+		{
+			SceneManager::GetInstance().DeleteActiveScene();
+			SceneManager::GetInstance().CreateScene("EndScreen", SceneManager::EndScreen);
 		}
 	}
 
@@ -244,7 +264,7 @@ void dae::FirstLevelVS::Reset()
 	if (m_Fygar)
 	{
 		m_Fygar->SetPosition(64.f, 480.f);
-		m_Fygar->SetState(std::make_shared<Enemies::WanderState>());
+		m_Fygar->SetState(std::make_shared<Fygar::IdleState>());
 		m_Fygar->GetComponent<AIComponent>().lock()->SetObstacles(grids);
 		Add(m_Fygar->GetComponent<Enemies::FygarComponent>().lock()->GetGun());
 		Add(m_Fygar);

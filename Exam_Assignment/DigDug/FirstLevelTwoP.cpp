@@ -82,7 +82,7 @@ void dae::FirstLevelTwoP::Initialize()
 
 	m_Pooka = std::make_shared<GameObject>();
 	m_Pooka->SetSize(25, 25);
-	m_Pooka->SetPosition(64.f, 160.f);
+	m_Pooka->SetPosition(70.f, 160.f);
 	m_Pooka->AddComponent(std::make_shared<Enemies::PookaComponent>(grids));
 	scoreObserver->Attach(m_Pooka->GetComponent<Enemies::PookaComponent>());
 	Add(m_Pooka);
@@ -162,7 +162,7 @@ void dae::FirstLevelTwoP::Update()
 
 			if (m_Fygar)
 			{
-				m_Fygar->SetPosition(64.f, 480.f);
+				m_Fygar->SetPosition(70.f, 480.f);
 				m_Fygar->SetState(std::make_shared<Enemies::WanderState>());
 			}
 		}
@@ -180,12 +180,22 @@ void dae::FirstLevelTwoP::Update()
 			{
 				m_Pooka->SetPosition(64.f, 160.f);
 				m_Pooka->SetState(std::make_shared<Enemies::WanderState>());
+				auto pooka = m_Pooka->GetComponent<Enemies::PookaComponent>();
+				if (pooka.lock())
+				{
+					pooka.lock()->ResetStage();
+				}
 			}
 
 			if (m_Fygar)
 			{
-				m_Fygar->SetPosition(64.f, 480.f);
+				m_Fygar->SetPosition(70.f, 480.f);
 				m_Fygar->SetState(std::make_shared<Enemies::WanderState>());
+				auto fygar = m_Fygar->GetComponent<Enemies::FygarComponent>();
+				if (fygar.lock())
+				{
+					fygar.lock()->ResetStage();
+				}
 			}
 		}
 	}
@@ -209,6 +219,17 @@ void dae::FirstLevelTwoP::Update()
 		if (health.lock()->GetLives() == 0)
 		{
 			m_Fygar.reset();
+		}
+	}
+
+	if (m_PlayerOne && m_PlayerTwo)
+	{
+		auto health = m_PlayerOne->GetComponent<HealthComponent>();
+		auto health2 = m_PlayerTwo->GetComponent<HealthComponent>();
+		if (health.lock()->GetLives() == 0 && health2.lock()->GetLives() == 0)
+		{
+			SceneManager::GetInstance().DeleteActiveScene();
+			SceneManager::GetInstance().CreateScene("EndScreen", SceneManager::EndScreen);
 		}
 	}
 

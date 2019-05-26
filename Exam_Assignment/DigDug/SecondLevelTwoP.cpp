@@ -33,8 +33,6 @@ void dae::SecondLevelTwoP::Initialize()
 {
 	auto scoreObserver = std::make_shared<ScoreObserver>();
 
-	ScoreKeeper::GetInstance().ResetScore();
-
 	auto m_GridTest = MapGenerator::GetInstance().CreateMap("../Data/Map2.txt", m_GridSizeWidth, m_GridSizeHeight);
 	std::vector<std::weak_ptr<GameObject>> grids{};
 	for (auto grid : m_GridTest)
@@ -94,7 +92,7 @@ void dae::SecondLevelTwoP::Initialize()
 
 	m_Fygar = std::make_shared<GameObject>();
 	m_Fygar->SetSize(25, 25);
-	m_Fygar->SetPosition(64.f, 480.f);
+	m_Fygar->SetPosition(70.f, 480.f);
 	m_Fygar->AddComponent(std::make_shared<Enemies::FygarComponent>(grids, gun));
 	scoreObserver->Attach(m_Fygar->GetComponent<Enemies::FygarComponent>());
 	Add(m_Fygar);
@@ -191,7 +189,7 @@ void dae::SecondLevelTwoP::Update()
 
 			if (m_Fygar)
 			{
-				m_Fygar->SetPosition(64.f, 480.f);
+				m_Fygar->SetPosition(70.f, 480.f);
 				m_Fygar->SetState(std::make_shared<Enemies::WanderState>());
 			}
 
@@ -221,24 +219,44 @@ void dae::SecondLevelTwoP::Update()
 			{
 				m_Pooka->SetPosition(64.f, 160.f);
 				m_Pooka->SetState(std::make_shared<Enemies::WanderState>());
+				auto pooka = m_Pooka->GetComponent<Enemies::PookaComponent>();
+				if (pooka.lock())
+				{
+					pooka.lock()->ResetStage();
+				}
 			}
 
 			if (m_Fygar)
 			{
-				m_Fygar->SetPosition(64.f, 480.f);
+				m_Fygar->SetPosition(70.f, 480.f);
 				m_Fygar->SetState(std::make_shared<Enemies::WanderState>());
+				auto fygar = m_Fygar->GetComponent<Enemies::FygarComponent>();
+				if (fygar.lock())
+				{
+					fygar.lock()->ResetStage();
+				}
 			}
 
 			if (m_Pooka2)
 			{
 				m_Pooka2->SetPosition(320.f, 480.f);
 				m_Pooka2->SetState(std::make_shared<Enemies::WanderState>());
+				auto pooka = m_Pooka2->GetComponent<Enemies::PookaComponent>();
+				if (pooka.lock())
+				{
+					pooka.lock()->ResetStage();
+				}
 			}
 
 			if (m_Fygar2)
 			{
 				m_Fygar2->SetPosition(352.f, 160.f);
 				m_Fygar2->SetState(std::make_shared<Enemies::WanderState>());
+				auto fygar = m_Fygar2->GetComponent<Enemies::FygarComponent>();
+				if (fygar.lock())
+				{
+					fygar.lock()->ResetStage();
+				}
 			}
 		}
 	}
@@ -281,6 +299,17 @@ void dae::SecondLevelTwoP::Update()
 		if (health.lock()->GetLives() == 0)
 		{
 			m_Fygar2.reset();
+		}
+	}
+
+	if (m_PlayerOne && m_PlayerTwo)
+	{
+		auto health = m_PlayerOne->GetComponent<HealthComponent>();
+		auto health2 = m_PlayerTwo->GetComponent<HealthComponent>();
+		if (health.lock()->GetLives() == 0 && health2.lock()->GetLives() == 0)
+		{
+			SceneManager::GetInstance().DeleteActiveScene();
+			SceneManager::GetInstance().CreateScene("EndScreen", SceneManager::EndScreen);
 		}
 	}
 

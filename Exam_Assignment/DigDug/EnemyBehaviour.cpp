@@ -101,11 +101,6 @@ void Enemies::GhostState::Update(std::weak_ptr<dae::GameObject> obj)
 	{
 		auto col = obj.lock()->GetComponent<dae::CollisionComponent>().lock();
 		auto AI = obj.lock()->GetComponent<dae::AIComponent>().lock();
-		auto fire = obj.lock()->GetComponent<FireComponent>().lock();
-		if (fire)
-		{
-			fire->CanFire(true);
-		}
 		if (col && AI)
 		{
 			auto obstacles = AI->GetObstacles();
@@ -125,6 +120,11 @@ void Enemies::GhostState::Update(std::weak_ptr<dae::GameObject> obj)
 								if (ghost.lock())
 								{
 									ghost.lock()->EnableGhostMode(false);
+								}
+								auto fire = obj.lock()->GetComponent<FireComponent>().lock();
+								if (fire)
+								{
+									fire->CanFire(true);
 								}
 							}
 							

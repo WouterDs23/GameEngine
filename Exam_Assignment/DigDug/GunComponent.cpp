@@ -133,7 +133,6 @@ void DigDug::GunComponent::DoPump()
 {
 	if (m_Hit == true)
 	{
-		m_HitTimer = 0.f;
 		auto col = m_Gun->GetComponent<dae::CollisionComponent>().lock();
 		auto character = m_Parent.lock()->GetComponent<dae::CharacterComponent>().lock();
 
@@ -147,7 +146,11 @@ void DigDug::GunComponent::DoPump()
 					auto health = enemy.lock()->GetComponent<HealthComponent>();
 					if (health.lock())
 					{
-						health.lock()->TakeDamage();
+						if (m_HitTimer >=0.1f)
+						{
+							m_HitTimer = 0.f;
+							health.lock()->TakeDamage();
+						}						
 					}
 				}
 
